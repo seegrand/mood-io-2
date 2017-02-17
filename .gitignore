@@ -1,0 +1,3 @@
+# ignore editor specific files
+.*.sw? # vim
+
