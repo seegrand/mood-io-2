@@ -162,6 +162,8 @@ bad:
     void MyMethod (string lpstrArgument)  
     void MyMethod (string my_string)
 
+Although some changes were made, this is the main source for the coding guidelines: http://www.mono-project.com/community/contributing/coding-guidelines/
+
 ## History  
 TODO: Write history  
 
