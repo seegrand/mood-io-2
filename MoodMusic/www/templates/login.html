@@ -1,0 +1,39 @@
+<ion-view view-title="Login">
+  <ion-content class="login" style="background-size: auto {{ windowHeight }}">
+
+    <div class="padding">
+      <img ng-src="img/mood.png" width="100%" />
+    </div>
+
+    <div class="list-inset login-form">
+      <label class="item item-input">
+        <span class="input-label">Username</span>
+        <input type="text" ng-model="data.username" required/>
+      </label>
+
+      <label class="item item-input">
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="data.password" required/>
+      </label>
+    </div>
+
+    <div class="padding">
+      <button class="button button-block button-calm inset" ng-click="login()">Login</button>
+    </div>
+
+  </ion-content>
+
+  <div class="bar bar-footer bar-footer-transparent bar-footer-large bar-footer-inset hide-on-keyboard-open">
+    <div class="col-50 background-stable" on-tap="go('signup')">
+      <div class="center">
+        <h4>Signup</h4>
+      </div>
+    </div>
+    <div class="col-50 background-calm">
+      <div class="center">
+        <h4>Login</h4>
+      </div>
+    </div>
+  </div>
+
+</ion-view>
