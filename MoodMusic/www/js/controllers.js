@@ -4,6 +4,13 @@ angular.module('MoodMusic.controllers', [])
   $scope.data = {};
   $scope.windowHeight = $window.innerHeight + 'px';
 
+  $scope.login = function(){
+    $ionicHistory.nextViewOptions({
+      disableBack: true
+    })
+    $state.go('dashboard');
+  }
+
   $scope.go = function(view) {
     $ionicHistory.nextViewOptions({
       disableBack: true
@@ -26,7 +33,16 @@ angular.module('MoodMusic.controllers', [])
   }
 })
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashboardCtrl', function($scope, Songs, Moods){
+
+  $scope.recentSongs = Songs.all();
+  $scope.recentMoods = Moods.all();
+
+})
+
+.controller('DashCtrl', function($scope) {
+
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called

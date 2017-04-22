@@ -43,3 +43,52 @@
   vertical-align: middle;
   line-height: 35px;
 }
+
+/* Dashboard */
+
+.dashboard{
+  /*padding: 25px;*/
+}
+
+.changeMyMood{
+  padding: 25px;
+}
+
+/* Recent Songs */
+
+.recent-songs h3{
+  padding: 10px 25px;
+}
+
+.tile{
+  margin: 20px 0px;
+  display: inline-block;
+  width: 150px;
+}
+
+.tile p, h6{
+  word-wrap: break-word;
+}
+
+/* // Recent Songs */
+
+.recentMoods{
+  margin-bottom: 30px;
+}
+
+.wide-as-needed {
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+/* // Dashboard - Change My Mood */
+
+/* Helper Classes */
+
+.img-circle{
+  border-radius: 50px;
+}
+
+.text-center{
+  text-align: center;
+}
