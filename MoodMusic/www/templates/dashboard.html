@@ -15,15 +15,15 @@
         </div>
       </ion-scroll>
     </div>
-    <div class="recentMoods">
+    <div class="recent-moods">
       <h3>Recent Moods</h3>
       <ion-scroll direction="x" class="wide-as-needed">
         <div class="tile" ng-repeat="mood in recentMoods">
-            <div class="text-center">
-              <img src="{{ mood.img }}" class="img-circle">
-              <h6>{{ mood.mood}}</h6>
-            </div>
+          <div class="text-center">
+            <img src="{{ mood.img }}" class="img-circle">
+            <h6>{{ mood.mood}}</h6>
           </div>
+        </div>
       </ion-scroll>
     </div>
   </ion-content>
