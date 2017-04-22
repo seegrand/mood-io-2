@@ -60,6 +60,18 @@
   padding: 10px 25px;
 }
 
+/* // Recent Songs */
+
+/* Recent Moods */
+
+.recent-moods h3{
+  padding: 10px 25px;
+}
+
+/* // Recent Moods */
+
+/* Tile */
+
 .tile{
   margin: 20px 0px;
   display: inline-block;
@@ -70,18 +82,14 @@
   word-wrap: break-word;
 }
 
-/* // Recent Songs */
-
-.recent-moods h3{
-  padding: 10px 25px;
-}
+/* // Tile */
 
 .wide-as-needed {
   overflow: scroll;
   white-space: nowrap;
 }
 
-/* // Dashboard - Change My Mood */
+/* // Dashboard */
 
 /* Helper Classes */
 

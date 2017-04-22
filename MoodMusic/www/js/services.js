@@ -22,7 +22,7 @@ angular.module('MoodMusic.services', [])
     title: "Sweet Home Alabama",
     artist: "Lynyrd Skynyrd",
     img: "http://placehold.it/100x100"
-  }]
+  }];
 
   return {
     all: function(){

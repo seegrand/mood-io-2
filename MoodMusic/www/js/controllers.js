@@ -7,9 +7,10 @@ angular.module('MoodMusic.controllers', [])
   $scope.login = function(){
     $ionicHistory.nextViewOptions({
       disableBack: true
-    })
+    });
+    
     $state.go('dashboard');
-  }
+  };
 
   $scope.go = function(view) {
     $ionicHistory.nextViewOptions({
@@ -17,7 +18,7 @@ angular.module('MoodMusic.controllers', [])
     });
 
     $state.go(view);
-  }
+  };
 })
 
 .controller('SignupCtrl', function($ionicPlatform, $scope, $window, $ionicHistory, $state) {
