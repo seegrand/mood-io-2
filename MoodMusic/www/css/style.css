@@ -43,3 +43,60 @@
   vertical-align: middle;
   line-height: 35px;
 }
+
+/* Dashboard */
+
+.dashboard{
+  /*padding: 25px;*/
+}
+
+.change-my-mood{
+  padding: 25px;
+}
+
+/* Recent Songs */
+
+.recent-songs h3{
+  padding: 10px 25px;
+}
+
+/* // Recent Songs */
+
+/* Recent Moods */
+
+.recent-moods h3{
+  padding: 10px 25px;
+}
+
+/* // Recent Moods */
+
+/* Tile */
+
+.tile{
+  margin: 20px 0px;
+  display: inline-block;
+  width: 150px;
+}
+
+.tile p, h6{
+  word-wrap: break-word;
+}
+
+/* // Tile */
+
+.wide-as-needed {
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+/* // Dashboard */
+
+/* Helper Classes */
+
+.img-circle{
+  border-radius: 50px;
+}
+
+.text-center{
+  text-align: center;
+}

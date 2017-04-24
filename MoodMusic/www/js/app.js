@@ -44,6 +44,13 @@ angular.module('MoodMusic', ['ionic', 'MoodMusic.controllers', 'MoodMusic.servic
       controller: 'SignupCtrl'
     })
 
+    // Post Login Screen
+    .state('dashboard', {
+      url: '/dashboard',
+      templateUrl: 'templates/dashboard.html',
+      controller: 'DashboardCtrl'
+    })
+
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',

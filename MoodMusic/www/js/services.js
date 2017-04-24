@@ -1,5 +1,63 @@
 angular.module('MoodMusic.services', [])
 
+.factory("Songs", function(){
+
+  var recentSongs = [{
+    title: "Never Be Like You",
+    artist: "Flume",
+    img: "http://placehold.it/100x100"
+  }, {
+    title: "Shape Of You",
+    artist: "Ed Sheeran",
+    img: "http://placehold.it/100x100"
+  }, {
+    title: "HUMBLE.",
+    artist: "Kendrick Lamar",
+    img: "http://placehold.it/100x100"
+  }, {
+    title: "Wonderwall",
+    artist: "Oasis",
+    img: "http://placehold.it/100x100"
+  }, {
+    title: "Sweet Home Alabama",
+    artist: "Lynyrd Skynyrd",
+    img: "http://placehold.it/100x100"
+  }];
+
+  return {
+    all: function(){
+      return recentSongs;
+    }
+  };
+})
+
+.factory("Moods", function(){
+
+  var recentMoods = [{
+    mood: "Angry",
+    img: "http://placehold.it/100x100"
+  }, {
+    mood: "Happy",
+    img: "http://placehold.it/100x100"
+  }, {
+    mood: "Sad",
+    img: "http://placehold.it/100x100"
+  }, {
+    mood: "Anxious",
+    img: "http://placehold.it/100x100"
+  }, {
+    mood: "Nervous",
+    img: "http://placehold.it/100x100"
+  }];
+
+  return {
+    all: function(){
+      return recentMoods;
+    }
+  };
+
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
