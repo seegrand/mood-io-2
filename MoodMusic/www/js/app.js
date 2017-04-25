@@ -44,6 +44,13 @@ angular.module('MoodMusic', ['ionic', 'MoodMusic.controllers', 'MoodMusic.servic
       controller: 'SignupCtrl'
     })
 
+    // First Time Login (Favourite Genres)
+    .state('genres-like', {
+      url: '/genres-like',
+      templateUrl: 'templates/genres-like.html',
+      controller: 'GenresCtrl'
+    })
+
     // Post Login Screen
     .state('dashboard', {
       url: '/dashboard',

@@ -8,8 +8,8 @@ angular.module('MoodMusic.controllers', [])
     $ionicHistory.nextViewOptions({
       disableBack: true
     });
-    
-    $state.go('dashboard');
+
+    $state.go('genres-like');
   };
 
   $scope.go = function(view) {
@@ -38,6 +38,12 @@ angular.module('MoodMusic.controllers', [])
 
   $scope.recentSongs = Songs.all();
   $scope.recentMoods = Moods.all();
+
+})
+
+.controller('GenresCtrl', function($scope){
+
+
 
 })
 
