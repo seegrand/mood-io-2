@@ -20,6 +20,9 @@ angular.module('MoodMusic', ['ionic', 'MoodMusic.controllers', 'MoodMusic.servic
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    // TODO: Add API base url for MoodMusic API
+    // $rootScope.BASE_URL = ...
   });
 })
 

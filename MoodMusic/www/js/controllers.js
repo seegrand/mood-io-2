@@ -4,11 +4,13 @@ angular.module('MoodMusic.controllers', [])
   $scope.data = {};
   $scope.windowHeight = $window.innerHeight + 'px';
 
-  $scope.login = function(){
+  $scope.login = function() {
+    // Login user
+
     $ionicHistory.nextViewOptions({
       disableBack: true
     });
-    
+
     $state.go('dashboard');
   };
 
@@ -24,6 +26,16 @@ angular.module('MoodMusic.controllers', [])
 .controller('SignupCtrl', function($ionicPlatform, $scope, $window, $ionicHistory, $state) {
   $scope.data = {};
   $scope.windowHeight = $window.innerHeight + 'px';
+
+  $scope.signup = function() {
+    // Register user
+
+    $ionicHistory.nextViewOptions({
+      disableBack: true
+    });
+
+    $state.go('dashboard');
+  }
 
   $scope.go = function(path) {
     $ionicHistory.nextViewOptions({
