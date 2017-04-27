@@ -1,4 +1,4 @@
-<ion-view view-title="Login">
+<ion-view hide-nav-bar="true">
   <ion-content class="login" style="background-size: auto {{ windowHeight }}">
 
     <div class="padding">
@@ -18,10 +18,6 @@
     </div>
 
     <div class="padding">
-      <button class="button button-block button-calm inset" ng-click="login()">Login</button>
-    </div>
-
-    <div class="padding">
       <button class="button button-block button-facebook inset">
         <i class="icon ion-social-facebook"></i> Connect with Facebook
       </button>
@@ -34,12 +30,12 @@
   </ion-content>
 
   <div class="bar bar-footer bar-footer-transparent bar-footer-large bar-footer-inset hide-on-keyboard-open">
-    <div class="col-50 background-stable" on-tap="go('signup')">
+    <div class="col-50 background-stable" ng-click="go('signup')">
       <div class="center">
         <h4>Signup</h4>
       </div>
     </div>
-    <div class="col-50 background-calm">
+    <div class="col-50 background-calm" ng-click="login()">
       <div class="center">
         <h4>Login</h4>
       </div>
