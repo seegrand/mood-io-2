@@ -41,9 +41,9 @@ angular.module('MoodMusic.controllers', [])
 
 })
 
-.controller('GenresCtrl', function($scope){
+.controller('GenresCtrl', function($scope, Genres){
 
-
+  $scope.genres = Genres.all();
 
 })
 

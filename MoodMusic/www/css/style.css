@@ -1,3 +1,9 @@
+/* General Styles */
+
+h2, h4{
+  color: #FFFFFF;
+}
+
 /* Login */
 
 .login {
@@ -47,20 +53,21 @@
 /* Intro */
 
 .intro{
-  background-color: #11c1f3;
+  background-color: #11C1F3;
   padding: 30px 0px;
+  text-align: center;
 }
 
-.intro h2 h4 p{
-  text-align: center;
-  color: #FFFFFF;
+.genre{
+  display: inline-block;
+  margin-top: 10px;
 }
 
 /* Checkbox */
 
 .checkbox{
-  margin-left: 3px;
-  width: 119px;
+  display: inline-block;
+  text-align: center;
 }
 
 /* // Checkbox */
