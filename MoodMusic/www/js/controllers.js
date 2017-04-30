@@ -53,9 +53,18 @@ angular.module('MoodMusic.controllers', [])
 
 })
 
-.controller('GenresCtrl', function($scope, Genres){
+.controller('GenresCtrl', function($scope, $ionicHistory, $state, Genres){
 
   $scope.genres = Genres.all();
+
+  $scope.go = function(path) {
+
+    $ionicHistory.nextViewOptions({
+      disableBack: true
+    });
+
+    $state.go(path);
+  }
 
 })
 

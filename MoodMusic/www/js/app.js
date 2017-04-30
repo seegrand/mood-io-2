@@ -59,6 +59,13 @@ angular.module('MoodMusic', [
       controller: 'GenresCtrl'
     })
 
+    // First Time Login (Disliked Genres)
+    .state('genres-dislike', {
+      url: '/genres-dislike',
+      templateUrl: 'templates/genres-dislike.html',
+      controller: 'GenresCtrl'
+    })
+
     // Post Login Screen
     .state('dashboard', {
       url: '/dashboard',

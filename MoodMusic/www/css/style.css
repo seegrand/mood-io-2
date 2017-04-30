@@ -1,9 +1,3 @@
-/* General Styles */
-
-h2, h4{
-  color: #FFFFFF;
-}
-
 /* Login */
 
 .login {
@@ -20,11 +14,15 @@ h2, h4{
   background: #dd4b39;
 }
 
+/* // Login */
+
 /* Signup */
 
 .signup {
   background: linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('../img/bg-signup.jpg');
 }
+
+/* // Signup */
 
 /* Footer */
 .bar-footer-large {
@@ -55,6 +53,8 @@ h2, h4{
   line-height: 35px;
 }
 
+/* // Footer */
+
 /* Intro */
 
 .intro{
@@ -63,9 +63,21 @@ h2, h4{
   text-align: center;
 }
 
+.intro h2{
+  color: #FFFFFF;
+}
+
+.intro h4{
+  color: #FFFFFF;
+}
+
+.intro p{
+  color: #FFFFFF;
+}
+
 .genre{
   display: inline-block;
-  margin-top: 10px;
+  margin: 10px 0px;
 }
 
 /* Checkbox */
@@ -80,10 +92,6 @@ h2, h4{
 /* // Intro */
 
 /* Dashboard */
-
-.dashboard{
-  /*padding: 25px;*/
-}
 
 .change-my-mood{
   padding: 25px;
