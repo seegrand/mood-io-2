@@ -58,7 +58,7 @@ angular.module('MoodMusic.controllers', [])
   $scope.genres = Genres.all();
 
   $scope.go = function(path) {
-
+    // Save liked / disliked genres
     $ionicHistory.nextViewOptions({
       disableBack: true
     });
