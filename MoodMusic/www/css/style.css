@@ -4,10 +4,15 @@
   background: linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('../img/bg-login.jpg');
 }
 
-.login-form {
-  margin-top: 20%;
+.button-facebook {
+  color: white;
+  background: #3b5998;
 }
 
+.button-google {
+  color: white;
+  background: #dd4b39;
+}
 
 /* Signup */
 

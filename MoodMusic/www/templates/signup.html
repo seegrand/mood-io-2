@@ -1,4 +1,4 @@
-<ion-view view-title="Signup">
+<ion-view hide-nav-bar="true">
   <ion-content class="signup" style="background-size: auto {{ windowHeight }}">
 
     <div class="padding">
@@ -17,6 +17,11 @@
       </label>
 
       <label class="item item-input">
+        <span class="input-label">Username</span>
+        <input type="text" ng-model="data.username">
+      </label>
+
+      <label class="item item-input">
         <span class="input-label">E-mail</span>
         <input type="email" ng-model="data.email">
       </label>
@@ -27,14 +32,10 @@
       </label>
     </div>
 
-    <div class="padding">
-      <button class="button button-block button-calm inset" ng-click="signup()">Register</button>
-    </div>
-
   </ion-content>
 
   <div class="bar bar-footer bar-footer-transparent bar-footer-large bar-footer-inset hide-on-keyboard-open">
-    <div class="col-50 background-calm">
+    <div class="col-50 background-calm" ng-click="signup()">
       <div class="center">
         <h4>Signup</h4>
       </div>
