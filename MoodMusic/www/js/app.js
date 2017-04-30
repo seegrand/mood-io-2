@@ -5,7 +5,12 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('MoodMusic', ['ionic', 'MoodMusic.controllers', 'MoodMusic.services'])
+angular.module('MoodMusic', [
+  'ionic',
+  'MoodMusic.controllers',
+  'MoodMusic.services',
+  'MoodMusic.auth-services'
+])
 
 .run(function($ionicPlatform, $rootScope, $window) {
   $ionicPlatform.ready(function() {
@@ -20,6 +25,9 @@ angular.module('MoodMusic', ['ionic', 'MoodMusic.controllers', 'MoodMusic.servic
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    // TODO: Add API base url for MoodMusic API
+    // $rootScope.BASE_URL = ...
   });
 })
 
