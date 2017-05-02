@@ -58,6 +58,35 @@ angular.module('MoodMusic.services', [])
 
 })
 
+.factory('Genres', function(){
+
+  var genres = [{
+    name: "Pop"
+  }, {
+    name: "Rock"
+  }, {
+    name: "Rap"
+  }, {
+    name: "Blues"
+  }, {
+    name: "House"
+  }, {
+    name: "Classical"
+  }, {
+    name: "Electronic"
+  }, {
+    name: "Jazz"
+  }, {
+    name: "Dance"
+  }];
+
+  return {
+    all: function(){
+      return genres;
+    }
+  };
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
