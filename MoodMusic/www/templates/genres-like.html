@@ -1,0 +1,12 @@
+<ion-view hide-nav-bar="true" scroll="true">
+  <ion-content class="intro">
+    <h2>Music</h2>
+    <h4>Please select genres you like.</h4>
+    <div class="genre" ng-repeat="genre in genres">
+      <img src="http://placehold.it/100x100" class="img-circle">
+      <input type="checkbox" class="checkbox">
+      <p>{{ genre.name }}</p>
+    </div>
+    <button class="button button-block button-stable inset" ng-click="go('genres-dislike')">Next</button>
+  </ion-content>
+</ion-view>
