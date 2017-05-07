@@ -52,6 +52,20 @@ angular.module('MoodMusic', [
       controller: 'SignupCtrl'
     })
 
+    // First Time Login (Favourite Genres)
+    .state('genres-like', {
+      url: '/genres-like',
+      templateUrl: 'templates/genres-like.html',
+      controller: 'GenresCtrl'
+    })
+
+    // First Time Login (Disliked Genres)
+    .state('genres-dislike', {
+      url: '/genres-dislike',
+      templateUrl: 'templates/genres-dislike.html',
+      controller: 'GenresCtrl'
+    })
+
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',

@@ -128,7 +128,7 @@ hr {
 */
 
 .tile-holder{
-  
+
 }
 
 .tile {
@@ -139,6 +139,44 @@ hr {
 
 .tile img {
   border-radius: 50px;
+}
+
+/*
+    Introduction
+    First time login styles
+*/
+
+.intro{
+  background-color: #11C1F3;
+  padding: 30px 0px;
+  text-align: center;
+}
+
+.intro h2{
+  color: #FFFFFF;
+}
+
+.intro h4{
+  color: #FFFFFF;
+}
+
+.intro p{
+  color: #FFFFFF;
+}
+
+.genre{
+  display: inline-block;
+  margin: 10px 0px;
+}
+
+/*
+    Checkbox
+    Check a box by an image
+*/
+
+.checkbox{
+  display: inline-block;
+  text-align: center;
 }
 
 

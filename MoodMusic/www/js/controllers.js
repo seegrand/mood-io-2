@@ -34,7 +34,7 @@ angular.module('MoodMusic.controllers', [])
       disableBack: true
     });
 
-    $state.go('tab.dash');
+    $state.go('genres-like');
   }
 
   $scope.go = function(path) {
@@ -50,6 +50,21 @@ angular.module('MoodMusic.controllers', [])
 
   $scope.recentSongs = Songs.all();
   $scope.recentMoods = Moods.all();
+
+})
+
+.controller('GenresCtrl', function($scope, $ionicHistory, $state, Genres){
+
+  $scope.genres = Genres.all();
+
+  $scope.go = function(path) {
+    // Save liked / disliked genres
+    $ionicHistory.nextViewOptions({
+      disableBack: true
+    });
+
+    $state.go(path);
+  }
 
 })
 
