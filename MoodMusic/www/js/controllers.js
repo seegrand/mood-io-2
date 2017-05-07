@@ -11,7 +11,8 @@ angular.module('MoodMusic.controllers', [])
       disableBack: true
     });
 
-    $state.go('tab.dash');
+    $state.go('genres-like');
+
   };
 
   $scope.go = function(view) {
