@@ -64,8 +64,6 @@ angular.module('MoodMusic', [
       url: '/genres-dislike',
       templateUrl: 'templates/genres-dislike.html',
       controller: 'GenresCtrl'
-<<<<<<< HEAD
-=======
     })
 
     // Post Login Screen
@@ -73,7 +71,6 @@ angular.module('MoodMusic', [
       url: '/dashboard',
       templateUrl: 'templates/dashboard.html',
       controller: 'DashboardCtrl'
->>>>>>> Tyil/development
     })
 
   // setup an abstract state for the tabs directive
