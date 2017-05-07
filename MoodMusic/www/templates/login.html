@@ -1,42 +1,38 @@
 <ion-view hide-nav-bar="true">
-  <ion-content class="login" style="background-size: auto {{ windowHeight }}">
+  <ion-content class="pre-login-background" style="background-size: auto {{ windowHeight }}" scroll="false">
 
-    <div class="padding">
-      <img ng-src="img/mood.png" width="100%" />
-    </div>
+    <img ng-src="img/mood.png" class="header-logo" alt="Mood Music Logo" />
 
-    <div class="list-inset login-form">
-      <label class="item item-input">
-        <span class="input-label">Username</span>
-        <input type="text" ng-model="data.username" required/>
-      </label>
+    <div class="card card-transparent">
+      <div class="item">
+        <button class="button button-block button-facebook width-75">
+            <i class="icon ion-social-facebook"></i> Log in Facebook
+          </button>
 
-      <label class="item item-input">
-        <span class="input-label">Password</span>
-        <input type="password" ng-model="data.password" required/>
-      </label>
-    </div>
+        <button class="button button-block button-google width-75">
+            <i class="icon ion-social-googleplus"></i> Log in Google+
+          </button>
 
-    <div class="padding">
-      <button class="button button-block button-facebook inset">
-        <i class="icon ion-social-facebook"></i> Connect with Facebook
-      </button>
-
-      <button class="button button-block button-google inset">
-        <i class="icon ion-social-googleplus"></i> Connect with Google+
-      </button>
+        <hr>
+        <h2 class="text-center text-light">Or</h2>
+        <hr>
+        <div class="input-group">
+          <input type="text" ng-model="data.username" placeholder="Username" class="input-alt" required/>
+          <input type="password" ng-model="data.password" placeholder="Password" class="input-alt" required/>
+        </div>
+      </div>
     </div>
 
   </ion-content>
 
-  <div class="bar bar-footer bar-footer-transparent bar-footer-large bar-footer-inset hide-on-keyboard-open">
+  <div class="bar bar-footer bar-footer-transparent bar-footer-inset hide-on-keyboard-open">
     <div class="col-50 background-stable" ng-click="go('signup')">
-      <div class="center">
-        <h4>Signup</h4>
+      <div class="text-center">
+        <h4>Register</h4>
       </div>
     </div>
     <div class="col-50 background-calm" ng-click="login()">
-      <div class="center">
+      <div class="text-center">
         <h4>Login</h4>
       </div>
     </div>
