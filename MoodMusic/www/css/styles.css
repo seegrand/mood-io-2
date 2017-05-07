@@ -208,3 +208,7 @@ hr {
 .text-light {
   color: #FFFFFF;
 }
+
+.img-circle{
+  border-radius: 50px;
+}

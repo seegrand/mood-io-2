@@ -5,22 +5,27 @@ angular.module('MoodMusic.services', [])
   var recentSongs = [{
     title: "Never Be Like You",
     artist: "Flume",
+    trackLength: "3:21",
     img: "http://placehold.it/100x100"
   }, {
     title: "Shape Of You",
     artist: "Ed Sheeran",
+    trackLength: "3:47",
     img: "http://placehold.it/100x100"
   }, {
     title: "HUMBLE.",
     artist: "Kendrick Lamar",
+    trackLength: "3:12",
     img: "http://placehold.it/100x100"
   }, {
     title: "Wonderwall",
     artist: "Oasis",
+    trackLength: "4:18",
     img: "http://placehold.it/100x100"
   }, {
     title: "Sweet Home Alabama",
     artist: "Lynyrd Skynyrd",
+    trackLength: "3:31",
     img: "http://placehold.it/100x100"
   }];
 
