@@ -11,7 +11,7 @@ angular.module('MoodMusic.controllers', [])
       disableBack: true
     });
 
-    $state.go('dashboard');
+    $state.go('tab.dash');
   };
 
   $scope.go = function(view) {
@@ -34,7 +34,7 @@ angular.module('MoodMusic.controllers', [])
       disableBack: true
     });
 
-    $state.go('dashboard');
+    $state.go('tab.dash');
   }
 
   $scope.go = function(path) {
@@ -46,14 +46,10 @@ angular.module('MoodMusic.controllers', [])
   }
 })
 
-.controller('DashboardCtrl', function($scope, Songs, Moods){
+.controller('DashCtrl', function($scope, Songs, Moods) {
 
   $scope.recentSongs = Songs.all();
   $scope.recentMoods = Moods.all();
-
-})
-
-.controller('DashCtrl', function($scope) {
 
 })
 

@@ -1,47 +1,30 @@
 <ion-view hide-nav-bar="true">
-  <ion-content class="signup" style="background-size: auto {{ windowHeight }}">
+  <ion-content class="pre-login-background" style="background-size: auto {{ windowHeight }}" scroll="false">
 
-    <div class="padding">
-      <img ng-src="img/mood.png" width="100%" />
+    <img ng-src="img/mood.png" class="header-logo" width="100%" />
+
+    <div class="card card-transparent">
+      <div class="item">
+        <h1 class="text-center text-light padding">Register</h1>
+        <div class="input-group">
+          <input type="text" ng-model="data.firstname" placeholder="Firstname" class="input-alt">
+          <input type="text" ng-model="data.lastname" placeholder="Lastname" class="input-alt">
+          <input type="text" ng-model="data.username" placeholder="Username" class="input-alt">
+          <input type="email" ng-model="data.email" placeholder="Email" class="input-alt">
+          <input type="password" ng-model="data.password" placeholder="Password" class="input-alt">
+        </div>
+      </div>
     </div>
-
-    <div class="list-inset">
-      <label class="item item-input">
-        <span class="input-label">Firstname</span>
-        <input type="text" ng-model="data.firstname">
-      </label>
-
-      <label class="item item-input">
-        <span class="input-label">Lastname</span>
-        <input type="text" ng-model="data.lastname">
-      </label>
-
-      <label class="item item-input">
-        <span class="input-label">Username</span>
-        <input type="text" ng-model="data.username">
-      </label>
-
-      <label class="item item-input">
-        <span class="input-label">E-mail</span>
-        <input type="email" ng-model="data.email">
-      </label>
-
-      <label class="item item-input">
-        <span class="input-label">Password</span>
-        <input type="password" ng-model="data.password">
-      </label>
-    </div>
-
   </ion-content>
 
   <div class="bar bar-footer bar-footer-transparent bar-footer-large bar-footer-inset hide-on-keyboard-open">
     <div class="col-50 background-calm" ng-click="signup()">
-      <div class="center">
-        <h4>Signup</h4>
+      <div class="text-center">
+        <h4>Register</h4>
       </div>
     </div>
     <div class="col-50 background-stable" ng-click="go('login')">
-      <div class="center">
+      <div class="text-center">
         <h4>Login</h4>
       </div>
     </div>

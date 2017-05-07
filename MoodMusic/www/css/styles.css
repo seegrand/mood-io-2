@@ -1,0 +1,177 @@
+/*
+
+    Mood Music
+    Styling for the app
+
+*/
+
+
+/*
+    General Styles
+*/
+
+hr {
+  margin: 20px 0px;
+}
+
+
+/*
+    Header
+    Show the Mood Music logo.
+*/
+
+.header-logo {
+  width: 100%;
+  padding: 40px;
+}
+
+
+/*
+    Background
+    Views with background
+*/
+
+.bar-footer-inset {
+  padding: 0 30px;
+}
+
+.bar-footer-transparent {
+  background-color: rgba(0, 0, 0, 0.0);
+  border: 0;
+  background-position: bottom;
+}
+
+.background-stable {
+  background: #FFFFFF;
+}
+
+.background-stable h4 {
+  color: #30C7F4;
+}
+
+.background-calm {
+  background: #30C7F4;
+}
+
+.background-calm h4 {
+  color: #FFFFFF;
+}
+
+.pre-login-background {
+  background: linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('../img/bg-login.jpg');
+}
+
+/*
+    Dashboard
+*/
+
+.dashboard{
+  background-color: #FFFFFF;
+}
+
+/*
+    Input Fields
+*/
+
+.input-group {
+  margin: 0px auto;
+}
+
+.input-alt {
+  width: 100%;
+  margin: 10px auto;
+  border-radius: 5px;
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.input-alt[placeholder] {
+  padding: 20px;
+  color: #FFFFFF !important;
+}
+
+.input-alt::placeholder {
+  color: #FFFFFF;
+}
+
+
+/*
+    Button
+    Style alternate buttons
+*/
+
+.button-facebook {
+  color: #FFFFFF;
+  background-color: #3B5998;
+}
+
+.button-google {
+  color: #FFFFFF;
+  background-color: #DD4B39;
+}
+
+.button-active {
+  color: #FFFFFF;
+}
+.change-my-mood{
+  padding: 25px;
+}
+.button-padding {
+  padding: 25px;
+}
+
+
+/*
+    Tile
+    Show an image with some text.
+    The image will be rounded by default.
+*/
+
+.tile-holder{
+  
+}
+
+.tile {
+  margin: 20px 0px;
+  display: inline-block;
+  width: 150px;
+}
+
+.tile img {
+  border-radius: 50px;
+}
+
+
+/*
+    Cards
+*/
+
+.card-transparent {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-transparent .item {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+/*
+    Helper Classes
+    Classes that assist the styling.
+*/
+
+
+/* .wide-as-needed will assist in side-way scrolling. */
+
+.wide-as-needed {
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.width-75 {
+  width: 75%;
+}
+
+.text-light {
+  color: #FFFFFF;
+}
