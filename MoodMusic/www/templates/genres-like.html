@@ -3,8 +3,8 @@
     <h2>Music</h2>
     <h4>Please select genres you like.</h4>
     <div class="genre" ng-repeat="genre in genres">
-      <img src="http://placehold.it/100x100" class="img-circle">
-      <input type="checkbox" class="checkbox">
+      <img src="http://placehold.it/100x100" alt="genre image" class="checkbox img-circle" ng-click="toggleSelected()">
+      <!-- <img src="http://placehold.it/100x100" class="img-circle"> -->
       <p>{{ genre.name }}</p>
     </div>
     <button class="button button-block button-stable inset" ng-click="go('genres-dislike')">Next</button>
