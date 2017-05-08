@@ -9,7 +9,8 @@ angular.module('MoodMusic', [
   'ionic',
   'MoodMusic.controllers',
   'MoodMusic.services',
-  'MoodMusic.auth-services'
+  'MoodMusic.auth-services',
+  'MoodMusic.util-services'
 ])
 
 .run(function($ionicPlatform, $rootScope, $window) {
@@ -88,6 +89,16 @@ angular.module('MoodMusic', [
       'tab-dash': {
         templateUrl: 'templates/tab-dash.html',
         controller: 'DashCtrl'
+      }
+    }
+  })
+
+  .state('tab.player', {
+    url: '/player',
+    views: {
+      'tab-player': {
+        templateUrl: 'templates/tab-player.html',
+        controller: 'PlayerCtrl'
       }
     }
   })
