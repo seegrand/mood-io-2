@@ -8,7 +8,7 @@
       <ion-scroll direction="x" class="wide-as-needed">
         <div class="tile" ng-repeat="song in recentSongs">
           <div class="text-center">
-            <img src="{{ song.img }}" class="img-circle">
+            <img ng-src="{{ song.img }}" class="img-circle">
             <p>{{ song.title }}</p>
             <h6>{{ song.artist }}</h6>
           </div>
@@ -20,7 +20,7 @@
       <ion-scroll direction="x" class="wide-as-needed">
         <div class="tile" ng-repeat="mood in recentMoods">
           <div class="text-center">
-            <img src="{{ mood.img }}" class="img-circle">
+            <img ng-src="{{ mood.img }}" class="img-circle">
             <h6>{{ mood.mood }}</h6>
           </div>
         </div>
