@@ -12,6 +12,7 @@ angular.module('MoodMusic.controllers', [])
     });
 
     $state.go('genres-like');
+
   };
 
   $scope.go = function(view) {
@@ -34,7 +35,7 @@ angular.module('MoodMusic.controllers', [])
       disableBack: true
     });
 
-    $state.go('dashboard');
+    $state.go('genres-like');
   }
 
   $scope.go = function(path) {
@@ -46,7 +47,7 @@ angular.module('MoodMusic.controllers', [])
   }
 })
 
-.controller('DashboardCtrl', function($scope, Songs, Moods){
+.controller('DashCtrl', function($scope, Songs, Moods) {
 
   $scope.recentSongs = Songs.all();
   $scope.recentMoods = Moods.all();
@@ -68,36 +69,29 @@ angular.module('MoodMusic.controllers', [])
 
 })
 
-.controller('DashCtrl', function($scope) {
+.controller('SearchCtrl', function($scope, Songs) {
 
+  $scope.songs = Songs.all();
 })
 
-.controller('PlayerCtrl', function($scope, $window, BackgroundSwirler) {
-  $scope.windowHeight = $window.innerHeight + 'px';
+.controller('PlayerCtrl', function($scope, $window, $cordovaNativeAudio, BackgroundSwirler, InputRangeLowerFillUpdater) {
+  $scope.windowHeight = ($window.innerHeight) + 'px';
 
-  BackgroundSwirler.swirlBackground();
+  // BackgroundSwirler.swirlBackground();
+  InputRangeLowerFillUpdater.updateLowerFill();
+
+  $cordovaNativeAudio
+    .preloadComplex('music', 'http://www.eclassical.com/custom/eclassical/files/BIS1447-002-flac_16.flac', 1, 1)
+    .then(function (msg) {
+      console.log(msg);
+    }, function (error) {
+      console.error(error);
+    });
+
+    $cordovaNativeAudio.play('music');
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('AccountCtrl', function($scope) {
+.controller('SettingsCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };

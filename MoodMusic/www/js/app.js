@@ -67,11 +67,10 @@ angular.module('MoodMusic', [
       controller: 'GenresCtrl'
     })
 
-    // Post Login Screen
-    .state('dashboard', {
-      url: '/dashboard',
-      templateUrl: 'templates/dashboard.html',
-      controller: 'DashboardCtrl'
+    .state('play', {
+      url: '/play',
+      templateUrl: 'templates/player.html',
+      controller: 'PlayerCtrl'
     })
 
   // setup an abstract state for the tabs directive
@@ -93,41 +92,22 @@ angular.module('MoodMusic', [
     }
   })
 
-  .state('tab.player', {
-    url: '/player',
+  .state('tab.search', {
+    url: '/search',
     views: {
-      'tab-player': {
-        templateUrl: 'templates/tab-player.html',
-        controller: 'PlayerCtrl'
+      'tab-search': {
+        templateUrl: 'templates/tab-search.html',
+        controller: 'SearchCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.settings', {
+    url: '/settings',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-settings': {
+        templateUrl: 'templates/tab-settings.html',
+        controller: 'SettingsCtrl'
       }
     }
   });

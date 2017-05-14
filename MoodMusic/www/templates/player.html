@@ -1,0 +1,39 @@
+<ion-view hide-nav-bar="true">
+	<ion-content style="bottom:0px">
+		<div id="gradient" style="background:pink;height:{{ windowHeight }};">
+
+			<a class="button button-icon icon ion-chevron-down top-left-icon"></a>
+
+			<div id="song">
+				<span id="title">Shape of You</span>
+				<span id="artist">Ed Sheeran</span>
+			</div>
+
+			<div id="controls">
+				<a class="button button-icon icon ion-skip-backward music-controls-backward-icon"></a>
+				<button class="music-controls-play-button"><i class="icon ion-play music-controls-play-icon"></i></button>
+				<a class="button button-icon icon ion-skip-forward music-controls-forward-icon"></a>
+			</div>
+
+			<div id="progress">
+				<div class="range">
+					<!-- <span>0:00</span> -->
+					<input id="progress-range" type="range" name="music-progress" min="0" max="240" value="10" step="1">
+					<!-- <span>3:50</span> -->
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+
+	<ion-footer-bar style="background:transparent;height:110px">
+		<div id="likert">
+			<span id="current-mood">Joyful</span>
+			<div class="range">
+				<input id="likert-range" type="range" name="likert" min="0" max="4" value="2" step="1">
+			</div>
+			<span id="helpfulness">Slightly</span>
+		</div>
+	</ion-footer>
+
+</ion-view>
