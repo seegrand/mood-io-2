@@ -271,9 +271,11 @@ hr {
 .button-active {
   color: #FFFFFF;
 }
+
 .change-my-mood{
   padding: 25px;
 }
+
 .button-padding {
   padding: 25px;
 }
@@ -324,7 +326,7 @@ hr {
 
 .genre{
   display: inline-block;
-  margin: 10px 0px;
+  margin: 7px 0px;
 }
 
 /*
@@ -333,8 +335,13 @@ hr {
 */
 
 .checkbox{
-  display: inline-block;
-  text-align: center;
+  padding: 0px !important;
+  margin: 7px;
+  border: 3px solid transparent;
+}
+
+.selected{
+  border: 3px solid #FFFFFF;
 }
 
 
@@ -346,7 +353,7 @@ hr {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.card-transparent .item {
+.item-transparent {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -356,16 +363,11 @@ hr {
     Classes that assist the styling.
 */
 
-
 /* .wide-as-needed will assist in side-way scrolling. */
 
 .wide-as-needed {
   overflow: scroll;
   white-space: nowrap;
-}
-
-.width-75 {
-  width: 75%;
 }
 
 .text-light {
