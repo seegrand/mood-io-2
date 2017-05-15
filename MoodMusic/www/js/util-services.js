@@ -14,7 +14,7 @@ angular.module('MoodMusic.util-services', [])
 			var colorIndices = [0, 1, 2, 3];
 
 			//transition speed
-			var gradientSpeed = 0.0001;
+			var gradientSpeed = 0.0005;
 
 			function updateGradient() {
 
@@ -36,7 +36,11 @@ angular.module('MoodMusic.util-services', [])
 				var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
 				var color2 = "rgb(" + r2 + "," + g2 + "," + b2 + ")";
 
-				document.getElementById('gradient').style.background = "-webkit-gradient(linear, left top, right bottom, from(" + color1 + "), to(" + color2 + "))";
+				document.getElementById('gradient').style.background = "-webkit-gradient(linear, left top, right bottom, from(" + color1 + "), to(" + color2 + "))"; /* Chrome and Safari */
+				document.getElementById('gradient').style.background = "-webkit-linear-gradient(left top, " + color1 + ", " + color2 + ")"; /* Chrome and Safari */
+				document.getElementById('gradient').style.background = "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"; /* Firefox */
+				document.getElementById('gradient').style.background = "-o-linear-gradient(bottom right, " + color1 + ", " + color2 + ")"; /* For Opera 11.1 to 12.0 */
+				document.getElementById('gradient').style.background = "linear-gradient(to bottom right, " + color1 + ", " + color2 + ")"; /* Standard syntax (must be last) */
 
 				// $('#gradient').css({
 				//    background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
@@ -57,7 +61,7 @@ angular.module('MoodMusic.util-services', [])
 				}
 			}
 
-			setInterval(updateGradient, 10);
+			setInterval(updateGradient, 100);
 		}
 	})
 

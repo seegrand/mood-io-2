@@ -52,9 +52,9 @@ angular.module('MoodMusic.controllers', [])
 		$scope.recentSongs = Songs.all();
 		$scope.recentMoods = Moods.all();
 
-		$scope.playSong = function() {
-			$rootScope.go('play', false);
-		}
+		// $scope.playSong = function() {
+		// 	$rootScope.go('play', false);
+		// }
 
 	})
 

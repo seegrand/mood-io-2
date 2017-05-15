@@ -1,6 +1,6 @@
 <ion-view hide-nav-bar="true">
 	<ion-content style="bottom:0px">
-		<div id="gradient" style="background:pink;height:{{ windowHeight }};">
+		<div id="gradient" style="background:color($colors, calm);height:{{ windowHeight }};">
 
 			<a class="button button-icon icon ion-chevron-down top-left-icon"></a>
 
@@ -16,6 +16,10 @@
 			</div>
 
 			<div id="progress">
+				<audio controls>
+  				<source src="http://www.eclassical.com/custom/eclassical/files/BIS1447-002-flac_16.flac">
+				</audio>
+
 				<div class="range">
 					<!-- <span id="progress-begin">0:00</span> -->
 					<input id="progress-range" type="range" name="music-progress" min="0" max="240" step="1" ng-model="currentPosition" ng-change="seekMusicFile()">

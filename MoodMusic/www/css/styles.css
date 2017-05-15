@@ -238,6 +238,7 @@ hr {
 }
 
 .tile {
+  border: 0;
   margin: 20px 0px;
   display: inline-block;
   width: 150px;
