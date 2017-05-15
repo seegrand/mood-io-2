@@ -3,7 +3,6 @@
     "version": "0.1.1",
     "description": "MoodMusic: An Ionic project",
     "dependencies": {
-        "com.telerik.plugins.nativepagetransitions": "git+https://github.com/Telerik-Verified-Plugins/NativePageTransitions.git",
         "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-compat": "^1.1.0",
@@ -41,13 +40,13 @@
     ],
     "cordova": {
         "plugins": {
-            "com.telerik.plugins.nativepagetransitions": {},
             "cordova-plugin-whitelist": {},
             "cordova-plugin-file": {},
             "cordova-plugin-media": {}
         },
         "platforms": [
-            "android"
+            "android",
+            "ios"
         ]
     }
 }

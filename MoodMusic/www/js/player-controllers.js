@@ -28,12 +28,12 @@ angular.module('MoodMusic.player-controllers', [])
   }
 
   $scope.skipForward = function() {
-    TODO: Implement based on API
+    // TODO: Implement based on API
     console.log('Skip Forward');
   }
 
   $scope.skipBackward = function() {
-    TODO: Implement based on API
+    // TODO: Implement based on API
     console.log('Skip Backward');
   }
 
