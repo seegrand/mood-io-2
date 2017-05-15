@@ -144,34 +144,10 @@ hr {
     width: 100%;
 }
 
-/*#progress input[type=range] {*/
-    /*removes default webkit styles*/
-    /*-webkit-appearance: none;*/
-    /*required for proper track sizing in FF*/
-    /*color: #606060;*/
-    /*width: 100%;*/
-/*}*/
-/*#progress input[type="range"]::-moz-range-progress {
-      background: red;
-}
-#progress input[type=range]::-webkit-slider-runnable-track {
-    width: 300px;
-    height: 2px;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 3px;
-}
-#progress input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 10px;
-    width: 10px;
-    border-radius: 50%;
-    background: #FFFFFF;
-    margin-top: -4px;
-}
-#progress input[type=range]:focus {
-    outline: none;
+/*
+#progress #progress-range {
+  margin-left: 10px;
+  margin-right: 10px;
 }*/
 
 #likert {
@@ -194,38 +170,8 @@ hr {
 }
 
 #likert #helpfulness {
-  color: #525252;
+  color: #c1c1c1;
 }
-
-/*#likert input[type=range] {
-    removes default webkit styles
-    -webkit-appearance: none;
-    required for proper track sizing in FF
-    color: #606060;
-    width: 100%;
-}
-#likert input[type="range"]::-moz-range-progress {
-      background: red;
-}
-#likert input[type=range]::-webkit-slider-runnable-track {
-    width: 300px;
-    height: 2px;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 3px;
-}
-#likert input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background: #FFFFFF;
-    margin-top: -9px;
-}
-#likert input[type=range]:focus {
-    outline: none;
-}*/
 
 /*
     Input Fields

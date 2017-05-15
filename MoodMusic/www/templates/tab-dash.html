@@ -6,7 +6,7 @@
     <div class="tile-holder">
       <h3 class="padding">Recent Songs</h3>
       <ion-scroll direction="x" class="wide-as-needed">
-        <div class="tile" ng-repeat="song in recentSongs">
+        <div class="tile" ng-repeat="song in recentSongs" ng-click="playSong()">
           <div class="text-center">
             <img ng-src="{{ song.img }}" class="img-circle">
             <p>{{ song.title }}</p>

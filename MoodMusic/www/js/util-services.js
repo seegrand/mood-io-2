@@ -64,7 +64,7 @@ angular.module('MoodMusic.util-services', [])
 	.service('InputRangeLowerFillUpdater', function() {
 		this.updateLowerFill = function() {
 			"use strict";
-	    const DEBUG = true;
+	    const DEBUG = false;
 
 			var inlineStyle = document.createElement('style');
 		  var rangeSelector = document.querySelectorAll('[type=range]');
