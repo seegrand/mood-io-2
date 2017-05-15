@@ -3,7 +3,7 @@
     <h2>Music</h2>
     <h4>Please select genres you dislike.</h4>
     <div class="genre" ng-repeat="genre in genres">
-      <img src="http://placehold.it/100x100" class="checkbox img-circle" ng-click="toggleLikes()" ng-class="{ selected: isActive }">
+      <img src="http://placehold.it/100x100" class="checkbox img-circle" ng-click="toggleDislikes()" ng-class="{ selected: isActive }">
       <p>{{ genre.name }}</p>
     </div>
     <button class="button button-block button-stable inset" ng-click="go('tab.dash')">Done</button>

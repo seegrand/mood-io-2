@@ -103,6 +103,12 @@ angular.module('MoodMusic', [
         controller: 'AccountCtrl'
       }
     }
+  })
+
+  .state('change-my-mood', {
+    url: '/change-my-mood',
+    templateUrl: 'templates/change-my-mood.html',
+    controller: 'ChangeMyMoodCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback

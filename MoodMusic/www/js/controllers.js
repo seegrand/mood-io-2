@@ -47,10 +47,20 @@ angular.module('MoodMusic.controllers', [])
     }
   })
 
-  .controller('DashCtrl', function($scope, Songs, Moods) {
+  .controller('DashCtrl', function($scope, $ionicHistory, $state, Songs, Moods) {
 
     $scope.recentSongs = Songs.all();
     $scope.recentMoods = Moods.all();
+
+    $scope.go = function(view) {
+
+      $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
+
+      $state.go(view);
+
+    }
 
   })
 
@@ -64,24 +74,20 @@ angular.module('MoodMusic.controllers', [])
     $scope.toggleLikes = function() {
       this.isActive = !this.isActive;
 
-      if(this.isActive){
+      if (this.isActive) {
         likes.push(this.genre.name);
-      }
-
-      else{
+      } else {
         var i = likes.indexOf(this.genre.name);
         likes.splice(i, 1);
       }
     }
 
-    $scope.toggleDislikes = function(){
+    $scope.toggleDislikes = function() {
       this.isActive = !this.isActive;
 
-      if(this.isActive){
+      if (this.isActive) {
         dislikes.push(this.genre.name);
-      }
-
-      else{
+      } else {
         var i = likes.indexOf(this.genre.name);
         dislikes.splice(i, 1);
       }
@@ -102,6 +108,26 @@ angular.module('MoodMusic.controllers', [])
   .controller('SearchCtrl', function($scope, Songs) {
 
     $scope.songs = Songs.all();
+
+  })
+
+  .controller('ChangeMyMoodCtrl', function($scope, $state, Moods) {
+
+    var currentMood = "";
+
+    $scope.moods = Moods.all();
+
+    $scope.selectedMood = function(){
+
+      currentMood = this.mood.mood;
+      console.log(currentMood);
+    }
+
+    $scope.go = function(path) {
+
+      // TODO: Send current mood to API
+      $state.go(path);
+    }
 
   })
 
