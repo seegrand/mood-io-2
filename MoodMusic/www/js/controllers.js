@@ -1,5 +1,16 @@
 angular.module('MoodMusic.controllers', [])
 
+  .controller('IntroCtrl', function($scope, $state, $ionicHistory){
+    $scope.go = (path, disableBack) => {
+
+      $ionicHistory.nextViewOptions({
+        disableBack: disableBack
+      });
+
+      $state.go(path);
+    }
+  })
+
   .controller('LoginCtrl', function($ionicPlatform, $scope, $window, $ionicHistory, $state) {
     $scope.data = {};
     $scope.windowHeight = $window.innerHeight + 'px';
@@ -11,13 +22,13 @@ angular.module('MoodMusic.controllers', [])
         disableBack: true
       });
 
-      $state.go('genres-like');
+      $state.go('tab.dash');
 
     };
 
     $scope.go = function(view) {
       $ionicHistory.nextViewOptions({
-        disableBack: true
+        disableBack: false
       });
 
       $state.go(view);
@@ -40,7 +51,7 @@ angular.module('MoodMusic.controllers', [])
 
     $scope.go = function(path) {
       $ionicHistory.nextViewOptions({
-        disableBack: true
+        disableBack: false
       });
 
       $state.go(path);
@@ -91,7 +102,7 @@ angular.module('MoodMusic.controllers', [])
 
       // TODO: Save liked / disliked genres
       $ionicHistory.nextViewOptions({
-        disableBack: true
+        disableBack: false
       });
 
       $state.go(path);
