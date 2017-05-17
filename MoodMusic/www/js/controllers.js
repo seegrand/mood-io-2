@@ -1,109 +1,114 @@
 angular.module('MoodMusic.controllers', [])
 
-  .controller('LoginCtrl', function($ionicPlatform, $scope, $window, $ionicHistory, $state) {
-    $scope.data = {};
-    $scope.windowHeight = $window.innerHeight + 'px';
+	.controller('LoginCtrl', function($ionicPlatform, $scope, $window, $ionicHistory, $state) {
+		$scope.data = {};
+		$scope.windowHeight = $window.innerHeight + 'px';
 
-    $scope.login = function() {
-      // Login user
+		$scope.login = function() {
+			// Login user
 
-      $ionicHistory.nextViewOptions({
-        disableBack: true
-      });
+			$ionicHistory.nextViewOptions({
+				disableBack: true
+			});
 
-      $state.go('genres-like');
+			$state.go('genres-like');
 
-    };
+		};
 
-    $scope.go = function(view) {
-      $ionicHistory.nextViewOptions({
-        disableBack: true
-      });
+		$scope.go = function(view) {
+			$ionicHistory.nextViewOptions({
+				disableBack: true
+			});
 
-      $state.go(view);
-    };
-  })
+			$state.go(view);
+		};
+	})
 
-  .controller('SignupCtrl', function($ionicPlatform, $scope, $window, $ionicHistory, $state) {
-    $scope.data = {};
-    $scope.windowHeight = $window.innerHeight + 'px';
+	.controller('SignupCtrl', function($ionicPlatform, $scope, $window, $ionicHistory, $state) {
+		$scope.data = {};
+		$scope.windowHeight = $window.innerHeight + 'px';
 
-    $scope.signup = function() {
-      // Register user
+		$scope.signup = function() {
+			// Register user
 
-      $ionicHistory.nextViewOptions({
-        disableBack: true
-      });
+			$ionicHistory.nextViewOptions({
+				disableBack: true
+			});
 
-      $state.go('genres-like');
-    }
+			$state.go('genres-like');
+		}
 
-    $scope.go = function(path) {
-      $ionicHistory.nextViewOptions({
-        disableBack: true
-      });
+		$scope.go = function(path) {
+			$ionicHistory.nextViewOptions({
+				disableBack: true
+			});
 
-      $state.go(path);
-    }
-  })
+			$state.go(path);
+		}
+	})
 
-  .controller('DashCtrl', function($scope, Songs, Moods) {
+	.controller('DashCtrl', function($rootScope, $scope, $state, Songs, Moods) {
 
-    $scope.recentSongs = Songs.all();
-    $scope.recentMoods = Moods.all();
+		$scope.recentSongs = Songs.all();
+		$scope.recentMoods = Moods.all();
 
-  })
+		// $scope.playSong = function() {
+		// 	$rootScope.go('play', false);
+		// }
 
-  .controller('GenresCtrl', function($scope, $ionicHistory, $state, Genres) {
+	})
 
-    var likes = [];
-    var dislikes = [];
+	.controller('GenresCtrl', function($scope, $ionicHistory, $state, Genres) {
 
-    $scope.genres = Genres.all();
+		var likes = [];
+		var dislikes = [];
 
-    $scope.toggleLikes = function() {
-      this.isActive = !this.isActive;
+		$scope.genres = Genres.all();
 
-      if(this.isActive){
-        likes.push(this.genre.name);
-      }
+		$scope.toggleLikes = function() {
+			this.isActive = !this.isActive;
 
-      else{
-        var i = likes.indexOf(this.genre.name);
-        likes.splice(i, 1);
-      }
-    }
+			if (this.isActive) {
+				likes.push(this.genre.name);
+			} else {
+				var i = likes.indexOf(this.genre.name);
+				likes.splice(i, 1);
+			}
+		}
 
-    $scope.toggleDislikes = function(){
-      this.isActive = !this.isActive;
+		$scope.toggleDislikes = function() {
+			this.isActive = !this.isActive;
 
-      if(this.isActive){
-        dislikes.push(this.genre.name);
-      }
+			if (this.isActive) {
+				dislikes.push(this.genre.name);
+			} else {
+				var i = likes.indexOf(this.genre.name);
+				dislikes.splice(i, 1);
+			}
+		}
 
-      else{
-        var i = likes.indexOf(this.genre.name);
-        dislikes.splice(i, 1);
-      }
-    }
+		$scope.go = function(path) {
 
-    $scope.go = function(path) {
+			// TODO: Save liked / disliked genres
+			$ionicHistory.nextViewOptions({
+				disableBack: true
+			});
 
-      // TODO: Save liked / disliked genres
-      $ionicHistory.nextViewOptions({
-        disableBack: true
-      });
+			$state.go(path);
+		}
 
-      $state.go(path);
-    }
+	})
 
-  })
+	.controller('SearchCtrl', function($scope, Songs) {
 
-  .controller('SearchCtrl', function($scope, Songs) {
+		$scope.songs = Songs.all();
+	})
 
-    $scope.songs = Songs.all();
-
-  })
+	.controller('SettingsCtrl', function($scope) {
+		$scope.settings = {
+			enableFriends: true
+		};
+	})
 
   .controller('AccountCtrl', function($scope) {
     $scope.settings = {
