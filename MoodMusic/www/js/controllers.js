@@ -110,8 +110,14 @@ angular.module('MoodMusic.controllers', [])
 		};
 	})
 
-	.controller('AccountCtrl', function($scope) {
-		$scope.settings = {
-			enableFriends: true
-		};
-	});
+  .controller('AccountCtrl', function($scope) {
+    $scope.settings = {
+      enableFriends: true
+    };
+
+    $scope.logout = function(){
+      // TODO: Logout
+      console.log("Logging out.");
+
+    }
+  });
