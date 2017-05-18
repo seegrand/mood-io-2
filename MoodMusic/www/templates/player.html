@@ -1,0 +1,43 @@
+<ion-view hide-nav-bar="true">
+	<ion-content style="bottom:0px">
+		<div id="gradient" style="background:color($colors, calm);height:{{ windowHeight }};">
+
+			<a class="button button-icon icon ion-chevron-down top-left-icon"></a>
+
+			<div id="song">
+				<span id="title">Shape of You</span>
+				<span id="artist">Ed Sheeran</span>
+			</div>
+
+			<div id="controls">
+				<a class="button button-icon icon ion-skip-backward music-controls-backward-icon" ng-click="skipBackward()"></a>
+				<button id="play-button" class="music-controls-play-button" ng-click="playToggle()"><i id="play-button-icon" class="icon ion-play music-controls-play-icon"></i></button>
+				<a class="button button-icon icon ion-skip-forward music-controls-forward-icon" ng-click="skipForward()"></a>
+			</div>
+
+			<div id="progress">
+				<audio controls>
+  				<source src="http://www.eclassical.com/custom/eclassical/files/BIS1447-002-flac_16.flac">
+				</audio>
+
+				<div class="range">
+					<!-- <span id="progress-begin">0:00</span> -->
+					<input id="progress-range" type="range" name="music-progress" min="0" max="240" step="1" ng-model="currentPosition" ng-change="seekMusicFile()">
+					<!-- <span id="progress-end">3:50</span> -->
+				</div>
+			</div>
+		</div>
+
+	</ion-content>
+
+	<ion-footer-bar style="background:transparent;height:110px">
+		<div id="likert">
+			<span id="current-mood">Joyful</span>
+			<div class="range">
+				<input id="likert-range" type="range" name="likert" min="0" max="4" value="2" step="1" ng-model="likertPosition" ng-change="updateLikert()">
+			</div>
+			<span id="helpfulness">Neutral</span>
+		</div>
+	</ion-footer>
+
+</ion-view>
