@@ -1,0 +1,14 @@
+<ion-view hide-nav-bar="true" scroll="true">
+  <ion-content class="intro">
+    <h2>Mood</h2>
+    <h4>Please select your current mood.</h4>
+    <div class="genre" ng-repeat="mood in moods">
+      <label>
+        <input type="radio" name="mood" value="small" ng-click="selectedMood()">
+        <img src="http://placehold.it/100x100" class="img-circle">
+      </label>
+      <p>{{ mood.mood }}</p>
+    </div>
+    <button class="button button-block button-stable inset" ng-click="go('player')">Next</button>
+  </ion-content>
+</ion-view>
