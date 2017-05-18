@@ -7,12 +7,15 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('MoodMusic', [
   'ionic',
+  'ngCordova',
   'MoodMusic.controllers',
+  'MoodMusic.player-controllers',
   'MoodMusic.services',
-  'MoodMusic.auth-services'
+  'MoodMusic.auth-services',
+  'MoodMusic.util-services'
 ])
 
-.run(function($ionicPlatform, $rootScope, $window) {
+.run(function($ionicPlatform, $rootScope, $window, $ionicHistory, $state) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -28,6 +31,14 @@ angular.module('MoodMusic', [
 
     // TODO: Add API base url for MoodMusic API
     // $rootScope.BASE_URL = ...
+
+    $rootScope.go = function(path, enableBack) {
+      $ionicHistory.nextViewOptions({
+        disableBack: enableBack
+      });
+
+      $state.go(path);
+    }
   });
 })
 
@@ -75,6 +86,12 @@ angular.module('MoodMusic', [
       controller: 'GenresCtrl'
     })
 
+    .state('play', {
+      url: '/play',
+      templateUrl: 'templates/player.html',
+      controller: 'PlayerCtrl'
+    })
+
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
@@ -104,14 +121,20 @@ angular.module('MoodMusic', [
     }
   })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.settings', {
+    url: '/settings',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-settings': {
+        templateUrl: 'templates/tab-settings.html',
+        controller: 'SettingsCtrl'
       }
     }
+  })
+
+  .state('change-my-mood', {
+    url: '/change-my-mood',
+    templateUrl: 'templates/change-my-mood.html',
+    controller: 'ChangeMyMoodCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
