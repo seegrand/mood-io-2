@@ -32,9 +32,10 @@ angular.module('MoodMusic', [
     // TODO: Add API base url for MoodMusic API
     // $rootScope.BASE_URL = ...
 
-    $rootScope.go = function(path, enableBack) {
+    $rootScope.go = function(path, disableBack) {
       $ionicHistory.nextViewOptions({
-        disableBack: enableBack
+        disableBack: disableBack,
+        historyRoot: true
       });
 
       $state.go(path);

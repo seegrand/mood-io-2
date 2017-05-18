@@ -58,28 +58,20 @@ angular.module('MoodMusic.controllers', [])
 		}
 	})
 
-	.controller('DashCtrl', function($rootScope, $scope, $state, Songs, Moods) {
+	.controller('DashCtrl', function($rootScope, $scope, Songs, Moods) {
 
 		$scope.recentSongs = Songs.all();
 		$scope.recentMoods = Moods.all();
 
-    $scope.go = function(view) {
-
-      $ionicHistory.nextViewOptions({
-        disableBack: false
-      });
-
-      $state.go(view);
-
+    $scope.changeMood = function() {
+      $rootScope.go('change-my-mood', false);
     }
-
-  })
 
 		// $scope.playSong = function() {
 		// 	$rootScope.go('play', false);
 		// }
 
-	})
+  })
 
 	.controller('GenresCtrl', function($scope, $ionicHistory, $state, Genres) {
 
@@ -114,7 +106,7 @@ angular.module('MoodMusic.controllers', [])
 
 			// TODO: Save liked / disliked genres
 			$ionicHistory.nextViewOptions({
-				disableBack: true
+				disableBack: false
 			});
 
 			$state.go(path);
@@ -127,13 +119,20 @@ angular.module('MoodMusic.controllers', [])
 		$scope.songs = Songs.all();
 	})
 
-	.controller('SettingsCtrl', function($scope) {
+	.controller('SettingsCtrl', function($rootScope, $scope) {
 		$scope.settings = {
 			enableFriends: true
 		};
+
+		$scope.logout = function(){
+      // TODO: Logout
+			$rootScope.go('intro', true);
+      console.log("Logging out.");
+    }
+
 	})
 
-  .controller('ChangeMyMoodCtrl', function($scope, $state, Moods) {
+  .controller('ChangeMyMoodCtrl', function($scope, Moods) {
 
     var currentMood = "";
 
@@ -145,22 +144,4 @@ angular.module('MoodMusic.controllers', [])
       console.log(currentMood);
     }
 
-    $scope.go = function(path) {
-
-      // TODO: Send current mood to API
-      $state.go(path);
-    }
-
-  })
-
-  .controller('AccountCtrl', function($scope) {
-    $scope.settings = {
-      enableFriends: true
-    };
-
-    $scope.logout = function(){
-      // TODO: Logout
-      console.log("Logging out.");
-
-    }
   });
