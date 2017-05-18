@@ -1,31 +1,12 @@
-<ion-view hide-nav-bar="true">
-  <ion-content class="pre-login-background" style="background-size: auto {{ windowHeight }}" scroll="false">
-
-    <img ng-src="img/mood.png" class="header-logo" alt="Mood Music Logo" />
-
-    <h1 class="text-center text-light padding">Login</h1>
-    <div class="card card-transparent">
-      <div class="item item-transparent">
-        <div class="input-group">
-          <input type="text" ng-model="data.username" placeholder="Username" class="input-alt" required/>
-          <input type="password" ng-model="data.password" placeholder="Password" class="input-alt" required/>
-        </div>
+<ion-view view-title="Login">
+  <ion-content>
+    <div class="input-container">
+      <input type="text" ng-model="data.username" placeholder="Username" class="input-alt" required/>
+      <input type="password" ng-model="data.password" placeholder="Password" class="input-alt" required/>
+      <div class="button-container">
+        <button type="button" name="login" ng-click="login()" class="button button-mood margin">Login</button>
       </div>
+      <a ng-click="go('login', false)">Forgot Password?</a>
     </div>
-
   </ion-content>
-
-  <div class="bar bar-footer bar-footer-transparent bar-footer-inset hide-on-keyboard-open">
-    <div class="col-50 background-stable" ng-click="go('signup')">
-      <div class="text-center">
-        <h4>Register</h4>
-      </div>
-    </div>
-    <div class="col-50 background-calm" ng-click="login()">
-      <div class="text-center">
-        <h4>Login</h4>
-      </div>
-    </div>
-  </div>
-
 </ion-view>

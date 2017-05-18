@@ -1,10 +1,13 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="Home">
   <ion-content class="dashboard">
     <div class="button-padding">
-      <button class="button button-block button-calm inset" ng-click="go('change-my-mood')">Change My Mood </button>
+      <button class="button button-mood margin" ng-click="changeMood()">Change My Mood </button>
     </div>
     <div class="tile-holder">
-      <h3 class="padding">Recent Songs</h3>
+      <div class="tile-header">
+        <h4>Recent Songs</h4>
+        <hr>
+      </div>
       <ion-scroll direction="x" class="wide-as-needed">
         <div class="tile" ng-repeat="song in recentSongs">
           <div class="text-center">
@@ -16,7 +19,10 @@
       </ion-scroll>
     </div>
     <div class="tile-holder">
-      <h3 class="padding">Recent Moods</h3>
+      <div class="tile-header">
+        <h4>Recent Moods</h4>
+        <hr>
+      </div>
       <ion-scroll direction="x" class="wide-as-needed">
         <div class="tile" ng-repeat="mood in recentMoods">
           <div class="text-center">
