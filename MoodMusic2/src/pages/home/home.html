@@ -4,14 +4,52 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+<ion-content>
+  <div text-center>
+    <button ion-button round margin>Change My Mood</button>
+  </div>
+  <div class="tile-holder">
+    <div class="tile-header">
+      <h4>Recent Songs</h4>
+      <hr>
+    </div>
+    <ion-scroll scrollX="true" class="wide-as-needed">
+      <div class="tile">
+        <div text-center>
+          <img src="http://placehold.it/100x100">
+          <p>Shape of You</p>
+          <h6>Ed Sheeran</h6>
+        </div>
+      </div>
+      <div class="tile">
+        <div text-center>
+          <img src="http://placehold.it/100x100">
+          <p>Shape of You</p>
+          <h6>Ed Sheeran</h6>
+        </div>
+      </div>
+      <div class="tile">
+        <div text-center>
+          <img src="http://placehold.it/100x100">
+          <p>Shape of You</p>
+          <h6>Ed Sheeran</h6>
+        </div>
+      </div>
+    </ion-scroll>
+  </div>
+  <div class="tile-holder">
+    <div class="tile-header">
+      <h4>Recent Moods</h4>
+      <hr>
+    </div>
+    <ion-scroll scrollX="true" class="wide-as-needed">
+      <div class="tile">
+        <div text-center>
+          <img src="http://placehold.it/100x100" class="img-circle">
+          <h6>Happy</h6>
+        </div>
+      </div>
+    </ion-scroll>
+  </div>
 </ion-content>
