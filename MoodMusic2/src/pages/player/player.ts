@@ -12,7 +12,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-player',
   templateUrl: 'player.html',
 })
-export class Player {
+export class PlayerPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

@@ -4,15 +4,22 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-content class="bg-intro">
 
-  <ion-navbar>
-    <ion-title>Intro</ion-title>
-  </ion-navbar>
+  <img src="../assets/img/mood.png" class="logo">
 
-</ion-header>
+  <div class="intro-text">
+    <h3>This. Is. Mood.</h3>
+    <p>
+      We find it important to improve your health conditions.
+      During our research, we came across various ways to achieve this goal.
+      Combining music and colours we <b>CAN</b> and <b>WILL</b> help you on your way to recovery.
+    </p>
+  </div>
 
-
-<ion-content padding>
+  <div class="button-container">
+    <button ion-button round (click)="registerScreen()">Register</button>
+    <button ion-button round outline color="light" (click)="loginScreen()">Login</button>
+  </div>
 
 </ion-content>

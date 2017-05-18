@@ -13,6 +13,17 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <form>
+    <div class="input-group">
+      <ion-input type="text" name="firstname" placeholder="Firstname" class="input-alt"></ion-input>
+      <ion-input type="text" name="lastname" placeholder="Lastname" class="input-alt"></ion-input>
+      <ion-input type="email" name="email" placeholder="Email" class="input-alt"></ion-input>
+      <ion-input type="text" name="username" placeholder="Username" class="input-alt"></ion-input>
+      <ion-input type="password" name="password" placeholder="Password" class="input-alt"></ion-input>
+    </div>
+    <div class="button-container">
+      <button ion-button round type="button" (click)="register()">Register</button>
+    </div>
+  </form>
 </ion-content>

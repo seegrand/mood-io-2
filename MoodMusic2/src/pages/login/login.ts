@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { TabsPage } from '../tabs/tabs';
+
 /**
  * Generated class for the Login page.
  *
@@ -12,9 +14,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class Login {
+export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  login() {
+    // TODO: Check login credentials with the API.
+    // TEMP: Navigate to TabsPage
+    this.navCtrl.setRoot(TabsPage, {}, { animate: true, direction: 'forward' });
+
   }
 
   ionViewDidLoad() {

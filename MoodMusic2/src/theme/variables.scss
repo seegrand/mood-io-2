@@ -12,59 +12,7 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-* {
-  font-family: "Avenir Next", "Helvetica-Neue", Arial, sans-serif;
-}
 
-/*
-    Tile
-    Show an image with some text.
-    The image will be rounded by default.
-*/
-
-.wide-as-needed {
-  overflow: scroll;
-  white-space: nowrap;
-  height: 200px;
-}
-
-.tile-holder{
-  padding: 20px 0px;
-  background-color: rgba(255, 255, 255, 0.3);
-  margin-bottom: 50px;
-}
-
-.tile-header {
-  text-align: center;
-  margin: 0px 30px;
-}
-
-.tile-header h4 {
-  color: #444444;
-}
-//
-.tile-header hr {
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.tile {
-  border: 0;
-  margin: 20px 0px;
-  display: inline-block;
-  width: 150px;
-}
-
-.tile p {
-  color: #444444;
-}
-
-.tile h6{
-  color: #444444;
-}
-
-.tile img {
-  border-radius: 50px;
-}
 
 // Named Color Variables
 // --------------------------------------------------

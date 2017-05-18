@@ -13,6 +13,15 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <form>
+    <div class="input-group">
+      <ion-input type="text" name="username" placeholder="Username" class="input-alt"></ion-input>
+      <ion-input type="password" name="password" placeholder="Password" class="input-alt"></ion-input>
+    </div>
+    <div class="button-container">
+      <button ion-button round type="button" (click)="login()">Login</button>
+      <button ion-button round (click)="forgotPassword()" clear>Forgot Password?</button>
+    </div>
+  </form>
 </ion-content>
