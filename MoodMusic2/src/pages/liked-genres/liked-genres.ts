@@ -20,8 +20,7 @@ export class LikedGenresPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
-    public genreProvider: GenreProvider
+    public navParams: NavParams
   ) { }
 
   public likedGenres = [];

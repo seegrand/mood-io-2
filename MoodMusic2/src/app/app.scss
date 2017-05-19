@@ -109,34 +109,55 @@
   color: #444444;
 }
 
+label > input{
+  visibility: hidden;
+  position: absolute;
+}
+
+label > input + img{
+  cursor:pointer;
+  padding: 0px !important;
+  margin: 7px;
+  border: 3px solid transparent;
+}
+
+label > input:checked + img{
+  border:3px solid #666677;
+}
+
 /*
-    First Time Login
+    Page Container
 */
 
-.first-time-login{
+.page-container{
   padding: 10px 0px;
   text-align: center;
+
+  h2{
+    color: #444444;
+  }
+
+  h4{
+    color: #444444;
+    text-align: center;
+  }
+
+  p{
+    color: #444444;
+  }
+
 }
 
-.first-time-login h2{
-  color: #444444;
-}
+/*
+    Slides
+*/
 
-.first-time-login h4{
-  color: #444444;
-  text-align: center;
-}
-
-.first-time-login p{
-  color: #444444;
-}
-
-.ftl-tile-container {
+.slide-container {
   margin-top: 5px;
   margin-bottom: 40px;
 }
 
-.ftl-tile {
+.slide-tile {
   display: inline-block;
   margin: 5px 0px;
 
@@ -150,6 +171,26 @@
   p {
     margin: 0px !important;
   }
+}
+
+.swiper-pagination-bullet-active {
+  background: #444444;
+}
+
+/*
+    Item
+*/
+
+.item {
+  background-color: #FFFFFF;
+}
+
+/*
+    Thumbnails
+*/
+
+ion-thumbnail img {
+  border-radius: 50px;
 }
 
 /*
