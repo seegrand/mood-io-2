@@ -14,6 +14,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PlayerPage {
 
+  windowHeight = window.innerHeight + 'px';
+	playing = false;
+
+	currentPosition = 0;
+
+	likertPosition = 2;
+	likertAnswers = ['Worsened', 'Irritating', 'Neutral', 'Slightly better', 'Improved'];
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

@@ -17,7 +17,7 @@ import { ChangeMyMoodPage } from '../pages/change-my-mood/change-my-mood';
 import { PlayerPage } from '../pages/player/player';
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { GenreProvider } from '../providers/genre';
+import { GenreService } from '../services/genre.service';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -59,9 +59,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage
   ],
   providers: [
-    GenreProvider,
     StatusBar,
     SplashScreen,
+    GenreService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

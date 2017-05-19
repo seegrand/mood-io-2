@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { DislikedGenresPage } from '../disliked-genres/disliked-genres';
 
-import { GenreProvider } from '../providers/genre';
+import { GenreService } from '../../services/genre.service';
 
 /**
  * Generated class for the LikedGenres page.
@@ -19,8 +19,9 @@ import { GenreProvider } from '../providers/genre';
 export class LikedGenresPage {
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private genreService: GenreService
   ) { }
 
   public likedGenres = [];
