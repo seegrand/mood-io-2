@@ -19,74 +19,18 @@
     <ion-slides pager="true">
       <ion-slide>
         <div class="slide-container">
-          <div class="slide-tile">
+          <div class="slide-tile" *ngFor="let mood of moods">
             <label>
-              <input type="radio" name="mood" value="small" (click)="currentMood()">
+              <input type="radio" name="mood" value="small" (click)="currentMood(mood)">
               <img src="http://placehold.it/85x85">
             </label>
-            <p>Happy</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="radio" name="mood" value="small" (click)="currentMood()">
-              <img src="http://placehold.it/85x85">
-            </label>
-            <p>Sad</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="radio" name="mood" value="small" (click)="currentMood()">
-              <img src="http://placehold.it/85x85">
-            </label>
-            <p>Nervous</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="radio" name="mood" value="small" (click)="currentMood()">
-              <img src="http://placehold.it/85x85">
-            </label>
-            <p>Anxious</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="radio" name="mood" value="small" (click)="currentMood()">
-              <img src="http://placehold.it/85x85">
-            </label>
-            <p>Angry</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="radio" name="mood" value="small" (click)="currentMood()">
-              <img src="http://placehold.it/85x85">
-            </label>
-            <p>Unhappy</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="radio" name="mood" value="small" (click)="currentMood()">
-              <img src="http://placehold.it/85x85">
-            </label>
-            <p>Depressed</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="radio" name="mood" value="small" (click)="currentMood()">
-              <img src="http://placehold.it/85x85">
-            </label>
-            <p>Energetic</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="radio" name="mood" value="small" (click)="currentMood()">
-              <img src="http://placehold.it/85x85">
-            </label>
-            <p>Fine</p>
+            <p>{{ mood.name }}</p>
           </div>
         </div>
       </ion-slide>
     </ion-slides>
     <div class="button-container">
-      <button ion-button round (click)="nextStep()">Next</button>
+      <button ion-button round (click)="startPlaying()">Continue</button>
     </div>
   </div>
 </ion-content>

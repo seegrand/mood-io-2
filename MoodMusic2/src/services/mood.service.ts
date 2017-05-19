@@ -1,57 +1,67 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
 
 /*
-  Generated class for the Genre Service.
+  Generated class for the Mood Service.
 
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on services and Angular 2 DI.
 */
 @Injectable()
-export class GenreService {
+export class MoodService {
 
   private baseURL = 'https://moodapi.herokuapp.com';
 
   constructor(public http: Http) { }
 
-  getGenres() {
+  getMoods() {
+
     return this.http
-      .get(this.baseURL + '/genres')
+      .get(this.baseURL + '/moods')
       .toPromise()
       .then(res => {
         return res.json();
       });
   }
 
-  // getStaticGenres() {
+  getRecentMoods() {
+
+    return this.http
+      .get(this.baseURL + '/moods')
+      .toPromise()
+      .then(res => {
+        return res.json();
+      });
+  }
+
+  // getStaticMoods() {
   //   return [{
-  //     name: "Dance",
+  //     name: "Happy",
   //     placeholder: "http://placehold.it/85x85"
   //   }, {
-  //     name: "Trance",
+  //     name: "Sad",
   //     placeholder: "http://placehold.it/85x85"
   //   }, {
-  //     name: "Pop",
+  //     name: "Anxious",
   //     placeholder: "http://placehold.it/85x85"
   //   }, {
-  //     name: "Rock",
+  //     name: "Nervous",
   //     placeholder: "http://placehold.it/85x85"
   //   }, {
-  //     name: "Hip Hop",
+  //     name: "Excited",
   //     placeholder: "http://placehold.it/85x85"
   //   }, {
-  //     name: "House",
+  //     name: "Energetic",
   //     placeholder: "http://placehold.it/85x85"
   //   } , {
-  //     name: "Rap",
+  //     name: "Romance",
   //     placeholder: "http://placehold.it/85x85"
   //   }, {
-  //     name: "Classical",
+  //     name: "Depressed",
   //     placeholder: "http://placehold.it/85x85"
   //   }, {
-  //     name: "Punk",
+  //     name: "Tired",
   //     placeholder: "http://placehold.it/85x85"
   //   }]
   // }

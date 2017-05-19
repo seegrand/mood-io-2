@@ -15,6 +15,7 @@ import { GenreService } from '../../services/genre.service';
 @Component({
   selector: 'page-liked-genres',
   templateUrl: 'liked-genres.html',
+  providers: [GenreService]
 })
 export class LikedGenresPage {
 
@@ -24,17 +25,34 @@ export class LikedGenresPage {
     private genreService: GenreService
   ) { }
 
-  public likedGenres = [];
+  private likes = [];
+  private genres;
 
-  isLiked() {
-    console.log(this);
+  getGenres() {
+    this.genreService.getGenres().then(genres => this.genres = genres);
+  }
+
+  isLiked(genre) {
+
+    if(this.likes.indexOf(genre) == -1){
+      this.likes.push(genre);
+      console.log(this.likes);
+    }
+
+    else {
+      var i = this.likes.indexOf(genre);
+      this.likes.splice(i, 1);
+      console.log(this.likes);
+    }
   }
 
   nextStep() {
+    // TODO: Send liked genres to API.
     this.navCtrl.push(DislikedGenresPage);
   }
 
   ionViewDidLoad() {
+    this.getGenres();
     console.log('ionViewDidLoad LikedGenres');
   }
 

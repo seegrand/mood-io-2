@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { PlayerPage } from '../player/player';
 
+import { MoodService } from '../../services/mood.service';
+
 /**
  * Generated class for the ChangeMyMood page.
  *
@@ -16,14 +18,31 @@ import { PlayerPage } from '../player/player';
 })
 export class ChangeMyMoodPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private moodService: MoodService
+  ) { }
+
+  private mood;
+  private moods;
+
+  getMoods() {
+    this.moodService.getMoods().then(moods => this.moods = moods);
+  }
+
+  currentMood(mood) {
+    this.mood = mood;
+    console.log(this.mood);
   }
 
   startPlaying() {
+    // TODO: Register mood with the API.
     this.navCtrl.push(PlayerPage);
   }
 
   ionViewDidLoad() {
+    this.getMoods();
     console.log('ionViewDidLoad ChangeMyMood');
   }
 

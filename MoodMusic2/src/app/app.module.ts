@@ -1,10 +1,10 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 // Pages
-
 import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
@@ -17,7 +17,9 @@ import { ChangeMyMoodPage } from '../pages/change-my-mood/change-my-mood';
 import { PlayerPage } from '../pages/player/player';
 import { TabsPage } from '../pages/tabs/tabs';
 
+// Providers
 import { GenreService } from '../services/genre.service';
+import { MoodService } from '../services/mood.service';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -39,6 +41,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: ''
     })
@@ -62,6 +65,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     GenreService,
+    MoodService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

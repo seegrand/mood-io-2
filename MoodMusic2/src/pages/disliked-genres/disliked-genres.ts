@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
 
+import { GenreService } from '../../services/genre.service';
+
 /**
  * Generated class for the DislikedGenres page.
  *
@@ -16,13 +18,40 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class DislikedGenresPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private genreService: GenreService
+  ) { }
+
+  private dislikes = [];
+  private genres;
+
+  getGenres() {
+    this.genreService.getGenres().then(genres => this.genres = genres);
+  }
+
+  isDisliked(genre) {
+
+    if(this.dislikes.indexOf(genre) == -1){
+      this.dislikes.push(genre);
+      console.log(this.dislikes);
+    }
+
+    else {
+      var i = this.dislikes.indexOf(genre);
+      this.dislikes.splice(i, 1);
+      console.log(this.dislikes);
+    }
+  }
 
   done() {
-      this.navCtrl.setRoot(TabsPage, {}, { animate: true, direction: 'forward' });
+    // TODO: Send disliked genres to API.
+    this.navCtrl.setRoot(TabsPage, {}, { animate: true, direction: 'forward' });
   }
 
   ionViewDidLoad() {
+    this.getGenres();
     console.log('ionViewDidLoad DislikedGenres');
   }
 

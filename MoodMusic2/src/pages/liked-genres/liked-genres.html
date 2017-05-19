@@ -18,68 +18,12 @@
     <ion-slides pager="true">
       <ion-slide>
         <div class="slide-container">
-          <div class="slide-tile">
+          <div class="slide-tile" *ngFor="let genre of genres">
             <label>
-              <input type="checkbox" name="mood" value="small" ng-click="isLiked()">
-              <img src="http://placehold.it/85x85" class="img-circle">
+              <input type="checkbox" name="mood" value="small" (click)="isLiked(genre)">
+              <img src="http://placehold.it/85x85">
             </label>
-            <p>Genre</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="checkbox" name="mood" value="small" ng-click="isLiked()">
-              <img src="http://placehold.it/85x85" class="img-circle">
-            </label>
-            <p>Genre</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="checkbox" name="mood" value="small" ng-click="isLiked()">
-              <img src="http://placehold.it/85x85" class="img-circle">
-            </label>
-            <p>Genre</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="checkbox" name="mood" value="small" ng-click="isLiked()">
-              <img src="http://placehold.it/85x85" class="img-circle">
-            </label>
-            <p>Genre</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="checkbox" name="mood" value="small" ng-click="isLiked()">
-              <img src="http://placehold.it/85x85" class="img-circle">
-            </label>
-            <p>Genre</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="checkbox" name="mood" value="small" ng-click="isLiked()">
-              <img src="http://placehold.it/85x85" class="img-circle">
-            </label>
-            <p>Genre</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="checkbox" name="mood" value="small" ng-click="isLiked()">
-              <img src="http://placehold.it/85x85" class="img-circle">
-            </label>
-            <p>Genre</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="checkbox" name="mood" value="small" ng-click="isLiked()">
-              <img src="http://placehold.it/85x85" class="img-circle">
-            </label>
-            <p>Genre</p>
-          </div>
-          <div class="slide-tile">
-            <label>
-              <input type="checkbox" name="mood" value="small" ng-click="isLiked()">
-              <img src="http://placehold.it/85x85" class="img-circle">
-            </label>
-            <p>Genre</p>
+            <p>{{ genre.name }}</p>
           </div>
         </div>
       </ion-slide>
