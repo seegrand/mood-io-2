@@ -1,29 +1,29 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { LikedGenresPage } from '../liked-genres/liked-genres';
+import { TabsPage } from '../tabs/tabs';
 
 /**
- * Generated class for the Register page.
+ * Generated class for the DislikedGenres page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-register',
-  templateUrl: 'register.html',
+  selector: 'page-disliked-genres',
+  templateUrl: 'disliked-genres.html',
 })
-export class RegisterPage {
+export class DislikedGenresPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
-  register() {
-    this.navCtrl.setRoot(LikedGenresPage, {}, { animate: true, direction: 'forward' });
+  done() {
+      this.navCtrl.setRoot(TabsPage, {}, { animate: true, direction: 'forward' });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Register');
+    console.log('ionViewDidLoad DislikedGenres');
   }
 
 }

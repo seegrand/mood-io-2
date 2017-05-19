@@ -21,7 +21,7 @@ export class SettingsPage {
   logout() {
     this.navCtrl.setRoot(IntroPage, {}, { animate: true, direction: 'back' });
   }
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad Settings');
   }

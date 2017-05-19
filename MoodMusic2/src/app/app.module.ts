@@ -8,14 +8,19 @@ import { MyApp } from './app.component';
 import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { LikedGenresPage } from '../pages/liked-genres/liked-genres';
+import { DislikedGenresPage } from '../pages/disliked-genres/disliked-genres';
 import { HomePage } from '../pages/home/home';
 import { SearchPage } from '../pages/search/search';
 import { SettingsPage } from '../pages/settings/settings';
+import { ChangeMyMoodPage } from '../pages/change-my-mood/change-my-mood';
 import { PlayerPage } from '../pages/player/player';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { GenreProvider } from '../providers/genre';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
 
 @NgModule({
   declarations: [
@@ -23,9 +28,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     IntroPage,
     LoginPage,
     RegisterPage,
+    LikedGenresPage,
+    DislikedGenresPage,
     HomePage,
     SearchPage,
     SettingsPage,
+    ChangeMyMoodPage,
     PlayerPage,
     TabsPage
   ],
@@ -41,13 +49,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     IntroPage,
     LoginPage,
     RegisterPage,
+    LikedGenresPage,
+    DislikedGenresPage,
     HomePage,
     SearchPage,
     SettingsPage,
+    ChangeMyMoodPage,
     PlayerPage,
     TabsPage
   ],
   providers: [
+    GenreProvider,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
