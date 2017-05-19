@@ -1,7 +1,7 @@
 {
-  "name": "ionic-hello-world",
-  "version": "0.0.0",
-  "author": "Ionic Framework",
+  "name": "MoodMusic",
+  "version": "0.2.1",
+  "author": "Patrick Duffy & Sander Grandia",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
@@ -50,5 +50,5 @@
       "locator": "ios"
     }
   ],
-  "description": "MoodMusic: An Ionic project"
+  "description": "MoodMusic: A better mood is our duty! Listen to YOUR favorite music based on YOUR mood."
 }

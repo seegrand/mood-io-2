@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { ChangeMyMoodPage } from '../change-my-mood/change-my-mood';
+import { PlayerPage } from '../player/player';
 
 import { MoodService } from '../../services/mood.service';
 
@@ -11,13 +12,21 @@ import { MoodService } from '../../services/mood.service';
 })
 export class HomePage {
 
+  private recentMoods;
+
   constructor(
     public navCtrl: NavController,
     private moodService: MoodService
   ) { }
 
-  private recentMoods;
+  ionViewDidLoad() {
+    this.getRecentMoods();
+    console.log('ionViewDidLoad Home');
+  }
 
+  /*
+    Change My Mood
+  */
   getRecentMoods() {
     this.moodService.getRecentMoods().then(moods => this.recentMoods = moods);
   }
@@ -26,9 +35,11 @@ export class HomePage {
     this.navCtrl.push(ChangeMyMoodPage);
   }
 
-  ionViewDidLoad() {
-    this.getRecentMoods();
-    console.log('ionViewDidLoad Home');
+  /*
+    Player
+  */
+  playSong() {
+  	this.navCtrl.push(PlayerPage, {}, { animate: true, direction: 'forward' });
   }
 
 }

@@ -1,108 +1,152 @@
-page-player {
-  #gradient {
-    width: 100%;
-  }
-
-  .top-left-icon {
-    margin-left: 10px;
-    margin-top: 5px;
-    color: white;
-  }
-
-  #song {
-    display: block;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    top: 20px;
-    text-align: center;
-  }
-
-  #song #artist,
-  #song #title {
-    display: block;
-    font-size: 30pt;
-    color: white;
-    height: 45px;
-  }
-
-  #song #title {
-    font-weight: 300;
-  }
-
-  #controls {
-    display: block;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    text-align: center;
-  }
-
-  #controls .music-controls-forward-icon,
-  .music-controls-backward-icon {
-    color: white;
-    font-size: 50px;
-    vertical-align: super;
-  }
-
-  #controls .music-controls-play-icon {
-    color: white;
-    font-size: 90px;
-  }
-
-  #controls .music-controls-play-button {
-    border-radius: 50%;
-    border: none;
-    width: 133px;
-    margin-left: 15px;
-    margin-right: 15px;
-    background-color: rgba(0, 0, 0, 0.15);
-  }
-
-  #progress {
-    display: block;
-    position: absolute;
-    top: 55%;
-    width: 100%;
-  }
-  /*
-  #progress #progress-range {
-    margin-left: 10px;
-    margin-right: 10px;
-  }*/
-  #likert {
-    width: 100%;
-  }
-
-  #likert #current-mood,
-  #likert #helpfulness {
-    display: block;
-    width: 100%;
-    font-size: 20pt;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    text-align: center;
-  }
-
-  #likert #current-mood {
-    color: white;
-  }
-
-  #likert #helpfulness {
-    color: #c1c1c1;
-  }
-
-  .toolbar-background {
-    background-color: transparent;
-    
-    .back-button {
-      background-color: rgba(255, 255, 255, 0.5);
+.ios,
+.md,
+.wp {
+  page-player {
+    #gradient {
+      width: 100%;
+      height: 100%;
     }
 
+    .top-left-icon {
+      color: white;
+    }
+
+    #song {
+      display: block;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      text-align: center;
+    }
+
+    #song #artist,
+    #song #title {
+      display: block;
+      font-size: 30pt;
+      color: white;
+      height: 45px;
+    }
+
+    #song #title {
+      font-weight: 300;
+    }
+
+    #controls {
+      display: block;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+    }
+
+    #controls .music-controls-forward-icon,
+    .music-controls-backward-icon {
+      color: white;
+      font-size: 40px;
+      vertical-align: super;
+    }
+
+    #controls .music-controls-play-icon {
+      color: white;
+      font-size: 90px;
+    }
+
+    #controls .music-controls-play-button {
+      border-radius: 50%;
+      border: none;
+      height: 133px;
+      width: 133px;
+      margin-left: 15px;
+      margin-right: 15px;
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+
+    #progress {
+      display: block;
+      position: absolute;
+      top: 65%;
+      width: 100%;
+    }
+
+    #progress #progress-range {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    #likert {
+      width: 100%;
+    }
+
+    #likert #current-mood,
+    #likert #helpfulness {
+      display: block;
+      width: 100%;
+      font-size: 20pt;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      text-align: center;
+    }
+
+    #likert #current-mood {
+      color: white;
+    }
+
+    #likert #helpfulness {
+      color: #c1c1c1;
+    }
+
+    ion-footer {
+      background: transparent;
+      height: 135px
+    }
+
+    ion-footer:before {
+      top: 0;
+      bottom: auto;
+      height: 0;
+      background-position: 0 0;
+    }
+
+    // .toolbar-background {
+    //   background-color: transparent;
+    //
+    //   .back-button {
+    //     background-color: rgba(255, 255, 255, 0.5);
+    //   }
+    // }
+  }
+}
+
+/*
+  PLATFORM SPECIFIC STYLES
+*/
+.ios {
+  page-player {
+    .top-left-icon {
+      margin-left: 5px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.md {
+  page-player {
+    .top-left-icon {
+      margin-left: 5px;
+      margin-top: 5px;
+    }
+  }
+}
+
+.wp {
+  page-player {
+    .top-left-icon {
+      margin-top: 5px;
+    }
   }
 }

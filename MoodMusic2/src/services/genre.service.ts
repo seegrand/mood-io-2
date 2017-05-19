@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+import { APIService } from './api.service';
+
 /*
   Generated class for the Genre Service.
 
@@ -10,15 +12,15 @@ import 'rxjs/add/operator/toPromise';
   for more info on services and Angular 2 DI.
 */
 @Injectable()
-export class GenreService {
+export class GenreService extends APIService {
 
-  private baseURL = 'https://moodapi.herokuapp.com';
-
-  constructor(public http: Http) { }
+  constructor(http: Http) {
+    super(http);
+  }
 
   getGenres() {
     return this.http
-      .get(this.baseURL + '/genres')
+      .get(this.BASE_URL + '/genres')
       .toPromise()
       .then(res => {
         return res.json();

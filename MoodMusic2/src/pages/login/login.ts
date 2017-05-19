@@ -22,7 +22,7 @@ export class LoginPage {
   login() {
     // TODO: Check login credentials with the API.
     // TEMP: Navigate to TabsPage
-    this.navCtrl.setRoot(TabsPage, {}, { animate: true, direction: 'forward' });
+    this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
 
   }
 

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { IntroPage } from '../intro/intro';
+import { App } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the Settings page.
@@ -16,10 +15,11 @@ import { IntroPage } from '../intro/intro';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(private _app: App, public navParams: NavParams) { }
 
   logout() {
-    this.navCtrl.setRoot(IntroPage, {}, { animate: true, direction: 'back' });
+    const root = this._app.getRootNav();
+    root.popToRoot();
   }
 
   ionViewDidLoad() {

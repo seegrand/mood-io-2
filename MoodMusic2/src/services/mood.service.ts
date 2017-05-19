@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+import { APIService } from './api.service';
+
 /*
   Generated class for the Mood Service.
 
@@ -9,16 +11,16 @@ import 'rxjs/add/operator/map';
   for more info on services and Angular 2 DI.
 */
 @Injectable()
-export class MoodService {
+export class MoodService extends APIService {
 
-  private baseURL = 'https://moodapi.herokuapp.com';
-
-  constructor(public http: Http) { }
+  constructor(http: Http) {
+    super(http);
+  }
 
   getMoods() {
 
     return this.http
-      .get(this.baseURL + '/moods')
+      .get(this.BASE_URL + '/moods')
       .toPromise()
       .then(res => {
         return res.json();
@@ -28,7 +30,7 @@ export class MoodService {
   getRecentMoods() {
 
     return this.http
-      .get(this.baseURL + '/moods')
+      .get(this.BASE_URL + '/moods')
       .toPromise()
       .then(res => {
         return res.json();
