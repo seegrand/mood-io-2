@@ -25,9 +25,11 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 // Services
 import { APIService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 import { GenreService } from '../services/genre.service';
 import { MoodService } from '../services/mood.service';
 
+import { LocalStorageService } from '../services/utils/local-storage.service';
 import { PlayerBackgroundService } from '../services/utils/player-background.service';
 
 @NgModule({
@@ -72,8 +74,10 @@ import { PlayerBackgroundService } from '../services/utils/player-background.ser
     StatusBar,
     SplashScreen,
     APIService,
+    AuthService,
     GenreService,
     MoodService,
+    LocalStorageService,
     PlayerBackgroundService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],

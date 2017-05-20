@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
 import { APIService } from './api.service';
 
@@ -19,12 +18,9 @@ export class GenreService extends APIService {
   }
 
   getGenres() {
-    return this.http
-      .get(this.BASE_URL + '/genres')
-      .toPromise()
-      .then(res => {
-        return res.json();
-      });
+    return this.http.get(this.BASE_URL + "/genres")
+                          .map((res:Response) => res.json())
+                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   // getStaticGenres() {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
 import { APIService } from './api.service';
 
@@ -18,23 +18,15 @@ export class MoodService extends APIService {
   }
 
   getMoods() {
-
-    return this.http
-      .get(this.BASE_URL + '/moods')
-      .toPromise()
-      .then(res => {
-        return res.json();
-      });
+    return this.http.get(this.BASE_URL + "/moods")
+                          .map((res:Response) => res.json())
+                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getRecentMoods() {
-
-    return this.http
-      .get(this.BASE_URL + '/moods')
-      .toPromise()
-      .then(res => {
-        return res.json();
-      });
+    return this.http.get(this.BASE_URL + "/moods")
+                          .map((res:Response) => res.json())
+                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   // getStaticMoods() {

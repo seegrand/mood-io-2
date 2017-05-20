@@ -20,14 +20,17 @@ import { Track } from '../../model/track';
 })
 export class PlayerPage {
 
-  currentTrack: Track[];
-  currentTrackPosition: number;
-  currentTrackDuration: number;
-
   loading: any;
 
   windowHeight: string;
   playing = false;
+
+  backgroundSwirlerInterval: any;
+  progressUpdaterInterval: any;
+
+  currentTrack: Track[];
+  currentTrackPosition: number;
+  currentTrackDuration: number;
 
   currentPosition = 0;
 
@@ -42,8 +45,8 @@ export class PlayerPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    private _playerBackgroundService: PlayerBackgroundService,
-    private _audioProvider: AudioProvider) {
+    private playerBackgroundService: PlayerBackgroundService,
+    private audioProvider: AudioProvider) {
 
     // this.currentTrack = [{
     //   title: 'Windmills',
@@ -83,25 +86,25 @@ export class PlayerPage {
       preload: 'metadata'
     };
 
-    this._audioProvider.pause();
+    this.audioProvider.pause();
 
-    let nextAudioTrack = this._audioProvider.create(nextTrack);
-    this._audioProvider.add(nextAudioTrack);
-    this._audioProvider.play(this._audioProvider.current + 1);
+    let nextAudioTrack = this.audioProvider.create(nextTrack);
+    this.audioProvider.add(nextAudioTrack);
+    this.audioProvider.play(this.audioProvider.current + 1);
   }
 
   updateTrackProgress() {
-    if (this._audioProvider.tracks[this._audioProvider.current]) {
-      let track = this._audioProvider.tracks[this._audioProvider.current];
+    if (this.audioProvider.tracks[this.audioProvider.current]) {
+      let track = this.audioProvider.tracks[this.audioProvider.current];
 
-      if (!this.currentTrackDuration && this._audioProvider.tracks[this._audioProvider.current].duration) {
-        this.currentTrackDuration = this._audioProvider.tracks[this._audioProvider.current].duration;
+      if (!this.currentTrackDuration && this.audioProvider.tracks[this.audioProvider.current].duration) {
+        this.currentTrackDuration = this.audioProvider.tracks[this.audioProvider.current].duration;
 
         console.log(this.currentTrackDuration);
       }
 
-      if (track.isPlaying && this._audioProvider.tracks[this._audioProvider.current].progress) {
-        this.currentTrackPosition = this._audioProvider.tracks[this._audioProvider.current].progress;
+      if (track.isPlaying && this.audioProvider.tracks[this.audioProvider.current].progress) {
+        this.currentTrackPosition = this.audioProvider.tracks[this.audioProvider.current].progress;
 
         console.log(this.currentTrackPosition);
       }
@@ -110,7 +113,7 @@ export class PlayerPage {
 
   seekTrack() {
     console.log('seekTrack');
-    let track = this._audioProvider.tracks[this._audioProvider.current];
+    let track = this.audioProvider.tracks[this.audioProvider.current];
 
     if (track) {
       track.seekTo(this.currentTrackPosition);
@@ -133,9 +136,9 @@ export class PlayerPage {
     console.log(this.windowHeight);
 
     // Start background swirleffect
-    this._playerBackgroundService.swirlBackground();
+    this.backgroundSwirlerInterval = this.playerBackgroundService.swirlBackground();
 
-    setInterval(() => this.updateTrackProgress(), 1000);
+    this.progressUpdaterInterval = setInterval(() => this.updateTrackProgress(), 1000);
 
     this.fixedContent = <HTMLElement>document.querySelector('div.fixed-content');
     this.fixedContent.style.marginBottom = '0px';
@@ -149,6 +152,9 @@ export class PlayerPage {
   }
 
   ionViewWillLeave() {
+    clearInterval(this.backgroundSwirlerInterval);
+    clearInterval(this.progressUpdaterInterval);
+
     this.tabBarElement.style.display = 'flex';
   }
 

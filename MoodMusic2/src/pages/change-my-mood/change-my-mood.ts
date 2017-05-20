@@ -33,7 +33,7 @@ export class ChangeMyMoodPage {
   private moods;
 
   getMoods() {
-    this.moodService.getMoods().then(moods => this.moods = moods);
+    this.moodService.getMoods().subscribe(moods => this.moods = moods);
   }
 
   currentMood(mood) {

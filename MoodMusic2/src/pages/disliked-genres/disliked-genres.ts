@@ -28,7 +28,7 @@ export class DislikedGenresPage {
   private genres;
 
   getGenres() {
-    this.genreService.getGenres().then(genres => this.genres = genres);
+    this.genreService.getGenres().subscribe(genres => this.genres = genres);
   }
 
   isDisliked(genre) {

@@ -28,7 +28,7 @@ export class HomePage {
     Change My Mood
   */
   getRecentMoods() {
-    this.moodService.getRecentMoods().then(moods => this.recentMoods = moods);
+    this.moodService.getRecentMoods().subscribe(moods => this.recentMoods = moods);
   }
 
   changeMood() {
