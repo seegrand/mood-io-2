@@ -65,6 +65,6 @@ export class PlayerBackgroundService {
       }
     }
 
-    setInterval(updateGradient, 100);
+    setInterval(() => updateGradient(), 100);
   }
 }

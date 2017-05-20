@@ -18,6 +18,11 @@ import { MoodService } from '../../services/mood.service';
 })
 export class ChangeMyMoodPage {
 
+  isNavigatingToPlayer = false;
+
+  tabBarElement: HTMLElement;
+  scrollContent: HTMLElement;
+
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -38,12 +43,31 @@ export class ChangeMyMoodPage {
 
   startPlaying() {
     // TODO: Register mood with the API.
-    this.navCtrl.push(PlayerPage);
+
+    this.isNavigatingToPlayer = true;
+    this.navCtrl.pop();
+    this.navCtrl.push(PlayerPage, {}, { animate: true, direction: 'forward' });
   }
 
   ionViewDidLoad() {
-    this.getMoods();
     console.log('ionViewDidLoad ChangeMyMood');
+
+    this.getMoods();
+
+		// Disable Tab view
+    this.tabBarElement = <HTMLElement>document.querySelector('.tabbar.show-tabbar');
+    this.scrollContent = <HTMLElement>document.querySelector('.scroll-content');
+
+    this.tabBarElement.style.display = 'none';
+    this.scrollContent.style.margin = '0, 50px, 0, 0';
+	}
+
+  ionViewWillLeave() {
+    console.log('ionViewWillLeave ChangeMyMood');
+
+    if (!this.isNavigatingToPlayer) {
+      this.tabBarElement.style.display = 'flex';
+    }
   }
 
 }

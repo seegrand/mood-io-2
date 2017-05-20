@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 // Modules
-import { IonicAudioModule } from 'ionic-audio';
+import { IonicAudioModule, AudioProvider, audioProviderFactory } from 'ionic-audio';
 
 // Pages
 import { IntroPage } from '../pages/intro/intro';
@@ -51,7 +51,7 @@ import { PlayerBackgroundService } from '../services/utils/player-background.ser
     IonicModule.forRoot(MyApp, {
       backButtonText: ''
     }),
-    IonicAudioModule.forRoot()
+    IonicAudioModule.forRoot({ provide: AudioProvider, useFactory: audioProviderFactory }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [

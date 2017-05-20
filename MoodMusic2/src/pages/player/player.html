@@ -10,44 +10,40 @@
 
 </ion-header> -->
 
-<ion-content style="bottom:0px">
-  <div id="gradient">
+<ion-content>
+  <div id="gradient" style="background:green;">
 
     <button ion-button icon-only large clear class="top-left-icon" (click)="hidePlayer()">
       <ion-icon name="arrow-dropdown"></ion-icon>
     </button>
 
-    <div id="song">
-      <span id="title">Shape of You</span>
-      <span id="artist">Ed Sheeran</span>
-    </div>
+    <audio-track #audio *ngFor="let track of currentTrack" [track]="track" (onPlay)="onTrackPlay($event)" (onPause)="onTrackPause($event)" (onFinish)="onTrackFinished($event)">
+      <div id="song">
+        <span id="title">{{ audio.title }}</span>
+        <span id="artist">{{ audio.artist }}</span>
+      </div>
 
-    <div id="controls">
-      <button ion-button icon-only clear (click)="skipBackward()">
+      <div id="controls">
+        <button ion-button icon-only clear (click)="skipBackward()">
         <ion-icon class="music-controls-backward-icon" name="skip-backward"></ion-icon>
       </button>
-      <button id="play-button" ion-button icon-only class="music-controls-play-button" (click)="playToggle()">
-        <ion-icon id="play-button-icon" class="music-controls-play-icon" name="play"></ion-icon>
-      </button>
-      <button ion-button icon-only clear (click)="skipForward()">
+
+        <audio-track-play light [audioTrack]="audio">
+          <ion-spinner></ion-spinner>
+        </audio-track-play>
+
+        <button ion-button icon-only clear (click)="skipForward()">
         <ion-icon class="music-controls-forward-icon" name="skip-forward"></ion-icon>
       </button>
-      <!-- <a class="button button-icon icon ion-skip-backward music-controls-backward-icon" ng-click="skipBackward()"></a>
-      <button id="play-button" class="music-controls-play-button" ng-click="playToggle()"><i id="play-button-icon" class="icon ion-play music-controls-play-icon"></i></button>
-      <a class="button button-icon icon ion-skip-forward music-controls-forward-icon" ng-click="skipForward()"></a> -->
-    </div>
+      </div>
 
-    <div id="progress">
-      <!-- <audio controls>
-  				<source src="http://www.eclassical.com/custom/eclassical/files/BIS1447-002-flac_16.flac">
-				</audio> -->
-
-        <!-- <input id="progress-range" type="range" name="music-progress" min="0" max="240" step="1" [(value)]="currentPosition" (change)="seekMusicFile()"> -->
-        <ion-range id="progress-range" min="0" max="240" color="primary" [(ngModel)]="currentPosition" (ngModelChange)="seekMusicFile()">
+      <div id="progress">
+        <ion-range id="progress-range" min="0" [max]="currentTrackDuration" color="primary" [(ngModel)]="currentTrackPosition" (click)="seekTrack()">
           <!-- <ion-label id="progress-begin" range-left>0:00</ion-label>
           <ion-label id="progress-end" range-right>3:50</ion-label> -->
         </ion-range>
-    </div>
+      </div>
+    </audio-track>
   </div>
 
 </ion-content>

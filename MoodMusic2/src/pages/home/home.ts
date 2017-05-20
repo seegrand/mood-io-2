@@ -38,7 +38,7 @@ export class HomePage {
   /*
     Player
   */
-  playSong() {
+  startPlaying() {
   	this.navCtrl.push(PlayerPage, {}, { animate: true, direction: 'forward' });
   }
 
