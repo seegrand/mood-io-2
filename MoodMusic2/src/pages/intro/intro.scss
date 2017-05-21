@@ -1,0 +1,32 @@
+page-intro {
+
+  .logo {
+    width: 100%;
+    padding: 40px;
+  }
+
+  .bg-intro {
+    background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('../assets/img/bg-intro.jpeg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .intro-text {
+    width: 85%;
+    margin: 0px auto;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .intro-text h3 {
+    color: #FFFFFF;
+  }
+
+  .intro-text p {
+    font-size: 18px;
+    color: #FFFFFF;
+  }
+
+}

@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="button-container">
+    <button ion-button round margin (click)="changeMood()">Change My Mood</button>
+  </div>
+  <div class="tile-holder">
+    <div class="tile-header">
+      <h4>Recent Songs</h4>
+      <hr>
+    </div>
+    <ion-scroll scrollX="true" class="wide-as-needed">
+      <div class="tile" (click)="startPlaying()">
+        <div text-center>
+          <img src="http://placehold.it/100x100">
+          <p>Shape of You</p>
+          <h6>Ed Sheeran</h6>
+        </div>
+      </div>
+      <div class="tile" (click)="startPlaying()">
+        <div text-center>
+          <img src="http://placehold.it/100x100">
+          <p>Shape of You</p>
+          <h6>Ed Sheeran</h6>
+        </div>
+      </div>
+      <div class="tile" (click)="startPlaying()">
+        <div text-center>
+          <img src="http://placehold.it/100x100">
+          <p>Shape of You</p>
+          <h6>Ed Sheeran</h6>
+        </div>
+      </div>
+    </ion-scroll>
+  </div>
+  <div class="tile-holder">
+    <div class="tile-header">
+      <h4>Recent Moods</h4>
+      <hr>
+    </div>
+    <ion-scroll scrollX="true" class="wide-as-needed">
+      <div class="tile">
+        <div text-center>
+          <img src="http://placehold.it/100x100">
+          <h6>Mood</h6>
+        </div>
+      </div>
+      <div class="tile">
+        <div text-center>
+          <img src="http://placehold.it/100x100">
+          <h6>Mood</h6>
+        </div>
+      </div>
+      <div class="tile">
+        <div text-center>
+          <img src="http://placehold.it/100x100">
+          <h6>Mood</h6>
+        </div>
+      </div>
+    </ion-scroll>
+  </div>
+</ion-content>
