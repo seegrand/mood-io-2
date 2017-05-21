@@ -53,6 +53,18 @@ angular.module('MoodMusic.services', [])
   }, {
     mood: "Nervous",
     img: "http://placehold.it/100x100"
+  }, {
+    mood: "Frightend",
+    img: "http://placehold.it/100x100"
+  }, {
+    mood: "Calm",
+    img: "http://placehold.it/100x100"
+  }, {
+    mood: "Energetic",
+    img: "http://placehold.it/100x100"
+  }, {
+    mood: "Satisfied",
+    img: "http://placehold.it/100x100"
   }];
 
   return {
