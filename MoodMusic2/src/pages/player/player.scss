@@ -31,13 +31,12 @@
     #song #artist,
     #song #title {
       display: block;
-      font-size: 30pt;
+      font-size: 8vw;
       color: white;
-      height: 45px;
     }
 
     #song #title {
-      font-weight: 300;
+      font-weight: 600;
     }
 
     #controls {
@@ -58,7 +57,16 @@
       vertical-align: super;
     }
 
-    #controls audio-track-play button {
+    // #controls audio-track-play button {
+    //   border-radius: 50%;
+    //   border: none;
+    //   height: 133px;
+    //   width: 133px;
+    //   font-size: 4.4rem;
+    //   background-color: rgba(0, 0, 0, 0.15);
+    // }
+
+    #controls .music-controls-play {
       border-radius: 50%;
       border: none;
       height: 133px;
@@ -115,13 +123,6 @@
       height: 0;
       background-position: 0 0;
     }
-    // .toolbar-background {
-    //   background-color: transparent;
-    //
-    //   .back-button {
-    //     background-color: rgba(255, 255, 255, 0.5);
-    //   }
-    // }
   }
 }
 /*

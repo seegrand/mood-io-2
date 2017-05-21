@@ -23,19 +23,21 @@ export class PlayerPage {
   loading: any;
 
   windowHeight: string;
-  playing = false;
+  isPlaying = false;
 
   backgroundSwirlerInterval: any;
   progressUpdaterInterval: any;
 
-  currentTrack: Track[];
+  currentTrack: Track;
   currentTrackPosition: number;
   currentTrackDuration: number;
-
-  currentPosition = 0;
+  trackSteps: number = 2;
 
   likertPosition = 2;
   likertAnswers = ['Worsened', 'Irritating', 'Neutral', 'Slightly better', 'Improved'];
+
+  playButtonIcon: HTMLElement;
+  pauseButtonIcon: HTMLElement;
 
   fixedContent: HTMLElement;
   tabBarElement: HTMLElement;
@@ -55,12 +57,16 @@ export class PlayerPage {
     //   preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
     // }];
 
-    this.currentTrack = [{
-      title: 'Why Georgia',
-      artist: 'John Mayer',
-      src: 'https://archive.org/download/JM2013-10-05.flac16/V0/jm2013-10-05-t12-MP3-V0.mp3',
-      preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
-    }];
+    if (this.audioProvider.tracks.length < 1) {
+      this.currentTrack = {
+        title: 'Why Georgia',
+        artist: 'John Mayer',
+        src: 'https://archive.org/download/JM2013-10-05.flac16/V0/jm2013-10-05-t12-MP3-V0.mp3',
+        preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
+      };
+
+      this.loadTrack(this.currentTrack);
+    }
 
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
@@ -70,43 +76,92 @@ export class PlayerPage {
     // this.loading.present();
   }
 
+  loadTrack(track: Track) {
+    let nextAudioTrack = this.audioProvider.create(track);
+    this.audioProvider.add(nextAudioTrack);
+  }
+
   onTrackFinished(track: any) {
     console.log('Track finished', track);
   }
 
-  skipBackward() {
+  playToggle() {
+    if (this.isPlaying) {
+      this.pause();
+    } else {
+      this.play(this.audioProvider.current);
+    }
+  }
 
+  play(index: number) {
+    this.audioProvider.play(index);
+    this.isPlaying = true;
+
+    this.updatePlayButton();
+  }
+
+  pause() {
+    this.audioProvider.pause();
+    this.isPlaying = false;
+
+    this.updatePlayButton();
+  }
+
+  updatePlayButton() {
+    if (this.isPlaying) {
+      this.pauseButtonIcon.style.display = 'block';
+      this.playButtonIcon.style.display = 'none';
+    } else {
+      this.pauseButtonIcon.style.display = 'none';
+      this.playButtonIcon.style.display = 'block';
+    }
+  }
+
+  skipBackward() {
+    this.pause();
+
+    if (this.audioProvider.current > 0) {
+      this.play(this.audioProvider.current - this.trackSteps);
+    } else {
+      this.play(this.audioProvider.current);
+      this.audioProvider.tracks[this.audioProvider.current].seekTo(0);
+    }
   }
 
   skipForward() {
     let nextTrack = {
-      title: 'I Guess It Doesn\'t Matter AnyMore',
-      artist: 'The Village Lantarne',
-      src: 'http://nas1.tyil.net/%282006%29%20The%20Village%20Lanterne/%2803%29%20Blackmore%27s%20Night%20-%20I%20Guess%20It%20Doesn%27t%20Matter%20Anymore.flac',
+      title: 'Bohemian Rhapsody',
+      artist: 'Queen',
+      src: 'http://nas1.tyil.net/Queen%20-%20A%20Night%20At%20The%20Opera%20-%20MFSL%20GOLD%20UDCD%20568%20-%201975/11-Queen-Bohemian%20Rhapsody.flac',
       preload: 'metadata'
     };
 
-    this.audioProvider.pause();
+    this.pause();
+
+    // for (var i = 0; i < this.audioProvider.tracks.length; i++) {
+    //   this.audioProvider.stop(i);
+    // }
+
+    console.log(this.audioProvider.tracks);
 
     let nextAudioTrack = this.audioProvider.create(nextTrack);
     this.audioProvider.add(nextAudioTrack);
-    this.audioProvider.play(this.audioProvider.current + 1);
+
+    this.play(this.audioProvider.current + this.trackSteps);
   }
 
   updateTrackProgress() {
+    console.log(this.audioProvider.current);
+
     if (this.audioProvider.tracks[this.audioProvider.current]) {
       let track = this.audioProvider.tracks[this.audioProvider.current];
 
       if (!this.currentTrackDuration && this.audioProvider.tracks[this.audioProvider.current].duration) {
         this.currentTrackDuration = this.audioProvider.tracks[this.audioProvider.current].duration;
-
-        console.log(this.currentTrackDuration);
       }
 
       if (track.isPlaying && this.audioProvider.tracks[this.audioProvider.current].progress) {
         this.currentTrackPosition = this.audioProvider.tracks[this.audioProvider.current].progress;
-
-        console.log(this.currentTrackPosition);
       }
     }
   }
@@ -131,24 +186,41 @@ export class PlayerPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Player');
 
-    this.windowHeight = window.innerHeight + 'px';
-
-    console.log(this.windowHeight);
+    /* ================================= VIEW MANIPULATION ================================= */
 
     // Start background swirleffect
+    this.windowHeight = window.innerHeight + 'px';
     this.backgroundSwirlerInterval = this.playerBackgroundService.swirlBackground();
 
+    this.updateTrackProgress();
     this.progressUpdaterInterval = setInterval(() => this.updateTrackProgress(), 1000);
 
-    this.fixedContent = <HTMLElement>document.querySelector('div.fixed-content');
+    // Play button icons
+    this.playButtonIcon = <HTMLElement> document.getElementById('play-icon');
+    this.pauseButtonIcon = <HTMLElement> document.getElementById('pause-icon');
+
+    this.fixedContent = <HTMLElement> document.querySelector('div.fixed-content');
     this.fixedContent.style.marginBottom = '0px';
 
     // Disable Tab view
-    this.tabBarElement = <HTMLElement>document.querySelector('.tabbar.show-tabbar');
-    this.scrollContent = <HTMLElement>document.querySelector('div.scroll-content');
+    this.tabBarElement = <HTMLElement> document.querySelector('.tabbar.show-tabbar');
+    this.scrollContent = <HTMLElement> document.querySelector('div.scroll-content');
 
     this.tabBarElement.style.display = 'none';
     this.scrollContent.style.margin = '0, 50px, 0, 0';
+
+    /* =============================== VIEW MANIPULATION END =============================== */
+
+    if (this.audioProvider.tracks && this.audioProvider.tracks[this.audioProvider.current]) {
+      this.isPlaying = this.audioProvider.tracks[this.audioProvider.current].isPlaying;
+    }
+
+    // Start music
+    if (!this.isPlaying) {
+      this.play(0);
+    } else {
+      this.updatePlayButton();
+    }
   }
 
   ionViewWillLeave() {

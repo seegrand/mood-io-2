@@ -16,8 +16,8 @@
 <ion-content no-bounce>
   <form>
     <div class="input-group">
-      <ion-input type="text" name="username" placeholder="Username" class="input-alt"></ion-input>
-      <ion-input type="password" name="password" placeholder="Password" class="input-alt"></ion-input>
+      <ion-input type="text" name="username" [(ngModel)]="data.username" placeholder="Username" class="input-alt"></ion-input>
+      <ion-input type="password" name="password" [(ngModel)]="data.password" placeholder="Password" class="input-alt"></ion-input>
     </div>
     <div class="button-container">
       <button ion-button round type="button" (click)="login()">Login</button>
