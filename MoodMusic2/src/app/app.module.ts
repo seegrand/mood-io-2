@@ -10,6 +10,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 // Modules
 import { IonicAudioModule, AudioProvider, audioProviderFactory } from 'ionic-audio';
 
+import { PlayerModule } from '../pages/player/player.module';
+
 // Pages
 import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
@@ -30,7 +32,6 @@ import { GenreService } from '../services/genre.service';
 import { MoodService } from '../services/mood.service';
 
 import { LocalStorageService } from '../services/utils/local-storage.service';
-import { PlayerBackgroundService } from '../services/utils/player-background.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { PlayerBackgroundService } from '../services/utils/player-background.ser
       backButtonText: ''
     }),
     IonicAudioModule.forRoot({ provide: AudioProvider, useFactory: audioProviderFactory }),
+    PlayerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -78,7 +80,6 @@ import { PlayerBackgroundService } from '../services/utils/player-background.ser
     GenreService,
     MoodService,
     LocalStorageService,
-    PlayerBackgroundService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

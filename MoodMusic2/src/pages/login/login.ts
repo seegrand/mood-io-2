@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
 
+import { AuthService } from '../../services/auth.service';
+
 /**
  * Generated class for the Login page.
  *
@@ -16,13 +18,22 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  data: Object = {};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {
   }
 
   login() {
     // TODO: Check login credentials with the API.
+    // this.authService.login(this.data).subscribe(() => {
+    //   this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
+    // });
+
     // TEMP: Navigate to TabsPage
     this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
+  }
+
+  forgotPassword() {
 
   }
 
