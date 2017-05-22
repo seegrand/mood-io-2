@@ -1,0 +1,166 @@
+.ios,
+.md,
+.wp {
+  page-player {
+    ion-content > .fixed-content {
+      margin-bottom: 0px !important;
+    }
+
+    ion-content > .scroll-content {
+      margin-bottom: 0px !important;
+    }
+
+    #gradient {
+      width: 100%;
+      height: 100%;
+    }
+
+    .top-left-icon {
+      color: white;
+    }
+
+    #song {
+      display: block;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      text-align: center;
+    }
+
+    #song #artist,
+    #song #title {
+      display: block;
+      font-size: 8vw;
+      color: white;
+    }
+
+    #song #title {
+      font-weight: 200;
+    }
+
+    #song #artist {
+      font-weight: 400;
+    }
+
+    #controls {
+      display: block;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+    }
+
+    #controls .music-controls-play #play-icon,
+    #controls .music-controls-play #pause-icon,
+    #controls .music-controls-forward-icon,
+    .music-controls-backward-icon {
+      color: white;
+    }
+
+    #controls .music-controls-forward-icon,
+    .music-controls-backward-icon {
+      font-size: 40px;
+      vertical-align: super;
+    }
+
+    // #controls audio-track-play button {
+    //   border-radius: 50%;
+    //   border: none;
+    //   height: 133px;
+    //   width: 133px;
+    //   font-size: 4.4rem;
+    //   background-color: rgba(0, 0, 0, 0.15);
+    // }
+
+    #controls .music-controls-play {
+      border-radius: 50%;
+      border: none;
+      height: 133px;
+      width: 133px;
+      font-size: 4.4rem;
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+
+    #progress {
+      display: block;
+      position: absolute;
+      top: 65%;
+      width: 100%;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    #progress #progress-range {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    #likert {
+      width: 100%;
+      color: white;
+    }
+
+    #likert #current-mood,
+    #likert #helpfulness {
+      display: block;
+      width: 100%;
+      font-size: 20pt;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      text-align: center;
+    }
+
+    #likert #current-mood {
+
+    }
+
+    #likert #helpfulness {
+      color: #c1c1c1;
+    }
+
+    ion-footer {
+      background: transparent;
+      height: 135px;
+    }
+
+    ion-footer:before {
+      top: 0;
+      bottom: auto;
+      height: 0;
+      background-position: 0 0;
+    }
+  }
+}
+/*
+  PLATFORM SPECIFIC STYLES
+*/
+.ios {
+  page-player {
+    .top-left-icon {
+      margin-left: 5px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.md {
+  page-player {
+    .top-left-icon {
+      margin-left: 5px;
+      margin-top: 5px;
+    }
+  }
+}
+
+.wp {
+  page-player {
+    .top-left-icon {
+      margin-top: 5px;
+    }
+  }
+}

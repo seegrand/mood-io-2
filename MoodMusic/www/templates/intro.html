@@ -1,0 +1,31 @@
+<ion-view hide-nav-bar="true">
+  <ion-content class="init-bg" scroll="false">
+    <img ng-src="../img/mood.png" class="header-logo">
+    <!-- <ion-slide-box on-slide-changed="slideHasChanged($index)" slide-interval="10000" auto-play="true" does-continue="true" class="slide-box">
+      <ion-slide>
+        <h1>Hello</h1>
+      </ion-slide>
+      <ion-slide>
+        <h1>World</h1>
+      </ion-slide>
+      <ion-slide>
+        <h1>This is</h1>
+      </ion-slide>
+      <ion-slide>
+        <h1>Mood</h1>
+      </ion-slide>
+    </ion-slide-box> -->
+    <div class="intro-text">
+      <h3>This. Is. Mood.</h3>
+      <p>
+        We find it important to improve your health conditions.
+        During our research, we came across various ways to achieve this goal.
+        Combining music and colours we <b>CAN</b> and <b>WILL</b> help you on your way to recovery.
+      </p>
+    </div>
+    <div class="button-container">
+      <a type="button" name="register" class="button button-mood margin" ng-click="go('signup', false)">Register</a>
+      <a type="button" name="login" class="button button-transparent margin" ng-click="go('login', false)">Login</a>
+    </div>
+  </ion-content>
+</ion-view>

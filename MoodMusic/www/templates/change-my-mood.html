@@ -1,0 +1,19 @@
+<ion-view view-title="Mood">
+  <ion-content class="intro">
+    <h4>What is your current mood?</h4>
+    <ion-slide-box>
+      <ion-slide>
+        <div class="checkbox-container">
+          <div class="genre" ng-repeat="mood in moods">
+            <label>
+              <input type="radio" name="mood" value="small" ng-click="selectedMood()">
+              <img src="http://placehold.it/85x85" class="img-circle">
+            </label>
+            <p>{{ mood.mood }}</p>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    <button class="button button-mood margin" ng-click="go('play')">Next</button>
+  </ion-content>
+</ion-view>

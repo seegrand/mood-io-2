@@ -1,0 +1,454 @@
+/*
+    Mood Music
+    Styling for the app
+
+*/
+
+
+/*
+    General Styles
+*/
+
+* {
+  font-family: "Avenir Next", "Helvetica-Neue", Arial, sans-serif !important;
+}
+
+hr {
+  margin: 20px 0px;
+}
+
+ion-content {
+  background-color: #E8F1F2;
+}
+
+
+/*
+    Header
+    Show the Mood Music logo.
+*/
+
+.header-logo {
+  width: 100%;
+  padding: 40px;
+}
+
+/*
+    Dashboard
+*/
+
+.dashboard {
+  text-align: center;
+}
+
+
+/*
+    Background
+    Views with background
+*/
+
+.init-bg {
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../img/bg-init.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/*
+    Bar
+*/
+
+.bar.bar-calm {
+  background-color: #666677;
+  background-image: none;
+  border-color: #FFFFFF;
+}
+
+/*
+    Input Fields
+*/
+
+.input-group {
+  margin: 0px auto;
+}
+
+.input-alt {
+  width: 75%;
+  margin: 10px auto;
+  border-radius: 5px;
+  color: #444444;
+  background-color: #FAFAFA;
+}
+
+.input-alt[placeholder] {
+  padding: 20px;
+  color: #444444 !important;
+}
+
+.input-alt::placeholder {
+  color: #444444;
+}
+
+/*
+    Slide Box
+*/
+
+.slide-box {
+  color: #FFFFFF !important;
+  text-align: center;
+  height: 35%;
+}
+
+ion-slide-box i {
+  color: #FFFFFF;
+  background-color: #FFFFFF;
+}
+
+/*
+    Player
+*/
+
+#gradient {
+  width:100%;
+}
+
+.top-left-icon {
+  margin-left: 10px;
+  margin-top: 5px;
+  color: white
+}
+
+#song {
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 20px;
+  text-align: center;
+}
+
+#song #title,
+#song #artist {
+  display: block;
+  font-size: 30pt;
+  color: white;
+  height: 45px;
+}
+
+#song #title {
+  font-weight: 300;
+}
+
+#controls {
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+#controls .music-controls-forward-icon,
+.music-controls-backward-icon {
+  color: white;
+  font-size: 50px;
+  vertical-align: super;
+}
+
+#controls .music-controls-play-icon {
+  color: white;
+  font-size: 90px;
+}
+
+#controls .music-controls-play-button {
+  border-radius: 50%;
+  border: none;
+  width: 133px;
+  margin-left: 15px;
+  margin-right: 15px;
+  background-color:rgba(0, 0, 0, 0.15);
+}
+
+#progress {
+    display: block;
+    position: absolute;
+    top: 55%;
+    width: 100%;
+}
+
+/*
+#progress #progress-range {
+  margin-left: 10px;
+  margin-right: 10px;
+}*/
+
+#likert {
+    width: 100%;
+}
+
+#likert #current-mood,
+#likert #helpfulness {
+  display: block;
+  width: 100%;
+  font-size: 20pt;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  text-align: center;
+}
+
+#likert #current-mood {
+  color: white;
+}
+
+#likert #helpfulness {
+  color: #c1c1c1;
+}
+
+/*
+    Intro
+*/
+
+.intro-text {
+  width: 100%;
+  padding: 50px;
+  text-align: center;
+  height: 50%;
+}
+
+.intro-text h3 {
+  color: #FFFFFF;
+}
+
+.intro-text p {
+  font-size: 18px;
+  color: #FFFFFF;
+}
+
+/*
+    Login
+*/
+
+.input-container {
+  margin: 20px 0px;
+  text-align: center;
+}
+
+.input-container a {
+  display: block;
+  margin: 20px 0px;
+}
+/*
+    Button
+    Style alternate buttons
+*/
+
+.button-container {
+  width: 100%;
+  text-align: center;
+}
+
+.button {
+  border-radius: 25px;
+  min-width: 65%;
+  font-size: 18px;
+  line-height: 50px;
+}
+
+.button-transparent {
+  color: #FFFFFF;
+  border-color: #E8F1F2;
+  background-color: transparent;
+}
+
+.button-transparent:active {
+  color: #444444;
+  background-color: #E8F1F2;
+  border-color: #E8F1F2;
+}
+
+.button-mood {
+  color: #FFFFFF;
+  border-color: #1B98E0;
+  background-color: #1B98E0;
+}
+
+.button-mood:target {
+  color: #FFFFFF;
+  border-color: #0065AD;
+  background-color: #0065AD;
+}
+
+.button-facebook {
+  color: #FFFFFF;
+  background-color: #3B5998;
+}
+
+.button-google {
+  color: #FFFFFF;
+  background-color: #DD4B39;
+}
+
+.button-active {
+  color: #FFFFFF;
+}
+
+.change-my-mood{
+  padding: 25px;
+}
+
+.button-padding {
+  padding: 25px;
+}
+
+
+/*
+    Tile
+    Show an image with some text.
+    The image will be rounded by default.
+*/
+
+.tile-holder{
+  padding: 20px 0px;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 50px;
+}
+
+.tile-header {
+  margin: 0px 30px;
+}
+
+.tile-header h4 {
+  color: #444444;
+}
+
+.tile-header hr {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.tile {
+  border: 0;
+  margin: 20px 0px;
+  display: inline-block;
+  width: 150px;
+}
+
+.tile p {
+  color: #444444;
+}
+
+.tile h6{
+  color: #444444;
+}
+
+.tile img {
+  border-radius: 50px;
+}
+
+/*
+    Introduction
+    First time login styles
+*/
+
+.intro{
+  padding: 10px 0px;
+  text-align: center;
+}
+
+.intro h2{
+  color: #444444;
+}
+
+.intro h4{
+  color: #444444;
+}
+
+.intro p{
+  color: #444444;
+}
+
+.genre{
+  display: inline-block;
+  margin: 5px 0px;
+}
+
+/*
+    Checkbox
+    Check a box by an image
+*/
+
+.checkbox-container {
+  margin-top: 5px;
+  margin-bottom: 40px;
+}
+
+.checkbox{
+  padding: 0px !important;
+  margin: 5px;
+  border: 3px solid transparent;
+}
+
+.selected{
+  border: 3px solid #666677;
+}
+
+/*
+    Radiobutton
+*/
+
+label > input{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+
+label > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  padding: 0px !important;
+  margin: 7px;
+  border: 3px solid transparent;
+}
+
+label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:3px solid #666677;
+}
+
+
+/*
+    Cards
+*/
+
+.card-transparent {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.item-transparent {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+/*
+    Helper Classes
+    Classes that assist the styling.
+*/
+
+/* .wide-as-needed will assist in side-way scrolling. */
+
+.wide-as-needed {
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.text-light {
+  color: #FFFFFF;
+}
+
+.img-circle{
+  border-radius: 50px;
+}
+
+.margin {
+  margin: 10px;
+}
