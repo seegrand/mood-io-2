@@ -36,7 +36,11 @@
     }
 
     #song #title {
-      font-weight: 600;
+      font-weight: 200;
+    }
+
+    #song #artist {
+      font-weight: 400;
     }
 
     #controls {
@@ -50,9 +54,15 @@
       text-align: center;
     }
 
+    #controls .music-controls-play #play-icon,
+    #controls .music-controls-play #pause-icon,
     #controls .music-controls-forward-icon,
     .music-controls-backward-icon {
       color: white;
+    }
+
+    #controls .music-controls-forward-icon,
+    .music-controls-backward-icon {
       font-size: 40px;
       vertical-align: super;
     }
@@ -91,6 +101,7 @@
 
     #likert {
       width: 100%;
+      color: white;
     }
 
     #likert #current-mood,
@@ -105,7 +116,7 @@
     }
 
     #likert #current-mood {
-      color: white;
+
     }
 
     #likert #helpfulness {

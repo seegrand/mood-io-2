@@ -12,12 +12,20 @@ import { MoodService } from '../../services/mood.service';
 })
 export class HomePage {
 
+  private recentSongs;
   private recentMoods;
 
   constructor(
     public navCtrl: NavController,
-    private moodService: MoodService
-  ) { }
+    private moodService: MoodService) {
+      this.recentSongs = [
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        { id: 4 },
+        { id: 5 },
+      ];
+  }
 
   ionViewDidLoad() {
     this.getRecentMoods();
@@ -34,6 +42,8 @@ export class HomePage {
   changeMood() {
     this.navCtrl.push(ChangeMyMoodPage);
   }
+
+
 
   /*
     Player

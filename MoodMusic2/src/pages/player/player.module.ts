@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+// import { IonicPageModule } from 'ionic-angular';
 // import { PlayerPage } from './player';
 
 import { PlayerBackgroundService } from '../../services/utils/player-background.service';
