@@ -19,6 +19,8 @@ import { RegisterPage } from '../pages/register/register';
 import { LikedGenresPage } from '../pages/liked-genres/liked-genres';
 import { DislikedGenresPage } from '../pages/disliked-genres/disliked-genres';
 import { HomePage } from '../pages/home/home';
+import { RecentMoodsPage } from '../pages/recent-moods/recent-moods';
+import { MoodDetailsPage } from '../pages/mood-details/mood-details';
 import { SearchPage } from '../pages/search/search';
 import { SettingsPage } from '../pages/settings/settings';
 import { ChangeMyMoodPage } from '../pages/change-my-mood/change-my-mood';
@@ -42,6 +44,8 @@ import { LocalStorageService } from '../services/utils/local-storage.service';
     LikedGenresPage,
     DislikedGenresPage,
     HomePage,
+    RecentMoodsPage,
+    MoodDetailsPage,
     SearchPage,
     SettingsPage,
     ChangeMyMoodPage,
@@ -66,6 +70,8 @@ import { LocalStorageService } from '../services/utils/local-storage.service';
     LikedGenresPage,
     DislikedGenresPage,
     HomePage,
+    RecentMoodsPage,
+    MoodDetailsPage,
     SearchPage,
     SettingsPage,
     ChangeMyMoodPage,
