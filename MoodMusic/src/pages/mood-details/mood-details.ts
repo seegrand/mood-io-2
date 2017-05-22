@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { PlayerPage } from '../player/player';
-import { TabsPage } from '../tabs/tabs';
+
 /**
  * Generated class for the MoodDetails page.
  *
