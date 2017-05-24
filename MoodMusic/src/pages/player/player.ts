@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { AudioProvider } from 'ionic-audio';
 
 import { PlayerBackgroundService } from '../../services/utils/player-background.service';
+import { VisibilityService } from '../../services/utils/visibility.service';
 
 import { Track } from '../../model/track';
 
@@ -40,6 +41,7 @@ export class PlayerPage {
   pauseButtonIcon: HTMLElement;
 
   fixedContent: HTMLElement;
+  footerElement: HTMLElement;
   tabBarElement: HTMLElement;
   scrollContent: HTMLElement;
 
@@ -48,6 +50,7 @@ export class PlayerPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     private playerBackgroundService: PlayerBackgroundService,
+    private visibilityService: VisibilityService,
     private audioProvider: AudioProvider) {
 
     // this.currentTrack = [{
@@ -199,15 +202,9 @@ export class PlayerPage {
     this.playButtonIcon = <HTMLElement> document.getElementById('play-icon');
     this.pauseButtonIcon = <HTMLElement> document.getElementById('pause-icon');
 
-    this.fixedContent = <HTMLElement> document.querySelector('div.fixed-content');
-    this.fixedContent.style.marginBottom = '0px';
-
     // Disable Tab view
-    this.tabBarElement = <HTMLElement> document.querySelector('.tabbar.show-tabbar');
-    this.scrollContent = <HTMLElement> document.querySelector('div.scroll-content');
-
-    this.tabBarElement.style.display = 'none';
-    this.scrollContent.style.margin = '0, 50px, 0, 0';
+    this.visibilityService.hideTabs();
+    this.visibilityService.hideMusicBar();
 
     /* =============================== VIEW MANIPULATION END =============================== */
 
@@ -227,7 +224,8 @@ export class PlayerPage {
     clearInterval(this.backgroundSwirlerInterval);
     clearInterval(this.progressUpdaterInterval);
 
-    this.tabBarElement.style.display = 'flex';
+    this.visibilityService.showTabs();
+    this.visibilityService.showMusicBar();
   }
 
 }

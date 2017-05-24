@@ -34,6 +34,7 @@ import { GenreService } from '../services/genre.service';
 import { MoodService } from '../services/mood.service';
 
 import { LocalStorageService } from '../services/utils/local-storage.service';
+import { VisibilityService } from '../services/utils/visibility.service';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { LocalStorageService } from '../services/utils/local-storage.service';
     GenreService,
     MoodService,
     LocalStorageService,
+    VisibilityService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

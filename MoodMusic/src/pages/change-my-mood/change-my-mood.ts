@@ -5,6 +5,8 @@ import { PlayerPage } from '../player/player';
 
 import { MoodService } from '../../services/mood.service';
 
+import { VisibilityService } from '../../services/utils/visibility.service';
+
 /**
  * Generated class for the ChangeMyMood page.
  *
@@ -26,7 +28,8 @@ export class ChangeMyMoodPage {
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
-    private moodService: MoodService
+    private moodService: MoodService,
+    private visibilityService: VisibilityService
   ) { }
 
   private mood;
@@ -55,18 +58,16 @@ export class ChangeMyMoodPage {
     this.getMoods();
 
 		// Disable Tab view
-    this.tabBarElement = <HTMLElement>document.querySelector('.tabbar.show-tabbar');
-    this.scrollContent = <HTMLElement>document.querySelector('.scroll-content');
-
-    this.tabBarElement.style.display = 'none';
-    this.scrollContent.style.margin = '0, 50px, 0, 0';
+    this.visibilityService.hideTabs();
+    this.visibilityService.hideMusicBar();
 	}
 
   ionViewWillLeave() {
     console.log('ionViewWillLeave ChangeMyMood');
 
     if (!this.isNavigatingToPlayer) {
-      this.tabBarElement.style.display = 'flex';
+      this.visibilityService.showTabs();
+      this.visibilityService.showMusicBar();
     }
   }
 

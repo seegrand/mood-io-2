@@ -1,3 +1,23 @@
+<ion-footer id="music-bar" color="dark">
+  <ion-toolbar>
+    <div class="music-bar-container">
+      <div class="left">
+        <button ion-button icon-only clear (click)="showPlayer()">
+          <ion-icon id="show-player" name="arrow-dropup"></ion-icon>
+        </button>
+      </div>
+
+      <div id="song-small" class="center">
+        <span id="title">Care For You</span>
+        <span id="artist">John Mayer</span>
+      </div>
+
+      <div class="right play-control-padding">
+        <ion-icon id="play-small" name="play"></ion-icon>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>
 <ion-tabs>
   <ion-tab [root]="homePage" tabTitle="Home" tabIcon="home"></ion-tab>
   <ion-tab [root]="searchPage" tabTitle="Search" tabIcon="search"></ion-tab>
