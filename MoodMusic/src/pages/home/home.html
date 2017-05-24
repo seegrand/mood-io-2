@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="button-container">
+    <button ion-button round margin (click)="changeMood()">Change My Mood</button>
+  </div>
+  <div class="tile-holder">
+    <div class="tile-header">
+      <h4>Recent Songs</h4>
+      <button ion-button clear magrin color="dark" (click)="recentSongsView()">See All</button>
+      <hr>
+    </div>
+    <ion-scroll scrollX="true" class="wide-as-needed">
+      <div class="tile" *ngFor="let song of recentSongs" (click)="startPlaying()">
+        <div text-center>
+          <img src="http://lorempixel.com/100/100/abstract/">
+          <p>Shape of You</p>
+          <h6>Ed Sheeran</h6>
+        </div>
+      </div>
+    </ion-scroll>
+  </div>
+  <div class="tile-holder">
+    <div class="tile-header">
+      <h4>Recent Moods</h4>
+      <button ion-button clear magrin color="dark" (click)="goToRecentMoods()">See All</button>
+      <hr>
+    </div>
+    <ion-scroll scrollX="true" class="wide-as-needed">
+      <div class="tile" (click)="goToSelectedMood()">
+        <div text-center>
+          <img src="http://lorempixel.com/100/100/nature/">
+          <h6>Happy</h6>
+          <p>Improved</p>
+        </div>
+      </div>
+      <div class="tile" (click)="goToSelectedMood()">
+        <div text-center>
+          <img src="http://lorempixel.com/100/100/nature/">
+          <h6>Happy</h6>
+          <p>Improved</p>
+        </div>
+      </div>
+      <div class="tile" (click)="goToSelectedMood()">
+        <div text-center>
+          <img src="http://lorempixel.com/100/100/nature/">
+          <h6>Happy</h6>
+          <p>Improved</p>
+        </div>
+      </div>
+    </ion-scroll>
+  </div>
+</ion-content>
