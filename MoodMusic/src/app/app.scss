@@ -198,6 +198,57 @@ ion-thumbnail img {
 }
 
 /*
+    Details
+*/
+
+.detail-img {
+  text-align: center;
+
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+  }
+}
+
+.card {
+  background-color: #FFFFFF;
+  text-align: center;
+
+  .list {
+
+    .item-block:last-child{
+      border-bottom: none;
+    }
+
+  }
+}
+
+/*
+    Android
+    Specific Android styling
+*/
+
+.item-md ion-thumbnail ion-img, .item-md ion-thumbnail img {
+    width: 56px;
+    height: 56px;
+}
+
+.item-md ion-thumbnail {
+    min-width: 56px;
+    min-height: 56px;
+}
+
+.list-md {
+    margin: -1px 0 32px 0;
+}
+
+.list-header-md {
+  margin-bottom: 0px;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.2)
+}
+
+/*
     Helper Classes
 */
 

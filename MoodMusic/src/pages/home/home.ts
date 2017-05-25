@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { ChangeMyMoodPage } from '../change-my-mood/change-my-mood';
+import { RecentSongsPage } from '../recent-songs/recent-songs';
 import { RecentMoodsPage } from '../recent-moods/recent-moods';
 import { MoodDetailsPage } from '../mood-details/mood-details';
 import { PlayerPage } from '../player/player';
@@ -40,6 +41,22 @@ export class HomePage {
 
   changeMood() {
     this.navCtrl.push(ChangeMyMoodPage);
+  }
+
+  /*
+    Recent Songs
+  */
+
+  getRecentSongs() {
+
+  }
+
+  goToRecentSongs() {
+    this.navCtrl.push(RecentSongsPage);
+  }
+
+  playRecentSong() {
+    this.navCtrl.push(PlayerPage);
   }
 
   /*
