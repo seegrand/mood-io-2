@@ -6,8 +6,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class APIService {
 
-  // private BASE_URL = 'https://mood-io.herokuapp.com';
-  protected BASE_URL = 'https://moodapi.herokuapp.com';
+  protected BASE_URL = 'https://mood-io.herokuapp.com';
+  // protected BASE_URL = 'https://moodapi.herokuapp.com';
 
   constructor(protected http: Http) { }
 

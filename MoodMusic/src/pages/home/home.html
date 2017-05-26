@@ -12,11 +12,11 @@
   <div class="tile-holder">
     <div class="tile-header">
       <h4>Recent Songs</h4>
-      <button ion-button clear magrin color="dark" (click)="recentSongsView()">See All</button>
+      <button ion-button clear magrin color="dark" (click)="goToRecentSongs()">See All</button>
       <hr>
     </div>
     <ion-scroll scrollX="true" class="wide-as-needed">
-      <div class="tile" *ngFor="let song of recentSongs" (click)="startPlaying()">
+      <div class="tile" *ngFor="let song of recentSongs" (click)="playRecentSong()">
         <div text-center>
           <img src="http://lorempixel.com/100/100/abstract/">
           <p>Shape of You</p>

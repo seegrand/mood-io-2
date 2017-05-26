@@ -19,6 +19,8 @@ import { RegisterPage } from '../pages/register/register';
 import { LikedGenresPage } from '../pages/liked-genres/liked-genres';
 import { DislikedGenresPage } from '../pages/disliked-genres/disliked-genres';
 import { HomePage } from '../pages/home/home';
+import { RecentSongsPage } from '../pages/recent-songs/recent-songs';
+import { SongDetailsPage } from '../pages/song-details/song-details';
 import { RecentMoodsPage } from '../pages/recent-moods/recent-moods';
 import { MoodDetailsPage } from '../pages/mood-details/mood-details';
 import { SearchPage } from '../pages/search/search';
@@ -30,6 +32,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 // Services
 import { APIService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
+import { SongService } from '../services/song.service';
 import { GenreService } from '../services/genre.service';
 import { MoodService } from '../services/mood.service';
 
@@ -45,6 +48,8 @@ import { VisibilityService } from '../services/utils/visibility.service';
     LikedGenresPage,
     DislikedGenresPage,
     HomePage,
+    RecentSongsPage,
+    SongDetailsPage,
     RecentMoodsPage,
     MoodDetailsPage,
     SearchPage,
@@ -71,6 +76,8 @@ import { VisibilityService } from '../services/utils/visibility.service';
     LikedGenresPage,
     DislikedGenresPage,
     HomePage,
+    RecentSongsPage,
+    SongDetailsPage,
     RecentMoodsPage,
     MoodDetailsPage,
     SearchPage,
@@ -84,6 +91,7 @@ import { VisibilityService } from '../services/utils/visibility.service';
     SplashScreen,
     APIService,
     AuthService,
+    SongService,
     GenreService,
     MoodService,
     LocalStorageService,
