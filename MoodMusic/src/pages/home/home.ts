@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { ChangeMyMoodPage } from '../change-my-mood/change-my-mood';
+import { RecentSongsPage } from '../recent-songs/recent-songs';
+import { RecentMoodsPage } from '../recent-moods/recent-moods';
+import { MoodDetailsPage } from '../mood-details/mood-details';
 import { PlayerPage } from '../player/player';
 
 import { MoodService } from '../../services/mood.service';
@@ -35,19 +38,48 @@ export class HomePage {
   /*
     Change My Mood
   */
-  getRecentMoods() {
-    this.moodService.getRecentMoods().subscribe(moods => this.recentMoods = moods);
-  }
 
   changeMood() {
     this.navCtrl.push(ChangeMyMoodPage);
   }
 
+  /*
+    Recent Songs
+  */
+
+  getRecentSongs() {
+
+  }
+
+  goToRecentSongs() {
+    this.navCtrl.push(RecentSongsPage);
+  }
+
+  playRecentSong() {
+    this.navCtrl.push(PlayerPage);
+  }
+
+  /*
+    Recent Moods
+  */
+
+  getRecentMoods() {
+    this.moodService.getRecentMoods().subscribe(moods => this.recentMoods = moods);
+  }
+
+  goToRecentMoods() {
+    this.navCtrl.push(RecentMoodsPage);
+  }
+
+  goToSelectedMood() {
+    this.navCtrl.push(MoodDetailsPage);
+  }
 
 
   /*
     Player
   */
+
   startPlaying() {
   	this.navCtrl.push(PlayerPage, {}, { animate: true, direction: 'forward' });
   }

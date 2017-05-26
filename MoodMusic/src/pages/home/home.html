@@ -12,10 +12,11 @@
   <div class="tile-holder">
     <div class="tile-header">
       <h4>Recent Songs</h4>
+      <button ion-button clear magrin color="dark" (click)="goToRecentSongs()">See All</button>
       <hr>
     </div>
     <ion-scroll scrollX="true" class="wide-as-needed">
-      <div class="tile" *ngFor="let song of recentSongs" (click)="startPlaying()">
+      <div class="tile" *ngFor="let song of recentSongs" (click)="playRecentSong()">
         <div text-center>
           <img src="http://lorempixel.com/100/100/abstract/">
           <p>Shape of You</p>
@@ -27,25 +28,29 @@
   <div class="tile-holder">
     <div class="tile-header">
       <h4>Recent Moods</h4>
+      <button ion-button clear magrin color="dark" (click)="goToRecentMoods()">See All</button>
       <hr>
     </div>
     <ion-scroll scrollX="true" class="wide-as-needed">
-      <div class="tile">
+      <div class="tile" (click)="goToSelectedMood()">
         <div text-center>
           <img src="http://lorempixel.com/100/100/nature/">
-          <h6>Mood</h6>
+          <h6>Happy</h6>
+          <p>Improved</p>
         </div>
       </div>
-      <div class="tile">
+      <div class="tile" (click)="goToSelectedMood()">
         <div text-center>
           <img src="http://lorempixel.com/100/100/nature/">
-          <h6>Mood</h6>
+          <h6>Happy</h6>
+          <p>Improved</p>
         </div>
       </div>
-      <div class="tile">
+      <div class="tile" (click)="goToSelectedMood()">
         <div text-center>
           <img src="http://lorempixel.com/100/100/nature/">
-          <h6>Mood</h6>
+          <h6>Happy</h6>
+          <p>Improved</p>
         </div>
       </div>
     </ion-scroll>

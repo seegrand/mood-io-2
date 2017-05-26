@@ -1,0 +1,47 @@
+page-song-details {
+
+  .album-art {
+    display: inline-block;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .details {
+    margin: 25px 0px;
+
+    .note {
+      color: #444444;
+      font-size: 1.2em;
+    }
+  }
+
+  .card {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+
+    .gradient {
+      width: 100%;
+      background: linear-gradient(#E8F1F2, #FFFFFF);
+      background: -webkit-linear-gradient(#E8F1F2, #FFFFFF); /* For Safari 5.1 to 6.0 */
+      background: -o-linear-gradient(#E8F1F2, #FFFFFF); /* For Opera 11.1 to 12.0 */
+      background: -moz-linear-gradient(#E8F1F2, #FFFFFF); /* For Firefox 3.6 to 15 */
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+    }
+
+    .card-content {
+      padding-bottom: 0px;
+    }
+
+    button {
+      width: 200px;
+      margin: 10px 0px;
+    }
+
+  }
+
+}
