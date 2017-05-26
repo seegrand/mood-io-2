@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { HomePage } from '../home/home';
 import { SearchPage } from '../search/search';
-import { SettingsPage } from '../settings/settings';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -11,7 +11,7 @@ export class TabsPage {
 
   homePage = HomePage;
   searchPage = SearchPage;
-  settingsPage = SettingsPage;
+  profilePage = ProfilePage;
 
   constructor() {
 

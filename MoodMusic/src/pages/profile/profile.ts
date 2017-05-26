@@ -1,23 +1,21 @@
 import { Component } from '@angular/core';
-import { App } from 'ionic-angular';
-import { IonicPage, NavParams } from 'ionic-angular';
-
-import { AuthService } from '../../services/auth.service';
+import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the Settings page.
+ * Generated class for the Profile page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-settings',
-  templateUrl: 'settings.html',
+  selector: 'page-profile',
+  templateUrl: 'profile.html',
 })
-export class SettingsPage {
+export class ProfilePage {
 
-  constructor(private _app: App, public navParams: NavParams, private authService: AuthService) { }
+  constructor(private _app: App, public navCtrl: NavController, public navParams: NavParams) {
+  }
 
   logout() {
     // this.authService.logout().subscribe(() => {
@@ -30,7 +28,7 @@ export class SettingsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Settings');
+    console.log('ionViewDidLoad Profile');
   }
 
 }
