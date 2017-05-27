@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { SearchPage } from '../search/search';
-import { SettingsPage } from '../settings/settings';
+import { ProfilePage } from '../profile/profile';
 
 import { PlayerPage } from '../player/player';
 
@@ -16,7 +16,7 @@ export class TabsPage {
 
   homePage = HomePage;
   searchPage = SearchPage;
-  settingsPage = SettingsPage;
+  profilePage = ProfilePage;
 
   playButtonIcon: HTMLElement;
   pauseButtonIcon: HTMLElement;

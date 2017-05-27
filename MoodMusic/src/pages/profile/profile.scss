@@ -1,0 +1,31 @@
+page-profile {
+
+  .img-container {
+      text-align: center;
+
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 75px;
+      }
+  }
+
+  .profile-container {
+
+    text-align: center;
+
+  }
+
+
+
+  .btn-container{
+    margin: 20px;
+    text-align: center;
+  }
+
+  button {
+    display: inline-block;
+    width: 200px;
+  }
+
+}
