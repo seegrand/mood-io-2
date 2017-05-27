@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
-import { AudioProvider } from 'ionic-audio';
-
+import { MusicService } from '../../services/utils/music.service';
 import { PlayerBackgroundService } from '../../services/utils/player-background.service';
 import { VisibilityService } from '../../services/utils/visibility.service';
 
@@ -19,12 +18,11 @@ import { Track } from '../../model/track';
   selector: 'page-player',
   templateUrl: 'player.html',
 })
-export class PlayerPage {
+export class PlayerPage implements OnInit {
 
   loading: any;
 
   windowHeight: string;
-  isPlaying = false;
 
   backgroundSwirlerInterval: any;
   progressUpdaterInterval: any;
@@ -32,7 +30,6 @@ export class PlayerPage {
   currentTrack: Track;
   currentTrackPosition: number;
   currentTrackDuration: number;
-  trackSteps: number = 2;
 
   likertPosition = 2;
   likertAnswers = ['Worsened', 'Irritating', 'Neutral', 'Slightly better', 'Improved'];
@@ -49,9 +46,9 @@ export class PlayerPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
+    private musicService: MusicService,
     private playerBackgroundService: PlayerBackgroundService,
-    private visibilityService: VisibilityService,
-    private audioProvider: AudioProvider) {
+    private visibilityService: VisibilityService) {
 
     // this.currentTrack = [{
     //   title: 'Windmills',
@@ -60,16 +57,16 @@ export class PlayerPage {
     //   preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
     // }];
 
-    if (this.audioProvider.tracks.length < 1) {
-      this.currentTrack = {
-        title: 'Why Georgia',
-        artist: 'John Mayer',
-        src: 'https://archive.org/download/JM2013-10-05.flac16/V0/jm2013-10-05-t12-MP3-V0.mp3',
-        preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
-      };
-
-      this.loadTrack(this.currentTrack);
-    }
+    // if (this.audioProvider.tracks.length < 1) {
+    //   this.currentTrack = {
+    //     title: 'Why Georgia',
+    //     artist: 'John Mayer',
+    //     src: 'https://archive.org/download/JM2013-10-05.flac16/V0/jm2013-10-05-t12-MP3-V0.mp3',
+    //     preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
+    //   };
+    //
+    //   this.loadTrack(this.currentTrack);
+    // }
 
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
@@ -79,107 +76,151 @@ export class PlayerPage {
     // this.loading.present();
   }
 
-  loadTrack(track: Track) {
-    let nextAudioTrack = this.audioProvider.create(track);
-    this.audioProvider.add(nextAudioTrack);
-  }
+  ngOnInit() {
+    var songs: Track[] = [
+      {
+        title: 'Why Georgia',
+        artist: 'John Mayer',
+        src: 'https://archive.org/download/JM2013-10-05.flac16/V0/jm2013-10-05-t12-MP3-V0.mp3',
+        preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
+      },
+      {
+        title: 'Bohemian Rhapsody',
+        artist: 'Queen',
+        src: 'http://nas1.tyil.net/Queen%20-%20A%20Night%20At%20The%20Opera%20-%20MFSL%20GOLD%20UDCD%20568%20-%201975/11-Queen-Bohemian%20Rhapsody.flac',
+        preload: 'metadata'
+      }
+    ];
 
-  onTrackFinished(track: any) {
-    console.log('Track finished', track);
-  }
+    this.musicService.init(songs);
 
-  playToggle() {
-    if (this.isPlaying) {
-      this.pause();
+    // Start music
+    if (!this.musicService.isPlaying) {
+      this.play();
     } else {
-      this.play(this.audioProvider.current);
+      this.updatePlayButton();
     }
   }
 
-  play(index: number) {
-    this.audioProvider.play(index);
-    this.isPlaying = true;
+  // loadTrack(track: Track) {
+  //   let nextAudioTrack = this.audioProvider.create(track);
+  //   this.audioProvider.add(nextAudioTrack);
+  // }
+
+  // onTrackFinished(track: any) {
+  //   console.log('Track finished', track);
+  // }
+
+  playToggle() {
+    if (this.musicService.isPlaying) {
+      this.pause();
+    } else {
+      this.play();
+    }
+  }
+
+  play() {
+    this.musicService.play();
+
+    this.updatePlayButton();
+  }
+
+  playNext() {
+    this.pause();
+
+    this.musicService.playNext();
+
+    this.updatePlayButton();
+  }
+
+  playPrevious() {
+    this.pause();
+
+    this.musicService.playPrevious();
 
     this.updatePlayButton();
   }
 
   pause() {
-    this.audioProvider.pause();
-    this.isPlaying = false;
+    this.musicService.pause();
 
     this.updatePlayButton();
   }
 
-  updatePlayButton() {
-    if (this.isPlaying) {
-      this.pauseButtonIcon.style.display = 'block';
-      this.playButtonIcon.style.display = 'none';
-    } else {
-      this.pauseButtonIcon.style.display = 'none';
-      this.playButtonIcon.style.display = 'block';
-    }
+  resetTrack() {
+    this.play();
+    this.musicService.resetTrack();
+
   }
 
-  skipBackward() {
-    this.pause();
-
-    if (this.audioProvider.current > 0) {
-      this.play(this.audioProvider.current - this.trackSteps);
-    } else {
-      this.play(this.audioProvider.current);
-      this.audioProvider.tracks[this.audioProvider.current].seekTo(0);
+  updatePlayButton() {
+    if (this.pauseButtonIcon && this.playButtonIcon) {
+      if (this.musicService.isPlaying) {
+        this.pauseButtonIcon.style.display = 'block';
+        this.playButtonIcon.style.display = 'none';
+      } else {
+        this.pauseButtonIcon.style.display = 'none';
+        this.playButtonIcon.style.display = 'block';
+      }
     }
   }
 
   skipForward() {
-    let nextTrack = {
-      title: 'Bohemian Rhapsody',
-      artist: 'Queen',
-      src: 'http://nas1.tyil.net/Queen%20-%20A%20Night%20At%20The%20Opera%20-%20MFSL%20GOLD%20UDCD%20568%20-%201975/11-Queen-Bohemian%20Rhapsody.flac',
-      preload: 'metadata'
-    };
+    // let nextTrack = {
+    //   title: 'Bohemian Rhapsody',
+    //   artist: 'Queen',
+    //   src: 'http://nas1.tyil.net/Queen%20-%20A%20Night%20At%20The%20Opera%20-%20MFSL%20GOLD%20UDCD%20568%20-%201975/11-Queen-Bohemian%20Rhapsody.flac',
+    //   preload: 'metadata'
+    // };
 
-    this.pause();
+    // this.pause();
 
     // for (var i = 0; i < this.audioProvider.tracks.length; i++) {
     //   this.audioProvider.stop(i);
     // }
 
-    console.log(this.audioProvider.tracks);
+    // console.log(this.audioProvider.tracks);
 
-    let nextAudioTrack = this.audioProvider.create(nextTrack);
-    this.audioProvider.add(nextAudioTrack);
+    // let nextAudioTrack = this.audioProvider.create(nextTrack);
+    // this.audioProvider.add(nextAudioTrack);
+    //
+    // this.play(this.audioProvider.current + this.trackSteps);
 
-    this.play(this.audioProvider.current + this.trackSteps);
+    if (!this.playNext()) {
+      this.pause();
+    }
+  }
+
+  skipBackward() {
+    // this.pause();
+
+    if (!this.playPrevious()) {
+      this.resetTrack();
+    }
   }
 
   updateTrackProgress() {
-    console.log(this.audioProvider.current);
+    // console.log(this.audioProvider.current);
 
-    if (this.audioProvider.tracks[this.audioProvider.current]) {
-      let track = this.audioProvider.tracks[this.audioProvider.current];
+    this.currentTrackPosition = this.musicService.getTrackProgress();
 
-      if (!this.currentTrackDuration && this.audioProvider.tracks[this.audioProvider.current].duration) {
-        this.currentTrackDuration = this.audioProvider.tracks[this.audioProvider.current].duration;
-      }
-
-      if (track.isPlaying && this.audioProvider.tracks[this.audioProvider.current].progress) {
-        this.currentTrackPosition = this.audioProvider.tracks[this.audioProvider.current].progress;
-      }
+    if (!this.currentTrackDuration) {
+      this.currentTrackDuration = this.musicService.getTrackDuration();
     }
   }
 
-  seekTrack() {
-    console.log('seekTrack');
-    let track = this.audioProvider.tracks[this.audioProvider.current];
+  seekTrack(position: number) {
+    console.log(position);
 
-    if (track) {
-      track.seekTo(this.currentTrackPosition);
-    }
+    this.musicService.seekTrack(position);
   }
 
   updateLikert() {
     document.getElementById('helpfulness').innerHTML = this.likertAnswers[this.likertPosition];
+  }
+
+  updateView() {
+    this.updatePlayButton();
   }
 
   hidePlayer() {
@@ -199,8 +240,8 @@ export class PlayerPage {
     this.progressUpdaterInterval = setInterval(() => this.updateTrackProgress(), 1000);
 
     // Play button icons
-    this.playButtonIcon = <HTMLElement> document.getElementById('play-icon');
-    this.pauseButtonIcon = <HTMLElement> document.getElementById('pause-icon');
+    this.playButtonIcon = <HTMLElement>document.getElementById('play-icon');
+    this.pauseButtonIcon = <HTMLElement>document.getElementById('pause-icon');
 
     // Disable Tab view
     this.visibilityService.hideTabs();
@@ -208,16 +249,7 @@ export class PlayerPage {
 
     /* =============================== VIEW MANIPULATION END =============================== */
 
-    if (this.audioProvider.tracks && this.audioProvider.tracks[this.audioProvider.current]) {
-      this.isPlaying = this.audioProvider.tracks[this.audioProvider.current].isPlaying;
-    }
-
-    // Start music
-    if (!this.isPlaying) {
-      this.play(0);
-    } else {
-      this.updatePlayButton();
-    }
+    this.updateView();
   }
 
   ionViewWillLeave() {

@@ -4,6 +4,8 @@ import { HomePage } from '../home/home';
 import { SearchPage } from '../search/search';
 import { SettingsPage } from '../settings/settings';
 
+import { MusicService } from '../../services/utils/music.service';
+
 @Component({
   templateUrl: 'tabs.html'
 })
