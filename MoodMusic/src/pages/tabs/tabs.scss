@@ -37,9 +37,9 @@ $music-bar-height: 56px;
   ion-footer#music-bar {
     margin-bottom: 46px;
 
-    // .play-control-padding {
-    //   margin-top: 6px;
-    // }
+    #song-small {
+      margin-top: 8px;
+    }
   }
 }
 
@@ -52,6 +52,10 @@ $music-bar-height: 56px;
 
       .play-control-padding {
         margin-top: 2px;
+      }
+
+      #song-small {
+        margin-top: 6px;
       }
     }
   }
@@ -110,7 +114,7 @@ ion-footer#music-bar {
 }
 
 .center {
-  margin: 0 auto !important;
+  // margin: 0 auto !important;
 }
 
 .right {
