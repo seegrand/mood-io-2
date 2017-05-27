@@ -39,13 +39,11 @@ export class TabsPage {
 
   play() {
     this.musicService.play();
-
     this.updatePlayButton();
   }
 
   pause() {
     this.musicService.pause();
-
     this.updatePlayButton();
   }
 

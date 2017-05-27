@@ -47,12 +47,11 @@ export class MusicService {
   }
 
   canPlayNext(): boolean {
-    return this.audioProvider.current < this.audioProvider.tracks.length;
+    return this.audioProvider.current + this.trackSteps < this.audioProvider.tracks.length;
   }
 
-  playNext() {
+  playNext(): boolean {
     if (this.canPlayNext()) {
-      this.isPlaying = true;
       this.audioProvider.pause();
       this.audioProvider.play(this.audioProvider.current + this.trackSteps);
 
@@ -66,9 +65,8 @@ export class MusicService {
     return this.audioProvider.current > 0;
   }
 
-  playPrevious() {
+  playPrevious(): boolean {
     if (this.canPlayPrevious()) {
-      this.isPlaying = true;
       this.audioProvider.pause();
       this.audioProvider.play(this.audioProvider.current - this.trackSteps);
 
@@ -132,7 +130,6 @@ export class MusicService {
 
   getTrackDuration(): number {
     if (this.audioProvider.tracks[this.audioProvider.current]) {
-      // let track = this.audioProvider.tracks[this.audioProvider.current];
 
       if (this.audioProvider.tracks[this.audioProvider.current].duration) {
         return this.audioProvider.tracks[this.audioProvider.current].duration;

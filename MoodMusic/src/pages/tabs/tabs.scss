@@ -1,23 +1,4 @@
 $music-bar-height: 56px;
-// $control-padding: 3px;
-
-// .ios,
-// .md {
-//   ion-footer#music-bar {
-//     button {
-//       margin: 0;
-//     }
-//   }
-// }
-
-// .ios,
-// .wp {
-//   ion-footer#music-bar {
-//     .play-control-padding {
-//       padding-top: $control-padding;
-//     }
-//   }
-// }
 
 .md {
   ion-footer#music-bar {
@@ -26,10 +7,6 @@ $music-bar-height: 56px;
     .play-control-padding {
       margin-top: 2px;
     }
-
-    // .show-control-padding {
-    //   margin-top: -3px;
-    // }
   }
 }
 

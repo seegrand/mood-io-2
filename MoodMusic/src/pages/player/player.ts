@@ -5,8 +5,6 @@ import { MusicService } from '../../services/utils/music.service';
 import { PlayerBackgroundService } from '../../services/utils/player-background.service';
 import { VisibilityService } from '../../services/utils/visibility.service';
 
-import { Track } from '../../model/track';
-
 /**
  * Generated class for the Player page.
  *
@@ -50,28 +48,10 @@ export class PlayerPage implements OnInit {
     private playerBackgroundService: PlayerBackgroundService,
     private visibilityService: VisibilityService) {
 
-    // this.currentTrack = [{
-    //   title: 'Windmills',
-    //   artist: 'The Village Lantarne',
-    //   src: 'http://nas1.tyil.net/%282006%29%20The%20Village%20Lanterne/%2813%29%20Blackmore%27s%20Night%20-%20Windmills.flac',
-    //   preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
-    // }];
-
-    // if (this.audioProvider.tracks.length < 1) {
-    //   this.currentTrack = {
-    //     title: 'Why Georgia',
-    //     artist: 'John Mayer',
-    //     src: 'https://archive.org/download/JM2013-10-05.flac16/V0/jm2013-10-05-t12-MP3-V0.mp3',
-    //     preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
-    //   };
-    //
-    //   this.loadTrack(this.currentTrack);
-    // }
-
-    this.loading = this.loadingCtrl.create({
-      spinner: 'crescent',
-      content: 'Loading Video...'
-    });
+    // this.loading = this.loadingCtrl.create({
+    //   spinner: 'crescent',
+    //   content: 'Loading Video...'
+    // });
 
     // this.loading.present();
   }
@@ -85,18 +65,7 @@ export class PlayerPage implements OnInit {
         this.play();
       }
     }
-
-    // this.updatePlayButton();
   }
-
-  // loadTrack(track: Track) {
-  //   let nextAudioTrack = this.audioProvider.create(track);
-  //   this.audioProvider.add(nextAudioTrack);
-  // }
-
-  // onTrackFinished(track: any) {
-  //   console.log('Track finished', track);
-  // }
 
   playToggle() {
     if (this.musicService.isPlaying) {
@@ -109,25 +78,13 @@ export class PlayerPage implements OnInit {
   play() {
     this.musicService.play();
 
-    this.updatePlayButton();
-  }
-
-  playNext() {
-    console.log('playNext: ' + this.musicService.isPlaying);
-
-    return this.musicService.playNext();
-  }
-
-  playPrevious() {
-    console.log('playPrevious: ' + this.musicService.isPlaying);
-
-    return this.musicService.playPrevious();
+    this.updateView();
   }
 
   pause() {
     this.musicService.pause();
 
-    this.updatePlayButton();
+    this.updateView();
   }
 
   resetTrack() {
@@ -137,38 +94,16 @@ export class PlayerPage implements OnInit {
   }
 
   skipForward() {
-    // let nextTrack = {
-    //   title: 'Bohemian Rhapsody',
-    //   artist: 'Queen',
-    //   src: 'http://nas1.tyil.net/Queen%20-%20A%20Night%20At%20The%20Opera%20-%20MFSL%20GOLD%20UDCD%20568%20-%201975/11-Queen-Bohemian%20Rhapsody.flac',
-    //   preload: 'metadata'
-    // };
-
-    // this.pause();
-
-    // for (var i = 0; i < this.audioProvider.tracks.length; i++) {
-    //   this.audioProvider.stop(i);
-    // }
-
-    // console.log(this.audioProvider.tracks);
-
-    // let nextAudioTrack = this.audioProvider.create(nextTrack);
-    // this.audioProvider.add(nextAudioTrack);
-    //
-    // this.play(this.audioProvider.current + this.trackSteps);
-
-    if (this.playNext()) {
-      this.updatePlayButton();
+    if (this.musicService.playNext()) {
+      this.updateView();
     } else {
       this.pause();
     }
   }
 
   skipBackward() {
-    // this.pause();
-
-    if (this.playPrevious()) {
-      this.updatePlayButton();
+    if (this.musicService.playPrevious()) {
+      this.updateView();
     } else {
       this.resetTrack();
     }
@@ -176,26 +111,37 @@ export class PlayerPage implements OnInit {
 
   updatePlayButton() {
     if (this.pauseButtonIcon && this.playButtonIcon) {
-
-      console.log('updatePlayButton: ' + this.musicService.isPlaying);
-
       if (this.musicService.isPlaying) {
-        this.pauseButtonIcon.style.display = 'block';
-        this.playButtonIcon.style.display = 'none';
+        this.showPauseIcon();
       } else {
-        this.pauseButtonIcon.style.display = 'none';
-        this.playButtonIcon.style.display = 'block';
+        this.showPlayIcon();
       }
     }
   }
 
-  updateTrackProgress() {
-    // console.log(this.audioProvider.current);
+  showPlayIcon() {
+    this.pauseButtonIcon.style.display = 'none';
+    this.playButtonIcon.style.display = 'block';
+  }
 
+  showPauseIcon() {
+    this.playButtonIcon.style.display = 'none';
+    this.pauseButtonIcon.style.display = 'block';
+  }
+
+  updateTrackProgress() {
     this.currentTrackPosition = this.musicService.getTrackProgress();
 
-    if (!this.currentTrackDuration) {
-      this.currentTrackDuration = this.musicService.getTrackDuration();
+    this.currentTrackDuration = this.musicService.getTrackDuration();
+
+    if (this.currentTrackPosition && this.currentTrackDuration) {
+      console.log('currentTrackPosition: ' + this.currentTrackPosition);
+      console.log('currentTrackDuration: ' + this.currentTrackDuration);
+
+      if (this.currentTrackDuration - this.currentTrackPosition <= 1) {
+        console.log('skipForward');
+        this.skipForward();
+      }
     }
   }
 
@@ -210,6 +156,7 @@ export class PlayerPage implements OnInit {
   }
 
   updateView() {
+    this.updateTrackProgress();
     this.updatePlayButton();
   }
 
@@ -242,8 +189,9 @@ export class PlayerPage implements OnInit {
     this.windowHeight = window.innerHeight + 'px';
     this.backgroundSwirlerInterval = this.playerBackgroundService.swirlBackground();
 
-    this.updateTrackProgress();
-    this.progressUpdaterInterval = setInterval(() => this.updateTrackProgress(), 1000);
+    this.progressUpdaterInterval = setInterval(() => {
+      this.updateView();
+    }, 1000);
 
     // Play button icons
     this.playButtonIcon = <HTMLElement>document.getElementById('play-icon');
