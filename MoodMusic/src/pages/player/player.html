@@ -20,7 +20,7 @@
     <!-- <audio-track *ngIf="currentTrack" #audio [track]="currentTrack" (onPlay)="onTrackPlay($event)" (onPause)="onTrackPause($event)" (onFinish)="onTrackFinished($event)">
     </audio-track> -->
 
-    <div id="song" *ngIf="musicService.audioProvider">
+    <div id="song" *ngIf="musicService.audioProvider && musicService.audioProvider.tracks[musicService.audioProvider.current]">
       <span id="title">{{ musicService.audioProvider.tracks[musicService.audioProvider.current].title }}</span>
       <span id="artist">{{ musicService.audioProvider.tracks[musicService.audioProvider.current].artist }}</span>
     </div>

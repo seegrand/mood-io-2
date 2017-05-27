@@ -11,23 +11,28 @@ export class MusicService {
 
   isPlaying: boolean = false;
 
-  playList: Track[];
+  playlist: Track[];
 
   constructor(private audioProvider: AudioProvider) {
 
   }
 
-  init(tracks: Track[]) {
-    if (this.audioProvider.tracks && this.audioProvider.tracks[this.audioProvider.current]) {
-      this.isPlaying = this.audioProvider.tracks[this.audioProvider.current].isPlaying;
-    }
+  init(playlist): boolean {
+    if (playlist) {
+      if (playlist instanceof Array) {
+        this.playlist = playlist;
 
-    if (tracks) {
-      this.playList = tracks;
+        for (var track of playlist) {
+          this.loadTrack(track);
 
-      for (var track of tracks) {
-        this.loadTrack(track);
+        }
+      } else if (playlist instanceof Object) {
+        this.loadTrack(playlist);
       }
+
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -41,12 +46,14 @@ export class MusicService {
     this.isPlaying = true;
   }
 
-  canPlayNext() {
-    return this.audioProvider.current < this.playList.length;
+  canPlayNext(): boolean {
+    return this.audioProvider.current < this.audioProvider.tracks.length;
   }
 
   playNext() {
     if (this.canPlayNext()) {
+      this.isPlaying = true;
+      this.audioProvider.pause();
       this.audioProvider.play(this.audioProvider.current + this.trackSteps);
 
       return true;
@@ -55,12 +62,14 @@ export class MusicService {
     return false;
   }
 
-  canPlayPrevious() {
+  canPlayPrevious(): boolean {
     return this.audioProvider.current > 0;
   }
 
   playPrevious() {
     if (this.canPlayPrevious()) {
+      this.isPlaying = true;
+      this.audioProvider.pause();
       this.audioProvider.play(this.audioProvider.current - this.trackSteps);
 
       return true;
@@ -93,7 +102,25 @@ export class MusicService {
     }
   }
 
-  getTrackProgress() {
+  getPlaylistLength(): number {
+    if (this.audioProvider.tracks) {
+      return this.audioProvider.tracks.length;
+    }
+
+    return 0;
+  }
+
+  getCurrentTrackIndex(): number {
+    if (this.audioProvider.tracks) {
+      if (this.audioProvider.tracks.length > 0) {
+        return this.audioProvider.current;
+      }
+    }
+
+    return -1;
+  }
+
+  getTrackProgress(): number {
     if (this.audioProvider.tracks[this.audioProvider.current]) {
       let track = this.audioProvider.tracks[this.audioProvider.current];
 
@@ -103,7 +130,7 @@ export class MusicService {
     }
   }
 
-  getTrackDuration() {
+  getTrackDuration(): number {
     if (this.audioProvider.tracks[this.audioProvider.current]) {
       // let track = this.audioProvider.tracks[this.audioProvider.current];
 

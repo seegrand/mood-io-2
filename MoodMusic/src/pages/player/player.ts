@@ -27,7 +27,7 @@ export class PlayerPage implements OnInit {
   backgroundSwirlerInterval: any;
   progressUpdaterInterval: any;
 
-  currentTrack: Track;
+  // currentTrack: Track;
   currentTrackPosition: number;
   currentTrackDuration: number;
 
@@ -77,29 +77,16 @@ export class PlayerPage implements OnInit {
   }
 
   ngOnInit() {
-    var songs: Track[] = [
-      {
-        title: 'Why Georgia',
-        artist: 'John Mayer',
-        src: 'https://archive.org/download/JM2013-10-05.flac16/V0/jm2013-10-05-t12-MP3-V0.mp3',
-        preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
-      },
-      {
-        title: 'Bohemian Rhapsody',
-        artist: 'Queen',
-        src: 'http://nas1.tyil.net/Queen%20-%20A%20Night%20At%20The%20Opera%20-%20MFSL%20GOLD%20UDCD%20568%20-%201975/11-Queen-Bohemian%20Rhapsody.flac',
-        preload: 'metadata'
-      }
-    ];
-
-    this.musicService.init(songs);
-
     // Start music
-    if (!this.musicService.isPlaying) {
-      this.play();
-    } else {
-      this.updatePlayButton();
+    if (this.musicService.init(this.navParams.get('playlist'))) {
+      if (this.musicService.getPlaylistLength() > this.musicService.getCurrentTrackIndex()) {
+        this.skipForward();
+      } else {
+        this.play();
+      }
     }
+
+    // this.updatePlayButton();
   }
 
   // loadTrack(track: Track) {
@@ -126,19 +113,15 @@ export class PlayerPage implements OnInit {
   }
 
   playNext() {
-    this.pause();
+    console.log('playNext: ' + this.musicService.isPlaying);
 
-    this.musicService.playNext();
-
-    this.updatePlayButton();
+    return this.musicService.playNext();
   }
 
   playPrevious() {
-    this.pause();
+    console.log('playPrevious: ' + this.musicService.isPlaying);
 
-    this.musicService.playPrevious();
-
-    this.updatePlayButton();
+    return this.musicService.playPrevious();
   }
 
   pause() {
@@ -151,18 +134,6 @@ export class PlayerPage implements OnInit {
     this.play();
     this.musicService.resetTrack();
 
-  }
-
-  updatePlayButton() {
-    if (this.pauseButtonIcon && this.playButtonIcon) {
-      if (this.musicService.isPlaying) {
-        this.pauseButtonIcon.style.display = 'block';
-        this.playButtonIcon.style.display = 'none';
-      } else {
-        this.pauseButtonIcon.style.display = 'none';
-        this.playButtonIcon.style.display = 'block';
-      }
-    }
   }
 
   skipForward() {
@@ -186,7 +157,9 @@ export class PlayerPage implements OnInit {
     //
     // this.play(this.audioProvider.current + this.trackSteps);
 
-    if (!this.playNext()) {
+    if (this.playNext()) {
+      this.updatePlayButton();
+    } else {
       this.pause();
     }
   }
@@ -194,8 +167,25 @@ export class PlayerPage implements OnInit {
   skipBackward() {
     // this.pause();
 
-    if (!this.playPrevious()) {
+    if (this.playPrevious()) {
+      this.updatePlayButton();
+    } else {
       this.resetTrack();
+    }
+  }
+
+  updatePlayButton() {
+    if (this.pauseButtonIcon && this.playButtonIcon) {
+
+      console.log('updatePlayButton: ' + this.musicService.isPlaying);
+
+      if (this.musicService.isPlaying) {
+        this.pauseButtonIcon.style.display = 'block';
+        this.playButtonIcon.style.display = 'none';
+      } else {
+        this.pauseButtonIcon.style.display = 'none';
+        this.playButtonIcon.style.display = 'block';
+      }
     }
   }
 
@@ -225,6 +215,22 @@ export class PlayerPage implements OnInit {
 
   hidePlayer() {
     this.navCtrl.pop();
+  }
+
+  updateSmallPlayButton() {
+    // Play button icons
+    this.playButtonIcon = <HTMLElement>document.getElementById('play-icon-small');
+    this.pauseButtonIcon = <HTMLElement>document.getElementById('pause-icon-small');
+
+    if (this.pauseButtonIcon && this.playButtonIcon) {
+      if (this.musicService.isPlaying) {
+        this.pauseButtonIcon.style.display = 'block';
+        this.playButtonIcon.style.display = 'none';
+      } else {
+        this.pauseButtonIcon.style.display = 'none';
+        this.playButtonIcon.style.display = 'block';
+      }
+    }
   }
 
   ionViewDidLoad() {
@@ -258,6 +264,8 @@ export class PlayerPage implements OnInit {
 
     this.visibilityService.showTabs();
     this.visibilityService.showMusicBar();
+
+    this.updateSmallPlayButton();
   }
 
 }
