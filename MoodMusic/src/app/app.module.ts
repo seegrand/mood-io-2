@@ -24,7 +24,7 @@ import { SongDetailsPage } from '../pages/song-details/song-details';
 import { RecentMoodsPage } from '../pages/recent-moods/recent-moods';
 import { MoodDetailsPage } from '../pages/mood-details/mood-details';
 import { SearchPage } from '../pages/search/search';
-import { SettingsPage } from '../pages/settings/settings';
+import { ProfilePage } from '../pages/profile/profile';
 import { ChangeMyMoodPage } from '../pages/change-my-mood/change-my-mood';
 import { PlayerPage } from '../pages/player/player';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -37,6 +37,8 @@ import { GenreService } from '../services/genre.service';
 import { MoodService } from '../services/mood.service';
 
 import { LocalStorageService } from '../services/utils/local-storage.service';
+import { VisibilityService } from '../services/utils/visibility.service';
+import { MusicService } from '../services/utils/music.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,7 @@ import { LocalStorageService } from '../services/utils/local-storage.service';
     RecentMoodsPage,
     MoodDetailsPage,
     SearchPage,
-    SettingsPage,
+    ProfilePage,
     ChangeMyMoodPage,
     PlayerPage,
     TabsPage
@@ -80,7 +82,7 @@ import { LocalStorageService } from '../services/utils/local-storage.service';
     RecentMoodsPage,
     MoodDetailsPage,
     SearchPage,
-    SettingsPage,
+    ProfilePage,
     ChangeMyMoodPage,
     PlayerPage,
     TabsPage
@@ -94,6 +96,8 @@ import { LocalStorageService } from '../services/utils/local-storage.service';
     GenreService,
     MoodService,
     LocalStorageService,
+    VisibilityService,
+    MusicService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

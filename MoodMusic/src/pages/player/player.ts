@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
-import { AudioProvider } from 'ionic-audio';
-
+import { MusicService } from '../../services/utils/music.service';
 import { PlayerBackgroundService } from '../../services/utils/player-background.service';
-
-import { Track } from '../../model/track';
+import { VisibilityService } from '../../services/utils/visibility.service';
 
 /**
  * Generated class for the Player page.
@@ -18,20 +16,18 @@ import { Track } from '../../model/track';
   selector: 'page-player',
   templateUrl: 'player.html',
 })
-export class PlayerPage {
+export class PlayerPage implements OnInit {
 
   loading: any;
 
   windowHeight: string;
-  isPlaying = false;
 
   backgroundSwirlerInterval: any;
   progressUpdaterInterval: any;
 
-  currentTrack: Track;
+  // currentTrack: Track;
   currentTrackPosition: number;
   currentTrackDuration: number;
-  trackSteps: number = 2;
 
   likertPosition = 2;
   likertAnswers = ['Worsened', 'Irritating', 'Neutral', 'Slightly better', 'Improved'];
@@ -40,6 +36,7 @@ export class PlayerPage {
   pauseButtonIcon: HTMLElement;
 
   fixedContent: HTMLElement;
+  footerElement: HTMLElement;
   tabBarElement: HTMLElement;
   scrollContent: HTMLElement;
 
@@ -47,140 +44,140 @@ export class PlayerPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
+    private musicService: MusicService,
     private playerBackgroundService: PlayerBackgroundService,
-    private audioProvider: AudioProvider) {
+    private visibilityService: VisibilityService) {
 
-    // this.currentTrack = [{
-    //   title: 'Windmills',
-    //   artist: 'The Village Lantarne',
-    //   src: 'http://nas1.tyil.net/%282006%29%20The%20Village%20Lanterne/%2813%29%20Blackmore%27s%20Night%20-%20Windmills.flac',
-    //   preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
-    // }];
-
-    if (this.audioProvider.tracks.length < 1) {
-      this.currentTrack = {
-        title: 'Why Georgia',
-        artist: 'John Mayer',
-        src: 'https://archive.org/download/JM2013-10-05.flac16/V0/jm2013-10-05-t12-MP3-V0.mp3',
-        preload: 'metadata' // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
-      };
-
-      this.loadTrack(this.currentTrack);
-    }
-
-    this.loading = this.loadingCtrl.create({
-      spinner: 'crescent',
-      content: 'Loading Video...'
-    });
+    // this.loading = this.loadingCtrl.create({
+    //   spinner: 'crescent',
+    //   content: 'Loading Video...'
+    // });
 
     // this.loading.present();
   }
 
-  loadTrack(track: Track) {
-    let nextAudioTrack = this.audioProvider.create(track);
-    this.audioProvider.add(nextAudioTrack);
-  }
-
-  onTrackFinished(track: any) {
-    console.log('Track finished', track);
-  }
-
-  playToggle() {
-    if (this.isPlaying) {
-      this.pause();
-    } else {
-      this.play(this.audioProvider.current);
+  ngOnInit() {
+    // Start music
+    if (this.musicService.init(this.navParams.get('playlist'))) {
+      if (this.musicService.getPlaylistLength() > this.musicService.getCurrentTrackIndex()) {
+        this.skipForward();
+      } else {
+        this.play();
+      }
     }
   }
 
-  play(index: number) {
-    this.audioProvider.play(index);
-    this.isPlaying = true;
+  playToggle() {
+    if (this.musicService.isPlaying) {
+      this.pause();
+    } else {
+      this.play();
+    }
+  }
 
-    this.updatePlayButton();
+  play() {
+    this.musicService.play();
+
+    this.updateView();
   }
 
   pause() {
-    this.audioProvider.pause();
-    this.isPlaying = false;
+    this.musicService.pause();
 
-    this.updatePlayButton();
+    this.updateView();
   }
 
-  updatePlayButton() {
-    if (this.isPlaying) {
-      this.pauseButtonIcon.style.display = 'block';
-      this.playButtonIcon.style.display = 'none';
+  resetTrack() {
+    this.play();
+    this.musicService.resetTrack();
+
+  }
+
+  skipForward() {
+    if (this.musicService.playNext()) {
+      this.updateView();
     } else {
-      this.pauseButtonIcon.style.display = 'none';
-      this.playButtonIcon.style.display = 'block';
+      this.pause();
     }
   }
 
   skipBackward() {
-    this.pause();
-
-    if (this.audioProvider.current > 0) {
-      this.play(this.audioProvider.current - this.trackSteps);
+    if (this.musicService.playPrevious()) {
+      this.updateView();
     } else {
-      this.play(this.audioProvider.current);
-      this.audioProvider.tracks[this.audioProvider.current].seekTo(0);
+      this.resetTrack();
     }
   }
 
-  skipForward() {
-    let nextTrack = {
-      title: 'Bohemian Rhapsody',
-      artist: 'Queen',
-      src: 'http://nas1.tyil.net/Queen%20-%20A%20Night%20At%20The%20Opera%20-%20MFSL%20GOLD%20UDCD%20568%20-%201975/11-Queen-Bohemian%20Rhapsody.flac',
-      preload: 'metadata'
-    };
+  updatePlayButton() {
+    if (this.pauseButtonIcon && this.playButtonIcon) {
+      if (this.musicService.isPlaying) {
+        this.showPauseIcon();
+      } else {
+        this.showPlayIcon();
+      }
+    }
+  }
 
-    this.pause();
+  showPlayIcon() {
+    this.pauseButtonIcon.style.display = 'none';
+    this.playButtonIcon.style.display = 'block';
+  }
 
-    // for (var i = 0; i < this.audioProvider.tracks.length; i++) {
-    //   this.audioProvider.stop(i);
-    // }
-
-    console.log(this.audioProvider.tracks);
-
-    let nextAudioTrack = this.audioProvider.create(nextTrack);
-    this.audioProvider.add(nextAudioTrack);
-
-    this.play(this.audioProvider.current + this.trackSteps);
+  showPauseIcon() {
+    this.playButtonIcon.style.display = 'none';
+    this.pauseButtonIcon.style.display = 'block';
   }
 
   updateTrackProgress() {
-    console.log(this.audioProvider.current);
+    this.currentTrackPosition = this.musicService.getTrackProgress();
 
-    if (this.audioProvider.tracks[this.audioProvider.current]) {
-      let track = this.audioProvider.tracks[this.audioProvider.current];
+    this.currentTrackDuration = this.musicService.getTrackDuration();
 
-      if (!this.currentTrackDuration && this.audioProvider.tracks[this.audioProvider.current].duration) {
-        this.currentTrackDuration = this.audioProvider.tracks[this.audioProvider.current].duration;
-      }
+    if (this.currentTrackPosition && this.currentTrackDuration) {
+      console.log('currentTrackPosition: ' + this.currentTrackPosition);
+      console.log('currentTrackDuration: ' + this.currentTrackDuration);
 
-      if (track.isPlaying && this.audioProvider.tracks[this.audioProvider.current].progress) {
-        this.currentTrackPosition = this.audioProvider.tracks[this.audioProvider.current].progress;
+      if (this.currentTrackDuration - this.currentTrackPosition <= 1) {
+        console.log('skipForward');
+        this.skipForward();
       }
     }
   }
 
-  seekTrack() {
-    console.log('seekTrack');
-    let track = this.audioProvider.tracks[this.audioProvider.current];
+  seekTrack(position: number) {
+    console.log(position);
 
-    if (track) {
-      track.seekTo(this.currentTrackPosition);
-    }
+    this.musicService.seekTrack(position);
   }
 
   updateLikert() {
     document.getElementById('helpfulness').innerHTML = this.likertAnswers[this.likertPosition];
   }
 
+  updateView() {
+    this.updateTrackProgress();
+    this.updatePlayButton();
+  }
+
   hidePlayer() {
     this.navCtrl.pop();
+  }
+
+  updateSmallPlayButton() {
+    // Play button icons
+    this.playButtonIcon = <HTMLElement>document.getElementById('play-icon-small');
+    this.pauseButtonIcon = <HTMLElement>document.getElementById('pause-icon-small');
+
+    if (this.pauseButtonIcon && this.playButtonIcon) {
+      if (this.musicService.isPlaying) {
+        this.pauseButtonIcon.style.display = 'block';
+        this.playButtonIcon.style.display = 'none';
+      } else {
+        this.pauseButtonIcon.style.display = 'none';
+        this.playButtonIcon.style.display = 'block';
+      }
+    }
   }
 
   ionViewDidLoad() {
@@ -192,42 +189,31 @@ export class PlayerPage {
     this.windowHeight = window.innerHeight + 'px';
     this.backgroundSwirlerInterval = this.playerBackgroundService.swirlBackground();
 
-    this.updateTrackProgress();
-    this.progressUpdaterInterval = setInterval(() => this.updateTrackProgress(), 1000);
+    this.progressUpdaterInterval = setInterval(() => {
+      this.updateView();
+    }, 1000);
 
     // Play button icons
-    this.playButtonIcon = <HTMLElement> document.getElementById('play-icon');
-    this.pauseButtonIcon = <HTMLElement> document.getElementById('pause-icon');
-
-    this.fixedContent = <HTMLElement> document.querySelector('div.fixed-content');
-    this.fixedContent.style.marginBottom = '0px';
+    this.playButtonIcon = <HTMLElement>document.getElementById('play-icon');
+    this.pauseButtonIcon = <HTMLElement>document.getElementById('pause-icon');
 
     // Disable Tab view
-    this.tabBarElement = <HTMLElement> document.querySelector('.tabbar.show-tabbar');
-    this.scrollContent = <HTMLElement> document.querySelector('div.scroll-content');
-
-    this.tabBarElement.style.display = 'none';
-    this.scrollContent.style.margin = '0, 50px, 0, 0';
+    this.visibilityService.hideTabs();
+    this.visibilityService.hideMusicBar();
 
     /* =============================== VIEW MANIPULATION END =============================== */
 
-    if (this.audioProvider.tracks && this.audioProvider.tracks[this.audioProvider.current]) {
-      this.isPlaying = this.audioProvider.tracks[this.audioProvider.current].isPlaying;
-    }
-
-    // Start music
-    if (!this.isPlaying) {
-      this.play(0);
-    } else {
-      this.updatePlayButton();
-    }
+    this.updateView();
   }
 
   ionViewWillLeave() {
     clearInterval(this.backgroundSwirlerInterval);
     clearInterval(this.progressUpdaterInterval);
 
-    this.tabBarElement.style.display = 'flex';
+    this.visibilityService.showTabs();
+    this.visibilityService.showMusicBar();
+
+    this.updateSmallPlayButton();
   }
 
 }

@@ -20,9 +20,9 @@
     <!-- <audio-track *ngIf="currentTrack" #audio [track]="currentTrack" (onPlay)="onTrackPlay($event)" (onPause)="onTrackPause($event)" (onFinish)="onTrackFinished($event)">
     </audio-track> -->
 
-    <div id="song" *ngIf="audioProvider.tracks[this.audioProvider.current]">
-      <span id="title">{{ audioProvider.tracks[this.audioProvider.current].title }}</span>
-      <span id="artist">{{ audioProvider.tracks[this.audioProvider.current].artist }}</span>
+    <div id="song" *ngIf="musicService.audioProvider && musicService.audioProvider.tracks[musicService.audioProvider.current]">
+      <span id="title">{{ musicService.audioProvider.tracks[musicService.audioProvider.current].title }}</span>
+      <span id="artist">{{ musicService.audioProvider.tracks[musicService.audioProvider.current].artist }}</span>
     </div>
 
     <div id="controls">
@@ -46,7 +46,7 @@
     </div>
 
     <div id="progress">
-      <ion-range id="progress-range" min="0" [max]="currentTrackDuration" color="light" [(ngModel)]="currentTrackPosition" (click)="seekTrack()">
+      <ion-range id="progress-range" min="0" [max]="currentTrackDuration" color="light" [(ngModel)]="currentTrackPosition" (ngModelChange)="seekTrack($event)">
         <!-- <ion-label id="progress-begin" range-left>0:00</ion-label>
           <ion-label id="progress-end" range-right>3:50</ion-label> -->
       </ion-range>
