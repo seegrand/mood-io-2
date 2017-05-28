@@ -17,26 +17,39 @@ export class AuthService extends APIService {
     super(http);
   }
 
-  login(body: Object): Observable<any[]> {
-    return this.http.post(this.BASE_URL + "/login", body)
+  login(username: string, password: string): Observable<any[]> {
+    var data = {
+      'username': username,
+      'password': password
+    };
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(this.BASE_URL + "/auth/login", data, headers)
                           .map((res:Response) => res.json())
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  register(body: Object): Observable<any[]> {
-    return this.http.post(this.BASE_URL + "/register", body)
+  register(username: string, password: string): Observable<any[]> {
+    var data = {
+      'username': username,
+      'password': password
+    };
+
+    return this.http.post(this.BASE_URL + "/auth/register", data)
                           .map((res:Response) => res.json())
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   refreshToken(): Observable<any[]> {
-    return this.http.get(this.BASE_URL + "/user/refresh")
+    return this.http.get(this.BASE_URL + "/auth/refresh")
                           .map((res:Response) => res.json())
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   logout(): Observable<any[]> {
-    return this.http.get(this.BASE_URL + "/logout")
+    return this.http.get(this.BASE_URL + "/auth/logout")
                           .map((res:Response) => res.json())
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
