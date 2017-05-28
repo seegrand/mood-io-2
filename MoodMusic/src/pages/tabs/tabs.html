@@ -1,3 +1,26 @@
+<ion-footer id="music-bar" color="dark" [hidden]="!musicService.audioProvider.tracks[musicService.audioProvider.current]">
+  <ion-toolbar>
+    <div class="music-bar-container">
+      <div class="left">
+        <button ion-button icon-only clear (click)="showPlayer()">
+          <ion-icon id="show-player" name="arrow-dropup"></ion-icon>
+        </button>
+      </div>
+
+      <div id="song-small" class="center" *ngIf="musicService.audioProvider.tracks[musicService.audioProvider.current]" (click)="showPlayer()">
+        <span id="title">{{ musicService.audioProvider.tracks[musicService.audioProvider.current].title }}</span>
+        <span id="artist">{{ musicService.audioProvider.tracks[musicService.audioProvider.current].artist }}</span>
+      </div>
+
+      <div class="right">
+        <button id="play-small" class="play-control-padding" ion-button icon-only clear (click)="playToggle()">
+          <ion-icon id="play-icon-small" small name="play"></ion-icon>
+          <ion-icon id="pause-icon-small" small name="pause" style="display:none;"></ion-icon>
+        </button>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>
 <ion-tabs>
   <ion-tab [root]="homePage" tabTitle="Home" tabIcon="home"></ion-tab>
   <ion-tab [root]="searchPage" tabTitle="Search" tabIcon="search"></ion-tab>

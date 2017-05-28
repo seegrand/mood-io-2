@@ -16,11 +16,11 @@
       <hr>
     </div>
     <ion-scroll scrollX="true" class="wide-as-needed">
-      <div class="tile" *ngFor="let song of recentSongs" (click)="playRecentSong()">
+      <div class="tile" *ngFor="let song of recentSongs" (click)="playRecentSong(song)">
         <div text-center>
           <img src="http://lorempixel.com/100/100/abstract/">
-          <p>Shape of You</p>
-          <h6>Ed Sheeran</h6>
+          <p>{{ song.title }}</p>
+          <h6>{{ song.artist }}</h6>
         </div>
       </div>
     </ion-scroll>
