@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { APIService } from './api.service';
@@ -15,11 +15,13 @@ export class AuthService extends APIService {
 
   constructor(http: Http) {
     super(http);
+
   }
 
   login(body: Object): Observable<any[]> {
-    return this.http.post(this.BASE_URL + "/login", body)
-                          .map((res:Response) => res.json())
+
+    return this.http.post(this.BASE_URL + "/auth/login", body)
+                          .map((res:Response) => { console.log(res.json()); res.json() })
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 

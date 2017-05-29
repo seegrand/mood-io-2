@@ -24,10 +24,11 @@ export class LoginPage {
   }
 
   login() {
+    console.log(this.data);
     // TODO: Check login credentials with the API.
-    // this.authService.login(this.data).subscribe(() => {
-    //   this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
-    // });
+    this.authService.login(this.data).subscribe(() => {
+      this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
+    });
 
     // TEMP: Navigate to TabsPage
     this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
