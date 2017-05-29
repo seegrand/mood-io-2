@@ -18,7 +18,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginPage {
 
-  data: Object = {};
+  validationPattern: RegExp = /^[a-zA-Z0-9_-]*$/;
+
+  data: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {
   }
@@ -27,6 +29,10 @@ export class LoginPage {
     // TODO: Check login credentials with the API.
     // this.authService.login(this.data).subscribe(() => {
     //   this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
+    // });
+
+    // this.authService.login(this.data.username, this.data.password).subscribe((res) => {
+    //   console.log(res);
     // });
 
     // TEMP: Navigate to TabsPage

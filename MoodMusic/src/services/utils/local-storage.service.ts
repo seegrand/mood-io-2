@@ -9,20 +9,20 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class LocalStorageService {
 
-  userKey: string = 'user';
+  userTokenKey: string = 'userToken';
 
   constructor() { }
 
-  getUser() {
-    return JSON.parse(window.localStorage.getItem(this.userKey));
+  getUserToken() {
+    return JSON.parse(window.localStorage.getItem(this.userTokenKey));
   }
 
-  saveUser(user: Object) {
-    if (user)
-      window.localStorage.setItem(this.userKey, JSON.stringify(user));
+  saveUserToken(userToken: string) {
+    if (userToken)
+      window.localStorage.setItem(this.userTokenKey, userToken);
   }
 
-  removeUser() {
-    window.localStorage.removeItem(this.userKey);
+  removeUserToken() {
+    window.localStorage.removeItem(this.userTokenKey);
   }
 }
