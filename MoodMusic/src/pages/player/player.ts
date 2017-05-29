@@ -58,12 +58,22 @@ export class PlayerPage implements OnInit {
 
   ngOnInit() {
     // Start music
-    if (this.musicService.init(this.navParams.get('playlist'))) {
-      if (this.musicService.getPlaylistLength() > this.musicService.getCurrentTrackIndex()) {
-        this.skipForward();
+    if (this.navParams.get('playlist')) {
+
+      var index = this.musicService.init(this.navParams.get('playlist'));
+
+      if (index < 0) {
+
+        if (this.musicService.getPlaylistLength() > this.musicService.getCurrentTrackIndex()) {
+          this.skipToTrack(this.musicService.getPlaylistLength() - 1);
+        } else {
+          this.play();
+        }
+
       } else {
-        this.play();
+        this.skipToTrack(index);
       }
+
     }
   }
 
@@ -106,6 +116,12 @@ export class PlayerPage implements OnInit {
       this.updateView();
     } else {
       this.resetTrack();
+    }
+  }
+
+  skipToTrack(index: number) {
+    if (this.musicService.playIndex(index)) {
+      this.updateView();
     }
   }
 
@@ -158,6 +174,8 @@ export class PlayerPage implements OnInit {
   updateView() {
     this.updateTrackProgress();
     this.updatePlayButton();
+
+    console.log(this.musicService.isPlaying);
   }
 
   hidePlayer() {

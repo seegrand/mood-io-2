@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { AuthService } from '../../services/auth.service';
+
 import { LikedGenresPage } from '../liked-genres/liked-genres';
 
 /**
@@ -16,9 +18,16 @@ import { LikedGenresPage } from '../liked-genres/liked-genres';
 })
 export class RegisterPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  validationPattern: RegExp = /^[a-zA-Z0-9_-]*$/;
+
+  data: any = {};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) { }
 
   register() {
+    // if (this.data.username && this.data.username.length > 0 && this.data.password && this.data.username)
+    // this.authService.register(data.)
+
     this.navCtrl.setRoot(LikedGenresPage, {}, { animate: true, direction: 'forward' });
   }
 
