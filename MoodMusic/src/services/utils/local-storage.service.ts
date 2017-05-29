@@ -14,7 +14,7 @@ export class LocalStorageService {
   constructor() { }
 
   getUserToken() {
-    return JSON.parse(window.localStorage.getItem(this.userTokenKey));
+    return window.localStorage.getItem(this.userTokenKey);
   }
 
   saveUserToken(userToken: string) {

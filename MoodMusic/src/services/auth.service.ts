@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { APIService } from './api.service';
@@ -18,16 +18,13 @@ export class AuthService extends APIService {
 
   }
 
-  login(username: string, password: string): Observable<any[]> {
+  login(username: string, password: string): Observable<any> {
     var data = {
       'username': username,
       'password': password
     };
 
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    return this.http.post(this.BASE_URL + "/auth/login", data, headers)
+    return this.http.post(this.BASE_URL + "/auth/login", data)
                           .map((res:Response) => res.json())
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }

@@ -8,6 +8,7 @@ import { MoodDetailsPage } from '../mood-details/mood-details';
 import { PlayerPage } from '../player/player';
 
 import { MoodService } from '../../services/mood.service';
+import { LocalStorageService } from '../../services/utils/local-storage.service';
 
 import { Track } from '../../model/track';
 
@@ -22,7 +23,9 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    private moodService: MoodService) {
+    private moodService: MoodService,
+    private localStorageService: LocalStorageService
+  ) {
       this.recentSongs = [
         {
           trackId: 1,
@@ -59,6 +62,8 @@ export class HomePage {
     this.getRecentMoods();
     console.log('ionViewDidLoad Home');
   }
+
+
 
   /*
     Change My Mood
