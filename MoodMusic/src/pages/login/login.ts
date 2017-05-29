@@ -18,6 +18,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginPage {
 
+  validationPattern: RegExp = /^[a-zA-Z0-9_-]*$/;
+
   data: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {

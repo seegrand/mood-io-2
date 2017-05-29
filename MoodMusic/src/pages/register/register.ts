@@ -18,6 +18,8 @@ import { LikedGenresPage } from '../liked-genres/liked-genres';
 })
 export class RegisterPage {
 
+  validationPattern: RegExp = /^[a-zA-Z0-9_-]*$/;
+
   data: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) { }

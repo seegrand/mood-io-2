@@ -16,31 +16,37 @@
 <ion-content no-bounce>
   <form>
     <div class="input-group">
-      <ion-input type="text" name="username" [(ngModel)]="data.username" placeholder="Username" class="input-alt" required maxlength="20" [ngModel]="data.username" #username="ngModel"></ion-input>
+      <ion-input type="text" name="username" [(ngModel)]="data.username" placeholder="Username" class="input-alt" required maxlength="20" [pattern]="validationPattern" [ngModel]="data.username" #username="ngModel"></ion-input>
 
       <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
         <div [hidden]="!username.errors.required">
           Username is required
         </div>
         <div [hidden]="!username.errors.maxlength">
-          Username cannot be more than 20 characters long.
+          Username cannot be more than 20 characters long
+        </div>
+        <div [hidden]="!username.errors.pattern">
+          Username contains illegal characters
         </div>
       </div>
 
-      <ion-input type="password" name="password" [(ngModel)]="data.password" placeholder="Password" class="input-alt" required maxlength="100" [ngModel]="data.password" #password="ngModel"></ion-input>
+      <ion-input type="password" name="password" [(ngModel)]="data.password" placeholder="Password" class="input-alt" required maxlength="100" [pattern]="validationPattern" [ngModel]="data.password" #password="ngModel"></ion-input>
 
       <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
         <div [hidden]="!password.errors.required">
           Password is required
         </div>
         <div [hidden]="!password.errors.maxlength">
-          Password cannot be more than 100 characters long.
+          Password cannot be more than 100 characters long
+        </div>
+        <div [hidden]="!password.errors.pattern">
+          Password contains illegal characters
         </div>
       </div>
 
     </div>
     <div class="button-container">
-      <button ion-button round type="button" (click)="login()">Login</button>
+      <button ion-button round type="button" (click)="login()" [disabled]="username.errors || password.errors">Login</button>
       <button ion-button round (click)="forgotPassword()" clear>Forgot Password?</button>
     </div>
   </form>
