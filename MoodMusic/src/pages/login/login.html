@@ -14,6 +14,9 @@
 
 
 <ion-content no-bounce>
+  <div *ngIf="data.err" class="alert alert-danger">
+    {{ data.err }}
+  </div>
   <form>
     <div class="input-group">
       <ion-input type="text" name="username" [(ngModel)]="data.username" placeholder="Username" class="input-alt" required maxlength="20" [pattern]="validationPattern" [ngModel]="data.username" #username="ngModel"></ion-input>

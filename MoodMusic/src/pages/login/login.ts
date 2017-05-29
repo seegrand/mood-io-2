@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 
 import { AuthService } from '../../services/auth.service';
+import { LocalStorageService } from '../../services/utils/local-storage.service';
 
 /**
  * Generated class for the Login page.
@@ -22,21 +23,25 @@ export class LoginPage {
 
   data: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private authService: AuthService,
+    private localStorageService: LocalStorageService) {
   }
 
   login() {
-    // TODO: Check login credentials with the API.
-    // this.authService.login(this.data).subscribe(() => {
-    //   this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
-    // });
+    this.authService.login(this.data.username, this.data.password).subscribe((user) => {
+      if(user.ok){
+        this.localStorageService.saveUserToken(user.token);
+        this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
+      }
 
-    // this.authService.login(this.data.username, this.data.password).subscribe((res) => {
-    //   console.log(res);
-    // });
+      else {
+        this.data.err = user.message;
+      }
+    });
 
-    // TEMP: Navigate to TabsPage
-    this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
   }
 
   forgotPassword() {
