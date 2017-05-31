@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { LocalStorageService } from '../../services/utils/local-storage.service';
+
 /**
  * Generated class for the Profile page.
  *
@@ -14,7 +16,11 @@ import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(private _app: App, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private _app: App,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private localStorageService: LocalStorageService) {
   }
 
   logout() {
@@ -22,7 +28,7 @@ export class ProfilePage {
     //   const root = this._app.getRootNav();
     //   root.popToRoot();
     // });
-
+    this.localStorageService.removeUserToken()
     const root = this._app.getRootNav();
     root.popToRoot();
   }

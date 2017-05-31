@@ -15,18 +15,16 @@ export class AuthService extends APIService {
 
   constructor(http: Http) {
     super(http);
+
   }
 
-  login(username: string, password: string): Observable<any[]> {
+  login(username: string, password: string): Observable<any> {
     var data = {
       'username': username,
       'password': password
     };
 
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    return this.http.post(this.BASE_URL + "/auth/login", data, headers)
+    return this.http.post(this.BASE_URL + "/auth/login", data)
                           .map((res:Response) => res.json())
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }

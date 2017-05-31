@@ -5,6 +5,7 @@ import { TabsPage } from '../tabs/tabs';
 
 import { AuthService } from '../../services/auth.service';
 import { VisibilityService } from '../../services/utils/visibility.service';
+import { LocalStorageService } from '../../services/utils/local-storage.service';
 
 /**
  * Generated class for the Login page.
@@ -27,21 +28,20 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private authService: AuthService,
-    private visibilityService: VisibilityService) {
+    private visibilityService: VisibilityService,
+    private localStorageService: LocalStorageService) {
   }
 
   login() {
-    // TODO: Check login credentials with the API.
-    // this.authService.login(this.data).subscribe(() => {
-    //   this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
-    // });
-
-    this.authService.login(this.data.username, this.data.password).subscribe((res) => {
-      console.log(res);
+    this.authService.login(this.data.username, this.data.password).subscribe((user) => {
+      if(user.ok){
+        this.localStorageService.saveUserToken(user.token);
+        this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
+      }
+      else {
+        this.data.err = user.message;
+      }
     });
-
-    // TEMP: Navigate to TabsPage
-    this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
   }
 
   forgotPassword() {
