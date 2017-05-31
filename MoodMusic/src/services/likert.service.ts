@@ -13,7 +13,7 @@ import { APIService } from './api.service';
 @Injectable()
 export class LikertService extends APIService {
 
-  likertId = '';
+  likertId = 1;
 
   constructor(http: Http) {
     super(http);

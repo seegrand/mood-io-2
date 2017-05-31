@@ -1,7 +1,7 @@
 import { ITrackConstraint } from 'ionic-audio';
 
 export class Track implements ITrackConstraint {
-  trackId: number;
+  id: number;
   title: string;
   artist: string;
   src: string;

@@ -35,6 +35,7 @@ import { AuthService } from '../services/auth.service';
 import { SongService } from '../services/song.service';
 import { GenreService } from '../services/genre.service';
 import { MoodService } from '../services/mood.service';
+import { LikertService } from '../services/likert.service';
 
 import { LocalStorageService } from '../services/utils/local-storage.service';
 import { VisibilityService } from '../services/utils/visibility.service';
@@ -95,6 +96,7 @@ import { MusicService } from '../services/utils/music.service';
     SongService,
     GenreService,
     MoodService,
+    LikertService,
     LocalStorageService,
     VisibilityService,
     MusicService,

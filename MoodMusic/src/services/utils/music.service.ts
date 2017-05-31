@@ -44,9 +44,9 @@ export class MusicService {
   isTrackInPlaylist(track: Track): number {
     for (var i = 0; i < this.getPlaylistLength(); i = i + this.trackSteps) {
       var trackInPlaylist = <any> this.audioProvider.tracks[i];
-      
-      if (trackInPlaylist.trackId) {
-        if (track.trackId == trackInPlaylist.trackId) {
+
+      if (trackInPlaylist.id) {
+        if (track.id == trackInPlaylist.id) {
           return i;
         }
       }
@@ -162,6 +162,16 @@ export class MusicService {
     }
 
     return -1;
+  }
+
+  getCurrentTrackId(): number {
+    if (this.audioProvider.tracks) {
+      if (this.audioProvider.tracks.length > 0) {
+        return this.audioProvider.tracks[this.audioProvider.current].id;
+      }
+    }
+
+    return null;
   }
 
   getTrackProgress(): number {

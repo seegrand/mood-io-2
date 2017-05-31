@@ -4,6 +4,8 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { MusicService } from '../../services/utils/music.service';
 import { PlayerBackgroundService } from '../../services/utils/player-background.service';
 import { VisibilityService } from '../../services/utils/visibility.service';
+import { LocalStorageService } from '../../services/utils/local-storage.service';
+import { LikertService } from '../../services/likert.service';
 
 /**
  * Generated class for the Player page.
@@ -46,7 +48,9 @@ export class PlayerPage implements OnInit {
     public loadingCtrl: LoadingController,
     private musicService: MusicService,
     private playerBackgroundService: PlayerBackgroundService,
-    private visibilityService: VisibilityService) {
+    private likertService: LikertService,
+    private visibilityService: VisibilityService,
+    private localStorageService: LocalStorageService) {
 
     // this.loading = this.loadingCtrl.create({
     //   spinner: 'crescent',
@@ -151,31 +155,53 @@ export class PlayerPage implements OnInit {
     this.currentTrackDuration = this.musicService.getTrackDuration();
 
     if (this.currentTrackPosition && this.currentTrackDuration) {
-      console.log('currentTrackPosition: ' + this.currentTrackPosition);
-      console.log('currentTrackDuration: ' + this.currentTrackDuration);
-
       if (this.currentTrackDuration - this.currentTrackPosition <= 1) {
-        console.log('skipForward');
         this.skipForward();
       }
     }
   }
 
   seekTrack(position: number) {
-    console.log(position);
+    console.log('Seek track to: ' + position);
 
     this.musicService.seekTrack(position);
   }
 
-  updateLikert() {
-    document.getElementById('helpfulness').innerHTML = this.likertAnswers[this.likertPosition];
+  likertServiceUpdateDelay: any;
+
+  updateLikert(position: number) {
+    document.getElementById('helpfulness').innerHTML = this.likertAnswers[position];
+
+    clearTimeout(this.likertServiceUpdateDelay);
+
+    this.likertServiceUpdateDelay = setTimeout(() => {
+      var userToken = this.localStorageService.getUserToken(),
+      songId = this.musicService.getCurrentTrackId();
+
+      console.log('Send likert scale');
+
+      if (userToken && songId) {
+        // TODO: Get moodId
+        // this.likertService.sendResponse(this.likertService.likertId, userToken, this.musicService.getCurrentTrackId(), moodId);
+      }
+    }, 5000);
+  }
+
+  setLikertMax() {
+    this.likertPosition = this.likertAnswers.length - 1;
+
+    this.updateLikert(this.likertAnswers.length - 1);
+  }
+
+  setLikertMin() {
+    this.likertPosition = 0;
+
+    this.updateLikert(0);
   }
 
   updateView() {
     this.updateTrackProgress();
     this.updatePlayButton();
-
-    console.log(this.musicService.isPlaying);
   }
 
   hidePlayer() {
@@ -205,7 +231,7 @@ export class PlayerPage implements OnInit {
 
     // Start background swirleffect
     this.windowHeight = window.innerHeight + 'px';
-    this.backgroundSwirlerInterval = this.playerBackgroundService.swirlBackground();
+    this.backgroundSwirlerInterval = this.playerBackgroundService.swirlBackground(+this.localStorageService.getGradientState());
 
     this.progressUpdaterInterval = setInterval(() => {
       this.updateView();
@@ -232,6 +258,8 @@ export class PlayerPage implements OnInit {
     this.visibilityService.showMusicBar();
 
     this.updateSmallPlayButton();
+
+    this.localStorageService.saveGradientState(this.playerBackgroundService.step);
   }
 
 }
