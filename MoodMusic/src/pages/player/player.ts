@@ -66,14 +66,14 @@ export class PlayerPage implements OnInit {
 
       var index = this.musicService.init(this.navParams.get('playlist'));
 
-      if (index < 0) {
+      console.log(index);
 
+      if (index < 0) {
         if (this.musicService.getPlaylistLength() > this.musicService.getCurrentTrackIndex()) {
           this.skipToTrack(this.musicService.getPlaylistLength() - 1);
         } else {
           this.play();
         }
-
       } else {
         this.skipToTrack(index);
       }

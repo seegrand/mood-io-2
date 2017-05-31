@@ -63,10 +63,14 @@ export class VisibilityService {
   }
 
   hideScrollContentMargin() {
-    var scrollContent: HTMLElement = <HTMLElement> document.querySelector('ion-content > div.scroll-content');
+    var scrollContents: NodeListOf<HTMLElement> = <NodeListOf<HTMLElement>> document.querySelectorAll('ion-content > div.scroll-content');
 
-    if (scrollContent) {
-      scrollContent.style.setProperty('margin-bottom', '0px','important');
+    console.log(scrollContents);
+
+    if (scrollContents) {
+      for (var i = 0; i < scrollContents.length; i++) {
+        scrollContents.item(i).style.setProperty('margin-bottom', '0px','important');
+      }
     }
   }
 }

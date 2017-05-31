@@ -63,8 +63,6 @@ export class PlayerBackgroundService {
       updateGradient(this.step);
       this.step += this.gradientSpeed;
 
-      console.log(this.step);
-
       if (this.step >= 1) {
         this.step %= 1;
         colorIndices[0] = colorIndices[1];
@@ -75,7 +73,6 @@ export class PlayerBackgroundService {
         colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
         colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
       }
-
     }, 100);
   }
 }
