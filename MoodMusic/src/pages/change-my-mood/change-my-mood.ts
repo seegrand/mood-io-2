@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PlayerPage } from '../player/player';
 
 import { MoodService } from '../../services/mood.service';
+import { SongService } from '../../services/song.service';
 
 import { VisibilityService } from '../../services/utils/visibility.service';
 
@@ -29,6 +30,7 @@ export class ChangeMyMoodPage {
     private navCtrl: NavController,
     private navParams: NavParams,
     private moodService: MoodService,
+    private songService: SongService,
     private visibilityService: VisibilityService
   ) { }
 
@@ -36,7 +38,7 @@ export class ChangeMyMoodPage {
   private moods;
 
   getMoods() {
-    this.moodService.getMoods().subscribe(moods => this.moods = moods);
+    this.moodService.getMoods().subscribe(moods => this.moods = moods.message);
   }
 
   currentMood(mood) {
@@ -49,7 +51,10 @@ export class ChangeMyMoodPage {
 
     this.isNavigatingToPlayer = true;
     this.navCtrl.pop();
-    this.navCtrl.push(PlayerPage, {}, { animate: true, direction: 'forward' });
+
+    var data = this.songService.getSongsLocal();
+
+    this.navCtrl.push(PlayerPage, data);
   }
 
   ionViewDidLoad() {

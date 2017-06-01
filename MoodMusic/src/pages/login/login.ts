@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
+import { LikedGenresPage } from '../liked-genres/liked-genres';
 
 import { AuthService } from '../../services/auth.service';
+import { VisibilityService } from '../../services/utils/visibility.service';
+import { LocalStorageService } from '../../services/utils/local-storage.service';
 
 /**
  * Generated class for the Login page.
@@ -18,19 +21,28 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginPage {
 
-  data: Object = {};
+  validationPattern: RegExp = /^[a-zA-Z0-9_-]*$/;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {
+  data: any = {};
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private authService: AuthService,
+    private visibilityService: VisibilityService,
+    private localStorageService: LocalStorageService) {
   }
 
   login() {
-    // TODO: Check login credentials with the API.
-    // this.authService.login(this.data).subscribe(() => {
-    //   this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
-    // });
-
-    // TEMP: Navigate to TabsPage
-    this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
+    this.authService.login(this.data.username, this.data.password).subscribe((user) => {
+      if(user.ok){
+        this.localStorageService.saveUserToken(user.token);
+        this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
+      }
+      else {
+        this.data.err = user.message;
+      }
+    });
   }
 
   forgotPassword() {
@@ -39,6 +51,10 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
+  }
+
+  ionViewDidEnter() {
+    this.visibilityService.hideScrollContentMargin();
   }
 
 }

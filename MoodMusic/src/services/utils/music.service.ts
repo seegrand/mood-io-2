@@ -17,23 +17,45 @@ export class MusicService {
 
   }
 
-  init(playlist): boolean {
-    if (playlist) {
-      if (playlist instanceof Array) {
-        this.playlist = playlist;
+  init(playlist): number {
+    if (playlist instanceof Array) {
+      this.playlist = playlist;
 
-        for (var track of playlist) {
+      for (var track of playlist) {
+        var index = this.isTrackInPlaylist(track);
+
+        if (index < 0) {
           this.loadTrack(track);
-
         }
-      } else if (playlist instanceof Object) {
+      }
+
+      console.log(this.audioProvider.tracks);
+
+      return 0;
+    } else if (playlist instanceof Object) {
+      var index = this.isTrackInPlaylist(playlist);
+
+      if (index < 0) {
         this.loadTrack(playlist);
       }
 
-      return true;
-    } else {
-      return false;
+      return index;
     }
+  }
+
+  isTrackInPlaylist(track: Track): number {
+    for (var i = 0; i < this.getPlaylistLength(); i = i + this.trackSteps) {
+      var trackInPlaylist = <any>this.audioProvider.tracks[i];
+      console.log(track);
+      console.log(trackInPlaylist);
+      if (trackInPlaylist.trackId) {
+        if (track.trackId == trackInPlaylist.trackId) {
+          return i;
+        }
+      }
+    }
+
+    return -1;
   }
 
   play() {
@@ -52,8 +74,12 @@ export class MusicService {
 
   playNext(): boolean {
     if (this.canPlayNext()) {
+      this.audioProvider.tracks[this.audioProvider.current + this.trackSteps].seekTo(0);
+
       this.audioProvider.pause();
       this.audioProvider.play(this.audioProvider.current + this.trackSteps);
+
+      this.isPlaying = true;
 
       return true;
     }
@@ -67,8 +93,31 @@ export class MusicService {
 
   playPrevious(): boolean {
     if (this.canPlayPrevious()) {
+      this.audioProvider.tracks[this.audioProvider.current - this.trackSteps].seekTo(0);
+
       this.audioProvider.pause();
       this.audioProvider.play(this.audioProvider.current - this.trackSteps);
+
+      this.isPlaying = true;
+
+      return true;
+    }
+
+    return false;
+  }
+
+  canPlayIndex(index: number): boolean {
+    return index >= 0 && index < this.getPlaylistLength();
+  }
+
+  playIndex(index: number): boolean {
+    if (this.canPlayIndex(index)) {
+      this.audioProvider.tracks[index].seekTo(0);
+
+      this.audioProvider.pause();
+      this.audioProvider.play(index);
+
+      this.isPlaying = true;
 
       return true;
     }
@@ -116,6 +165,18 @@ export class MusicService {
     }
 
     return -1;
+  }
+
+  getCurrentTrackId(): number {
+    if (this.audioProvider.tracks) {
+      if (this.audioProvider.tracks.length > 0) {
+        var currentTrack: any = <any> this.audioProvider.tracks[this.audioProvider.current];
+
+        return currentTrack.trackId;
+      }
+    }
+
+    return null;
   }
 
   getTrackProgress(): number {
