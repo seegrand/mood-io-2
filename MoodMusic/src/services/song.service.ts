@@ -21,7 +21,7 @@ export class SongService extends APIService {
 
   getSongs() {
     return this.http.get(this.BASE_URL + "/songs")
-      .map((res: Response) => res.json().message)
+      .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 

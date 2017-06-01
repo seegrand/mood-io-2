@@ -30,8 +30,15 @@ export class DislikedGenresPage {
   private currentlyLiked;
   private genres;
 
+  private paginatedGenres: any[];
+  private pageSize = 9;
+
   getGenres() {
-    this.genreService.getGenres().subscribe(genres => this.genres = genres);
+    this.genreService.getGenres().subscribe((genres) => {
+      this.genres = genres;
+
+      this.paginatedGenres = this.genreService.getPaginatedGenres(this.genres, this.pageSize);
+    });
   }
 
   isDisliked(genre) {

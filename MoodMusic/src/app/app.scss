@@ -16,6 +16,14 @@
 * {
   font-family: "Avenir Next", "Helvetica-Neue", Arial, sans-serif;
 }
+
+/*
+    Text
+*/
+.text-center {
+  text-align: center;
+}
+
 /*
     Tile
     Show an image with some text.
@@ -265,4 +273,8 @@ ion-thumbnail img {
 */
 .img-circle {
   border-radius: 50px;
+}
+
+.loading-padding {
+  padding: 20px;
 }
