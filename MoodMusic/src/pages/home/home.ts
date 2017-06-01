@@ -9,6 +9,7 @@ import { PlayerPage } from '../player/player';
 
 import { MoodService } from '../../services/mood.service';
 import { LocalStorageService } from '../../services/utils/local-storage.service';
+import { VisibilityService } from '../../services/utils/visibility.service';
 
 import { Track } from '../../model/track';
 
@@ -24,7 +25,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private moodService: MoodService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private visibilityService: VisibilityService
   ) {
       this.recentSongs = [
         {

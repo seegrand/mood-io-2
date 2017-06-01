@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Rx';
 
 import { APIService } from './api.service';
 
+import { Genre } from '../model/genre';
+
 /*
   Generated class for the Genre Service.
 
@@ -17,10 +19,32 @@ export class GenreService extends APIService {
     super(http);
   }
 
-  getGenres() {
+  getGenres(): Observable<Genre[]> {
     return this.http.get(this.BASE_URL + "/genres")
-                          .map((res:Response) => res.json())
-                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getPaginatedGenres(genres: Genre[], pageSize: number) {
+    var paginatedGenres = [];
+    var pageIndex = 0;
+
+    var page = [];
+    var index = 0;
+
+    for (var genre of genres) {
+
+      if (index < pageSize) {
+        page.push(genre);
+        index++;
+      } else {
+        paginatedGenres.push(page);
+        page = [];
+        index = 0;
+      }
+    }
+
+    return paginatedGenres;
   }
 
   // getStaticGenres() {

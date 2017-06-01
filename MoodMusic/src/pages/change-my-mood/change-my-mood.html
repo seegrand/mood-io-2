@@ -16,6 +16,11 @@
 <ion-content no-bounce>
   <div class="page-container">
     <h4>What kind of music do you like?</h4>
+
+    <div class="loading-padding text-center" [hidden]="moods">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    
     <ion-slides pager="true">
       <ion-slide>
         <div class="slide-container">

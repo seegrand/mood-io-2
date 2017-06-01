@@ -50,15 +50,7 @@ export class PlayerPage implements OnInit {
     private playerBackgroundService: PlayerBackgroundService,
     private likertService: LikertService,
     private visibilityService: VisibilityService,
-    private localStorageService: LocalStorageService) {
-
-    // this.loading = this.loadingCtrl.create({
-    //   spinner: 'crescent',
-    //   content: 'Loading Video...'
-    // });
-
-    // this.loading.present();
-  }
+    private localStorageService: LocalStorageService) {}
 
   ngOnInit() {
     // Start music
