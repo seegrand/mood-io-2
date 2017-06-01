@@ -18,7 +18,7 @@ export class LocalStorageService {
     return window.localStorage.getItem(this.userTokenKey);
   }
 
-  saveUserToken(token: any) {
+  saveUserToken(token: string) {
     if (token)
       window.localStorage.setItem(this.userTokenKey, token);
   }
