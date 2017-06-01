@@ -12,7 +12,9 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-
+ion-content > div.scroll-content {
+	margin-bottom: 112px !important;
+}
 
 // Named Color Variables
 // --------------------------------------------------
@@ -34,8 +36,6 @@ $colors: (
   light:      #f4f4f4,
   dark:       #444
 );
-
-
 
 // App iOS Variables
 // --------------------------------------------------

@@ -63,8 +63,6 @@ export class HomePage {
     console.log('ionViewDidLoad Home');
   }
 
-
-
   /*
     Change My Mood
   */
@@ -108,7 +106,6 @@ export class HomePage {
   goToSelectedMood() {
     this.navCtrl.push(MoodDetailsPage);
   }
-
 
   /*
     Player

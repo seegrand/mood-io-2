@@ -116,16 +116,30 @@
     }
 
     #likert #current-mood {
-
+      top: 30px;
     }
 
     #likert #helpfulness {
+      bottom: 35px;
+
       color: #c1c1c1;
     }
 
+    #likert .range .icon-large {
+      font-size: 8.4rem;
+    }
+
+    // #likert .range .happy {
+    //   color: #d4ffd4;
+    // }
+    //
+    // #likert .range .sad {
+    //   color: #ffc9c9;
+    // }
+
     ion-footer {
       background: transparent;
-      height: 135px;
+      height: 140px;
     }
 
     ion-footer:before {

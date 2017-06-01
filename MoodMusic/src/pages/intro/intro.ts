@@ -4,6 +4,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { RegisterPage } from '../register/register';
 
+import { VisibilityService } from '../../services/utils/visibility.service';
+
 /**
  * Generated class for the Intro page.
  *
@@ -19,7 +21,8 @@ export class IntroPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    private visibilityService: VisibilityService
   ) { }
 
   loginScreen() {
@@ -32,6 +35,10 @@ export class IntroPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Intro');
+  }
+
+  ionViewDidEnter() {
+    this.visibilityService.hideScrollContentMargin();
   }
 
 }

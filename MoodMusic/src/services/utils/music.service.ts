@@ -27,9 +27,11 @@ export class MusicService {
         if (index < 0) {
           this.loadTrack(track);
         }
-
-        return index;
       }
+
+      console.log(this.audioProvider.tracks);
+
+      return 0;
     } else if (playlist instanceof Object) {
       var index = this.isTrackInPlaylist(playlist);
 
@@ -43,8 +45,9 @@ export class MusicService {
 
   isTrackInPlaylist(track: Track): number {
     for (var i = 0; i < this.getPlaylistLength(); i = i + this.trackSteps) {
-      var trackInPlaylist = <any> this.audioProvider.tracks[i];
-      
+      var trackInPlaylist = <any>this.audioProvider.tracks[i];
+      console.log(track);
+      console.log(trackInPlaylist);
       if (trackInPlaylist.trackId) {
         if (track.trackId == trackInPlaylist.trackId) {
           return i;
@@ -162,6 +165,18 @@ export class MusicService {
     }
 
     return -1;
+  }
+
+  getCurrentTrackId(): number {
+    if (this.audioProvider.tracks) {
+      if (this.audioProvider.tracks.length > 0) {
+        var currentTrack: any = <any> this.audioProvider.tracks[this.audioProvider.current];
+
+        return currentTrack.trackId;
+      }
+    }
+
+    return null;
   }
 
   getTrackProgress(): number {

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { AuthService } from '../../services/auth.service';
-
 import { LikedGenresPage } from '../liked-genres/liked-genres';
+
+import { AuthService } from '../../services/auth.service';
+import { VisibilityService } from '../../services/utils/visibility.service';
 
 /**
  * Generated class for the Register page.
@@ -22,17 +23,26 @@ export class RegisterPage {
 
   data: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) { }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private authService: AuthService,
+    private visibilityService: VisibilityService) { }
 
   register() {
-    // if (this.data.username && this.data.username.length > 0 && this.data.password && this.data.username)
-    // this.authService.register(data.)
+    this.authService.register(this.data.username, this.data.password).subscribe((res) => {
+
+    });
 
     this.navCtrl.setRoot(LikedGenresPage, {}, { animate: true, direction: 'forward' });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Register');
+  }
+
+  ionViewDidEnter() {
+    this.visibilityService.hideScrollContentMargin();
   }
 
 }

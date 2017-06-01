@@ -5,6 +5,8 @@ import { TabsPage } from '../tabs/tabs';
 
 import { GenreService } from '../../services/genre.service';
 
+import { VisibilityService } from '../../services/utils/visibility.service';
+
 /**
  * Generated class for the DislikedGenres page.
  *
@@ -21,7 +23,8 @@ export class DislikedGenresPage {
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
-    private genreService: GenreService
+    private genreService: GenreService,
+    private visibilityService: VisibilityService
   ) { }
 
   private dislikes = [];
@@ -53,6 +56,10 @@ export class DislikedGenresPage {
   ionViewDidLoad() {
     this.getGenres();
     console.log('ionViewDidLoad DislikedGenres');
+  }
+
+  ionViewDidEnter() {
+    this.visibilityService.hideScrollContentMargin();
   }
 
 }

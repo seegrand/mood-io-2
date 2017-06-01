@@ -60,9 +60,9 @@
     <span id="current-mood">Joyful</span>
     <div class="range">
       <!-- <input id="likert-range" type="range" name="likert" min="0" max="4" step="1" [(ngModel)]="likertPosition" (ngModelChange)="updateLikert()"> -->
-      <ion-range min="0" max="4" step="1" snaps="true" color="secondary" [(ngModel)]="likertPosition" (ngModelChange)="updateLikert()">
-        <ion-icon range-left name="sad"></ion-icon>
-        <ion-icon range-right name="happy"></ion-icon>
+      <ion-range min="0" max="4" step="1" snaps="true" color="secondary" [(ngModel)]="likertPosition" (ngModelChange)="updateLikert($event)">
+        <ion-icon range-left name="sad" class="icon-large sad" (click)="setLikertMin()"></ion-icon>
+        <ion-icon range-right name="happy" class="icon-large happy" (click)="setLikertMax()"></ion-icon>
       </ion-range>
     </div>
     <span id="helpfulness">Neutral</span>

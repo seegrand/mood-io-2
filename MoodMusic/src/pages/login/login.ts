@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
+import { LikedGenresPage } from '../liked-genres/liked-genres';
 
 import { AuthService } from '../../services/auth.service';
+import { VisibilityService } from '../../services/utils/visibility.service';
 import { LocalStorageService } from '../../services/utils/local-storage.service';
 
 /**
@@ -27,6 +29,7 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private authService: AuthService,
+    private visibilityService: VisibilityService,
     private localStorageService: LocalStorageService) {
   }
 
@@ -36,12 +39,10 @@ export class LoginPage {
         this.localStorageService.saveUserToken(user.token);
         this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
       }
-
       else {
         this.data.err = user.message;
       }
     });
-
   }
 
   forgotPassword() {
@@ -50,6 +51,10 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
+  }
+
+  ionViewDidEnter() {
+    this.visibilityService.hideScrollContentMargin();
   }
 
 }

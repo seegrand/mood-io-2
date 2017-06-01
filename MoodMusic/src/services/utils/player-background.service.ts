@@ -3,13 +3,23 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PlayerBackgroundService {
 
+  // Gradient state
+  step: number = 0;
+
+  // Gradient speed
+  gradientSpeed: number = 0.01;
+
   constructor() {}
 
-  swirlBackground() {
+  swirlBackground(gradientState: number) {
     var colors = new Array(
       [62, 35, 255], [60, 255, 60], [255, 35, 98], [45, 175, 230], [255, 0, 255], [255, 128, 0]);
 
-    var step = 0;
+
+    if (gradientState) {
+      this.step = gradientState;
+    }
+
     //color table indices for:
     // current color left
     // next color left
@@ -17,10 +27,7 @@ export class PlayerBackgroundService {
     // next color right
     var colorIndices = [0, 1, 2, 3];
 
-    //transition speed
-    var gradientSpeed = 0.0005;
-
-    function updateGradient() {
+    function updateGradient(step: number) {
 
       if (document === undefined) return;
 
@@ -50,10 +57,14 @@ export class PlayerBackgroundService {
       //    background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
       //    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"
       //  });
+    }
 
-      step += gradientSpeed;
-      if (step >= 1) {
-        step %= 1;
+    return setInterval(() => {
+      updateGradient(this.step);
+      this.step += this.gradientSpeed;
+
+      if (this.step >= 1) {
+        this.step %= 1;
         colorIndices[0] = colorIndices[1];
         colorIndices[2] = colorIndices[3];
 
@@ -61,10 +72,7 @@ export class PlayerBackgroundService {
         //do not pick the same as the current one
         colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
         colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
-
       }
-    }
-
-    return setInterval(() => updateGradient(), 100);
+    }, 100);
   }
 }
