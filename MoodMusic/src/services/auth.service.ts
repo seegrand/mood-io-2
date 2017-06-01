@@ -29,7 +29,7 @@ export class AuthService extends APIService {
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  register(username: string, password: string): Observable<any[]> {
+  register(username: string, password: string): Observable<any> {
     var data = {
       'username': username,
       'password': password

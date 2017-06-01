@@ -23,35 +23,19 @@ export class GenreService extends APIService {
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  // getStaticGenres() {
-  //   return [{
-  //     name: "Dance",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Trance",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Pop",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Rock",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Hip Hop",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "House",
-  //     placeholder: "http://placehold.it/85x85"
-  //   } , {
-  //     name: "Rap",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Classical",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Punk",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }]
-  // }
+  saveLikedGenres(liked: any) {
+    // TODO: Send to the API (when it eventually works... )
+    console.log(liked);
+    // return this.http.post(this.BASE_URL + "/genres/like", liked)
+    //                       .map((res: Response) => res.json())
+    //                       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
 
+  saveDislikedGenres(disliked: any){
+    // TODO: Send to the API (when it eventually works... )
+    console.log(disliked);
+    // return this.http.post(this.BASE_URL + "/genres/dislike", disliked)
+    //                       .map((res: Response) => res.json())
+    //                       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
 }

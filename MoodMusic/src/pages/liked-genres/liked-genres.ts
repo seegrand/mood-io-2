@@ -51,7 +51,7 @@ export class LikedGenresPage {
 
   nextStep() {
     // TODO: Send liked genres to API.
-    this.navCtrl.push(DislikedGenresPage);
+    this.navCtrl.push(DislikedGenresPage, { currentlyLiked: this.likes });
   }
 
   ionViewDidLoad() {

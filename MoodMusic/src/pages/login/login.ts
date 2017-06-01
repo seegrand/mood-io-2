@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
-import { LikedGenresPage } from '../liked-genres/liked-genres';
 
 import { AuthService } from '../../services/auth.service';
 import { VisibilityService } from '../../services/utils/visibility.service';
@@ -35,6 +34,7 @@ export class LoginPage {
 
   login() {
     this.authService.login(this.data.username, this.data.password).subscribe((user) => {
+      console.log(this.data);
       if(user.ok){
         this.localStorageService.saveUserToken(user.token);
         this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });

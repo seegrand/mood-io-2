@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LikedGenresPage } from '../liked-genres/liked-genres';
 
 import { AuthService } from '../../services/auth.service';
+import { LocalStorageService } from '../../services/utils/local-storage.service';
 import { VisibilityService } from '../../services/utils/visibility.service';
 
 /**
@@ -27,14 +28,21 @@ export class RegisterPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private authService: AuthService,
-    private visibilityService: VisibilityService) { }
+    private visibilityService: VisibilityService,
+    private localStorageService: LocalStorageService) { }
 
   register() {
-    this.authService.register(this.data.username, this.data.password).subscribe((res) => {
+    this.authService.register(this.data.username, this.data.password).subscribe((user) => {
+      console.log(user.ok);
+      if (user.ok) {
+        this.localStorageService.saveUserToken(user.token);
+        this.navCtrl.push(LikedGenresPage, {}, { animate: true, direction: 'forward' });
+      }
 
+      else {
+        this.data.err = "Uh-oh, something went wrong. Please try again.";
+      }
     });
-
-    this.navCtrl.setRoot(LikedGenresPage, {}, { animate: true, direction: 'forward' });
   }
 
   ionViewDidLoad() {
