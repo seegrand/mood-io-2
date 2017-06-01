@@ -15,12 +15,17 @@
 <ion-content no-bounce>
   <div class="page-container">
     <h4>What kind of music do you like?</h4>
+
+    <div class="loading-padding text-center" [hidden]="genres">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+
     <ion-slides pager="true">
-      <ion-slide>
+      <ion-slide *ngFor="let genrePage of paginatedGenres">
         <div class="slide-container">
-          <div class="slide-tile" *ngFor="let genre of genres">
+          <div class="slide-tile" *ngFor="let genre of genrePage">
             <label>
-              <input type="checkbox" name="mood" value="small" (click)="isLiked(genre)">
+              <input type="checkbox" name="genre" value="small" (click)="isLiked(genre)">
               <img src="http://placehold.it/85x85">
             </label>
             <p>{{ genre.name }}</p>

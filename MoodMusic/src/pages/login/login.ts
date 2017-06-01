@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
 import { LikedGenresPage } from '../liked-genres/liked-genres';
@@ -23,24 +23,42 @@ export class LoginPage {
 
   validationPattern: RegExp = /^[a-zA-Z0-9_-]*$/;
 
+  loading: any;
+  alert: any;
   data: any = {};
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
     private authService: AuthService,
     private visibilityService: VisibilityService,
     private localStorageService: LocalStorageService) {
+
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+      content: 'Loggin in...'
+    });
   }
 
   login() {
-    this.authService.login(this.data.username, this.data.password).subscribe((user) => {
-      if(user.ok){
-        this.localStorageService.saveUserToken(user.token);
+    this.loading.present();
+
+    this.authService.login(this.data.username, this.data.password).subscribe((res) => {
+      this.loading.dismiss();
+
+      if (res.ok) {
+        this.localStorageService.saveUserToken(res.token);
         this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
       }
       else {
-        this.data.err = user.message;
+        this.alert = this.alertCtrl.create({
+          title: 'ERROR',
+          subTitle: res.message,
+          buttons: ['Dismiss']
+        });
+        this.alert.present();
       }
     });
   }
