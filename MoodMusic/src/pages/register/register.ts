@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { LikedGenresPage } from '../liked-genres/liked-genres';
 
 import { AuthService } from '../../services/auth.service';
+import { LocalStorageService } from '../../services/utils/local-storage.service';
 import { VisibilityService } from '../../services/utils/visibility.service';
 
 /**
@@ -31,33 +32,32 @@ export class RegisterPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     private authService: AuthService,
-    private visibilityService: VisibilityService) {
-
+    private visibilityService: VisibilityService,
+    private localStorageService: LocalStorageService) {
       this.loading = this.loadingCtrl.create({
         spinner: 'crescent',
         content: 'Registering...'
       });
-  }
+    }
 
   register() {
     this.loading.present();
 
-    this.authService.register(this.data.username, this.data.password).subscribe((res) => {
+    this.authService.register(this.data.username, this.data.password).subscribe((user) => {
       this.loading.dismiss();
 
-      if (res.ok) {
+      if (user.ok) {
+        this.localStorageService.saveUserToken(user.token);
         this.navCtrl.setRoot(LikedGenresPage, {}, { animate: true, direction: 'forward' });
       } else {
         this.alert = this.alertCtrl.create({
           title: 'ERROR',
-          subTitle: res.message,
+          subTitle: "Uh-oh, something went wrong. Please try again.",
           buttons: ['Dismiss']
         });
         this.alert.present();
       }
     });
-
-    // this.navCtrl.setRoot(LikedGenresPage, {}, { animate: true, direction: 'forward' });
   }
 
   ionViewDidLoad() {

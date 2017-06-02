@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 
 import { TabsPage } from '../tabs/tabs';
-import { LikedGenresPage } from '../liked-genres/liked-genres';
 
 import { AuthService } from '../../services/auth.service';
 import { VisibilityService } from '../../services/utils/visibility.service';
@@ -44,18 +43,16 @@ export class LoginPage {
 
   login() {
     this.loading.present();
-
-    this.authService.login(this.data.username, this.data.password).subscribe((res) => {
+    this.authService.login(this.data.username, this.data.password).subscribe((user) => {
       this.loading.dismiss();
-
-      if (res.ok) {
-        this.localStorageService.saveUserToken(res.token);
+      if(user.ok){
+        this.localStorageService.saveUserToken(user.token);
         this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
       }
       else {
         this.alert = this.alertCtrl.create({
-          title: 'ERROR',
-          subTitle: res.message,
+          title: 'Error',
+          subTitle: user.message,
           buttons: ['Dismiss']
         });
         this.alert.present();
