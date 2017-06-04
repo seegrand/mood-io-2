@@ -37,7 +37,7 @@ export class LoginPage {
 
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
-      content: 'Loggin in...'
+      content: 'Logging in...'
     });
   }
 

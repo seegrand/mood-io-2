@@ -61,6 +61,10 @@
       color: white;
     }
 
+    #controls .music-controls-play #play-icon {
+      margin-left: 14.5px;
+    }
+
     #controls .music-controls-forward-icon,
     .music-controls-backward-icon {
       font-size: 40px;
@@ -116,17 +120,17 @@
     }
 
     #likert #current-mood {
-      top: 30px;
+      top: 25px;
     }
 
     #likert #helpfulness {
-      bottom: 35px;
+      bottom: 25px;
 
       color: #c1c1c1;
     }
 
     #likert .range .icon-large {
-      font-size: 8.4rem;
+      font-size: 6.4rem;
     }
 
     // #likert .range .happy {

@@ -14,11 +14,15 @@
 
 
 <ion-content>
-  <div class="img-container" margin>
-    <img src="http://placehold.it/150x150" alt="Profile Picture">
+  <div class="loading-padding" text-center [hidden]="user">
+    <ion-spinner name="crescent"></ion-spinner>
   </div>
-  <div class="profile-container">
-    <h1>Username</h1>
+
+  <div class="img-container" margin *ngIf="user">
+    <img src="https://robohash.org/{{ user.username }}" alt="Profile Picture">
+  </div>
+  <div class="profile-container" *ngIf="user">
+    <h1>{{ user.username }}</h1>
   </div>
   <div class="btn-container">
     <button ion-button round (click)="logout()">Logout</button>

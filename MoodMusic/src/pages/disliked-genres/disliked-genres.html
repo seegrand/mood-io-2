@@ -17,7 +17,7 @@
   <div class="page-container">
     <h4>What kind of music do you skip?</h4>
 
-    <div class="loading-padding text-center" [hidden]="genres">
+    <div class="loading-padding " text-center [hidden]="genres">
       <ion-spinner name="crescent"></ion-spinner>
     </div>
 
@@ -27,7 +27,7 @@
           <div class="slide-tile" *ngFor="let genre of genrePage">
             <label>
               <input type="checkbox" name="mood" value="small" (click)="isDisliked(genre)">
-              <img src="http://placehold.it/85x85">
+              <img src="http://lorempixel.com/100/100/cats/">
             </label>
             <p>{{ genre.name }}</p>
           </div>
