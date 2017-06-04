@@ -202,8 +202,8 @@ export class PlayerPage implements OnInit {
 
   updateSmallPlayButton() {
     // Play button icons
-    this.playButtonIcon = <HTMLElement>document.getElementById('play-icon-small');
-    this.pauseButtonIcon = <HTMLElement>document.getElementById('pause-icon-small');
+    this.playButtonIcon = <HTMLElement>document.getElementById('play-small-icon');
+    this.pauseButtonIcon = <HTMLElement>document.getElementById('pause-small-icon');
 
     if (this.pauseButtonIcon && this.playButtonIcon) {
       if (this.musicService.isPlaying) {

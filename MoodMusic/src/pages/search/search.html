@@ -20,13 +20,13 @@
   </ion-item>
   <ion-list>
 
-    <div class="loading-padding text-center" [hidden]="songs">
+    <div class="loading-padding " text-center [hidden]="songs">
       <ion-spinner name="crescent"></ion-spinner>
     </div>
 
     <ion-item *ngFor="let song of songs">
       <ion-thumbnail item-start>
-        <img src="http://placehold.it/100x100">
+        <img src="http://lorempixel.com/100/100/abstract/">
       </ion-thumbnail>
       <h2>{{ song.name }}</h2>
       <h4>Artist id: {{ song.artistId }}</h4>

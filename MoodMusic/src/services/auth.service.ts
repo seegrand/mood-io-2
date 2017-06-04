@@ -53,8 +53,26 @@ export class AuthService extends APIService {
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  logout(): Observable<any> {
-    return this.http.get(this.BASE_URL + "/auth/logout")
+  getLoggedInUser(token: string): Observable<any> {
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + token);
+
+    let options = new RequestOptions({headers: headers});
+
+    console.log(options);
+
+    return this.http.get(this.BASE_URL + "/users", options)
+                          .map((res:Response) => res.json())
+                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  logout(token: string): Observable<any> {
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + token);
+
+    let options = new RequestOptions({headers: headers});
+
+    return this.http.post(this.BASE_URL + "/auth/logout", null, options)
                           .map((res:Response) => res.json())
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
