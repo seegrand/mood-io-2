@@ -1,0 +1,19 @@
+page-change-my-mood {
+
+  label > input{
+    visibility: hidden;
+    position: absolute;
+  }
+
+  label > input + img{
+    cursor:pointer;
+    padding: 0px !important;
+    margin: 7px;
+    border: 3px solid transparent;
+  }
+
+  label > input:checked + img{ 
+    border:3px solid #666677;
+  }
+
+}

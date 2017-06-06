@@ -1,0 +1,103 @@
+$music-bar-height: 56px;
+
+.md {
+  ion-footer#music-bar {
+    margin-bottom: 56px;
+
+    .play-control-padding {
+      margin-top: 2px;
+    }
+  }
+}
+
+.ios {
+  ion-footer#music-bar {
+    margin-bottom: 46px;
+
+    #song-small {
+      margin-top: 8px;
+    }
+  }
+}
+
+.wp {
+  ion-footer#music-bar {
+    margin-bottom: 0;
+
+    ion-toolbar {
+      height: $music-bar-height;
+
+      .play-control-padding {
+        margin-top: 2px;
+      }
+
+      #song-small {
+        margin-top: 6px;
+      }
+    }
+  }
+}
+
+ion-footer#music-bar {
+  color: white;
+  height: $music-bar-height;
+}
+
+.music-bar-container {
+  text-align: center;
+}
+
+#show-player {
+  color: white;
+}
+
+#song-small {
+  display: inline-grid;
+  text-align: center;
+
+  height: 100%;
+  width: 65%;
+}
+
+#artist,
+#title {
+  display: grid;
+}
+
+#title {
+  font-weight: 300;
+}
+
+#artist {
+  font-weight: 600;
+}
+
+#play-small {
+  color: white;
+  padding: 8px 0px 0px 0px;
+  background: transparent;
+  border: 1px solid;
+  border-radius: 50%;
+
+  width: 35px;
+  height: 35px;
+
+  margin-right: 10px;
+  margin-top: 8px;
+}
+
+#play-small-icon {
+  margin-left: 3px;
+}
+
+.left {
+  float: left;
+}
+
+.center {
+  // margin: 0 auto !important;
+}
+
+.right {
+  float: right;
+}
