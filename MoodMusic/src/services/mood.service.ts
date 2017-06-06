@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Rx';
 
 import { APIService } from './api.service';
 
+import { Mood } from '../model/mood';
+
 /*
   Generated class for the Mood Service.
 
@@ -21,6 +23,28 @@ export class MoodService extends APIService {
     return this.http.get(this.BASE_URL + "/moods")
                           .map((res:Response) => res.json())
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getPaginatedMoods(moods: Mood[], pageSize: number) {
+    var paginatedMoods = [];
+
+    var page = [];
+    var index = 0;
+
+    for (var mood of moods) {
+      if (index < pageSize) {
+        page.push(mood);
+        index++;
+      } else {
+        paginatedMoods.push(page);
+        page = [];
+        index = 0;
+      }
+    }
+
+    paginatedMoods.push(page);
+
+    return paginatedMoods;
   }
 
   getRecentMoods() {

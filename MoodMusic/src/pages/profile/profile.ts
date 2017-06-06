@@ -68,13 +68,18 @@ export class ProfilePage implements OnInit {
         } else {
           console.log(res);
 
-          this.alert = this.alertCtrl.create({
-            title: 'Error',
-            subTitle: res.message,
-            buttons: ['Dismiss']
-          });
-          this.alert.present();
+          // this.alert = this.alertCtrl.create({
+          //   title: 'Error',
+          //   subTitle: res,
+          //   buttons: ['Dismiss']
+          // });
+          // this.alert.present();
         }
+
+        this.localStorageService.clear();
+
+        const root = this._app.getRootNav();
+        root.popToRoot();
       });
     }
   }
