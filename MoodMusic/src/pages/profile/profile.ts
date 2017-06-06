@@ -34,7 +34,7 @@ export class ProfilePage implements OnInit {
 
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
-      content: 'Logging in...'
+      content: 'Logging out...'
     });
   }
 
@@ -56,30 +56,27 @@ export class ProfilePage implements OnInit {
   }
 
   logout() {
+    this.loading.present();
+
     var token = this.localStorageService.getUserToken();
 
     if (token) {
       this.authService.logout(token).subscribe((res) => {
+        this.loading.dismiss();
+
         if (res.ok) {
           this.localStorageService.clear();
 
           const root = this._app.getRootNav();
           root.popToRoot();
         } else {
-          console.log(res);
-
-          // this.alert = this.alertCtrl.create({
-          //   title: 'Error',
-          //   subTitle: res,
-          //   buttons: ['Dismiss']
-          // });
-          // this.alert.present();
+          this.alert = this.alertCtrl.create({
+            title: 'Error',
+            subTitle: res,
+            buttons: ['Dismiss']
+          });
+          this.alert.present();
         }
-
-        this.localStorageService.clear();
-
-        const root = this._app.getRootNav();
-        root.popToRoot();
       });
     }
   }
