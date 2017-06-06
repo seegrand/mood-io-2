@@ -60,6 +60,8 @@ export class VisibilityService {
     if (scrollContent) {
       scrollContent.style.setProperty('margin-bottom', '112px','important');
     }
+
+    console.log(scrollContent);
   }
 
   hideScrollContentMargin() {

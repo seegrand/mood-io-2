@@ -10,6 +10,8 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
 
   userTokenKey: string = 'userToken';
+  userKey: string = 'user';
+
   gradientStateKey: string = 'gradientState';
 
   constructor() { }
@@ -18,13 +20,27 @@ export class LocalStorageService {
     return window.localStorage.getItem(this.userTokenKey);
   }
 
-  saveUserToken(userToken: string) {
-    if (userToken)
-      window.localStorage.setItem(this.userTokenKey, userToken);
+  saveUserToken(token: string) {
+    if (token)
+      window.localStorage.setItem(this.userTokenKey, token);
   }
 
   removeUserToken() {
     window.localStorage.removeItem(this.userTokenKey);
+  }
+
+  getUser() {
+    return JSON.parse(window.localStorage.getItem(this.userKey));
+  }
+
+  saveUser(user: Object) {
+    if (user) {
+      window.localStorage.setItem(this.userKey, JSON.stringify(user));
+    }
+  }
+
+  removeUser() {
+    window.localStorage.removeItem(this.userKey);
   }
 
   getGradientState() {
@@ -39,5 +55,11 @@ export class LocalStorageService {
 
   removeGradientState() {
     window.localStorage.removeItem(this.gradientStateKey);
+  }
+
+  clear() {
+    this.removeUserToken();
+    this.removeUser();
+    this.removeGradientState();
   }
 }

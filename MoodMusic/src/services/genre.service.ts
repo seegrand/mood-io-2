@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Rx';
 
 import { APIService } from './api.service';
 
+import { Genre } from '../model/genre';
+
 /*
   Generated class for the Genre Service.
 
@@ -17,41 +19,49 @@ export class GenreService extends APIService {
     super(http);
   }
 
-  getGenres() {
+  getGenres(): Observable<Genre[]> {
     return this.http.get(this.BASE_URL + "/genres")
-                          .map((res:Response) => res.json())
-                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  // getStaticGenres() {
-  //   return [{
-  //     name: "Dance",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Trance",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Pop",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Rock",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Hip Hop",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "House",
-  //     placeholder: "http://placehold.it/85x85"
-  //   } , {
-  //     name: "Rap",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Classical",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }, {
-  //     name: "Punk",
-  //     placeholder: "http://placehold.it/85x85"
-  //   }]
-  // }
+  getPaginatedGenres(genres: Genre[], pageSize: number) {
+    var paginatedGenres = [];
+    var pageIndex = 0;
 
+    var page = [];
+    var index = 0;
+
+    for (var genre of genres) {
+
+      if (index < pageSize) {
+        page.push(genre);
+        index++;
+      } else {
+        paginatedGenres.push(page);
+        page = [];
+        index = 0;
+      }
+    }
+
+    paginatedGenres.push(page);
+
+    return paginatedGenres;
+  }
+
+  saveLikedGenres(liked: any) {
+    // TODO: Send to the API (when it eventually works... )
+    console.log(liked);
+    // return this.http.post(this.BASE_URL + "/genres/like", liked)
+    //                       .map((res: Response) => res.json())
+    //                       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  saveDislikedGenres(disliked: any){
+    // TODO: Send to the API (when it eventually works... )
+    console.log(disliked);
+    // return this.http.post(this.BASE_URL + "/genres/dislike", disliked)
+    //                       .map((res: Response) => res.json())
+    //                       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
 }

@@ -4,7 +4,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 
 import { GenreService } from '../../services/genre.service';
-
 import { VisibilityService } from '../../services/utils/visibility.service';
 
 /**
@@ -28,10 +27,18 @@ export class DislikedGenresPage {
   ) { }
 
   private dislikes = [];
+  private currentlyLiked;
   private genres;
 
+  private paginatedGenres: any[];
+  private pageSize = 9;
+
   getGenres() {
-    this.genreService.getGenres().subscribe(genres => this.genres = genres);
+    this.genreService.getGenres().subscribe((genres) => {
+      this.genres = genres;
+
+      this.paginatedGenres = this.genreService.getPaginatedGenres(this.genres, this.pageSize);
+    });
   }
 
   isDisliked(genre) {
@@ -49,12 +56,14 @@ export class DislikedGenresPage {
   }
 
   done() {
-    // TODO: Send disliked genres to API.
+    this.genreService.saveLikedGenres(this.currentlyLiked);
+    this.genreService.saveDislikedGenres(this.dislikes);
     this.navCtrl.setRoot(TabsPage, {}, { animate: true, direction: 'forward' });
   }
 
   ionViewDidLoad() {
     this.getGenres();
+    this.currentlyLiked = this.navParams.get('currentlyLiked');
     console.log('ionViewDidLoad DislikedGenres');
   }
 

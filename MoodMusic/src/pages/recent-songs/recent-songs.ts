@@ -36,7 +36,7 @@ export class RecentSongsPage {
   }
 
   getSongs() {
-    return this.songService.getSongs().subscribe(songs => this.songs = songs);
+    return this.songService.getSongs().subscribe(songs => this.songs = songs.message);
   }
 
   songDetails(event, song) {

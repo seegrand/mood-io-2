@@ -7,6 +7,8 @@ import { GenreService } from '../../services/genre.service';
 
 import { VisibilityService } from '../../services/utils/visibility.service';
 
+import { Genre } from '../../model/genre';
+
 /**
  * Generated class for the LikedGenres page.
  *
@@ -29,10 +31,17 @@ export class LikedGenresPage {
   ) { }
 
   private likes = [];
-  private genres;
+  private genres: Genre[];
+
+  private paginatedGenres: any[];
+  private pageSize = 9;
 
   getGenres() {
-    this.genreService.getGenres().subscribe(genres => this.genres = genres);
+    this.genreService.getGenres().subscribe((genres) => {
+      this.genres = genres;
+
+      this.paginatedGenres = this.genreService.getPaginatedGenres(this.genres, this.pageSize);
+    });
   }
 
   isLiked(genre) {
@@ -51,7 +60,7 @@ export class LikedGenresPage {
 
   nextStep() {
     // TODO: Send liked genres to API.
-    this.navCtrl.push(DislikedGenresPage);
+    this.navCtrl.push(DislikedGenresPage, { currentlyLiked: this.likes });
   }
 
   ionViewDidLoad() {

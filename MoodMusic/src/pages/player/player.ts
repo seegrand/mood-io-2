@@ -50,15 +50,7 @@ export class PlayerPage implements OnInit {
     private playerBackgroundService: PlayerBackgroundService,
     private likertService: LikertService,
     private visibilityService: VisibilityService,
-    private localStorageService: LocalStorageService) {
-
-    // this.loading = this.loadingCtrl.create({
-    //   spinner: 'crescent',
-    //   content: 'Loading Video...'
-    // });
-
-    // this.loading.present();
-  }
+    private localStorageService: LocalStorageService) {}
 
   ngOnInit() {
     // Start music
@@ -210,8 +202,8 @@ export class PlayerPage implements OnInit {
 
   updateSmallPlayButton() {
     // Play button icons
-    this.playButtonIcon = <HTMLElement>document.getElementById('play-icon-small');
-    this.pauseButtonIcon = <HTMLElement>document.getElementById('pause-icon-small');
+    this.playButtonIcon = <HTMLElement>document.getElementById('play-small-icon');
+    this.pauseButtonIcon = <HTMLElement>document.getElementById('pause-small-icon');
 
     if (this.pauseButtonIcon && this.playButtonIcon) {
       if (this.musicService.isPlaying) {

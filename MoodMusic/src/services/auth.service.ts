@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { APIService } from './api.service';
@@ -29,7 +29,7 @@ export class AuthService extends APIService {
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  register(username: string, password: string): Observable<any[]> {
+  register(username: string, password: string): Observable<any> {
     var data = {
       'username': username,
       'password': password
@@ -40,14 +40,39 @@ export class AuthService extends APIService {
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  refreshToken(): Observable<any[]> {
-    return this.http.get(this.BASE_URL + "/auth/refresh")
+  refreshToken(token: string): Observable<any> {
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + token);
+
+    let options = new RequestOptions({headers: headers});
+
+    console.log(options);
+
+    return this.http.post(this.BASE_URL + "/auth/refresh", null, options)
                           .map((res:Response) => res.json())
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  logout(): Observable<any[]> {
-    return this.http.get(this.BASE_URL + "/auth/logout")
+  getLoggedInUser(token: string): Observable<any> {
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + token);
+
+    let options = new RequestOptions({headers: headers});
+
+    console.log(options);
+
+    return this.http.get(this.BASE_URL + "/users", options)
+                          .map((res:Response) => res.json())
+                          .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  logout(token: string): Observable<any> {
+    let headers = new Headers();
+    headers.append('Authorization', 'Bearer ' + token);
+
+    let options = new RequestOptions({headers: headers});
+
+    return this.http.post(this.BASE_URL + "/auth/logout", null, options)
                           .map((res:Response) => res.json())
                           .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
