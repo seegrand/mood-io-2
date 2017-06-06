@@ -1,0 +1,70 @@
+<!--
+  Generated template for the Player page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar></ion-navbar>
+
+</ion-header> -->
+
+<ion-content no-bounce>
+  <div id="gradient">
+
+    <button ion-button icon-only large clear class="top-left-icon" (click)="hidePlayer()">
+      <ion-icon name="arrow-dropdown"></ion-icon>
+    </button>
+
+    <!-- <audio-track *ngIf="currentTrack" #audio [track]="currentTrack" (onPlay)="onTrackPlay($event)" (onPause)="onTrackPause($event)" (onFinish)="onTrackFinished($event)">
+    </audio-track> -->
+
+    <div id="song" *ngIf="musicService.audioProvider && musicService.audioProvider.tracks[musicService.audioProvider.current]">
+      <span id="title">{{ musicService.audioProvider.tracks[musicService.audioProvider.current].title }}</span>
+      <span id="artist">{{ musicService.audioProvider.tracks[musicService.audioProvider.current].artist }}</span>
+    </div>
+
+    <div id="controls">
+      <button ion-button icon-only clear (click)="skipBackward()">
+          <ion-icon class="music-controls-backward-icon" name="skip-backward"></ion-icon>
+        </button>
+
+      <!-- <audio-track-play light [audioTrack]="audio">
+          <ion-spinner></ion-spinner>
+        </audio-track-play> -->
+
+      <button id="play" ion-button icon-only clear class="music-controls-play" (click)="playToggle()">
+          <ion-icon id="play-icon" name="play"></ion-icon>
+          <ion-icon id="pause-icon" name="pause" style="display:none;"></ion-icon>
+        </button>
+
+
+      <button ion-button icon-only clear (click)="skipForward()">
+          <ion-icon class="music-controls-forward-icon" name="skip-forward"></ion-icon>
+        </button>
+    </div>
+
+    <div id="progress">
+      <ion-range id="progress-range" min="0" [max]="currentTrackDuration" color="light" [(ngModel)]="currentTrackPosition" (ngModelChange)="seekTrack($event)">
+        <!-- <ion-label id="progress-begin" range-left>0:00</ion-label>
+          <ion-label id="progress-end" range-right>3:50</ion-label> -->
+      </ion-range>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <div id="likert">
+    <span id="current-mood">Joyful</span>
+    <div class="range">
+      <!-- <input id="likert-range" type="range" name="likert" min="0" max="4" step="1" [(ngModel)]="likertPosition" (ngModelChange)="updateLikert()"> -->
+      <ion-range min="0" max="4" step="1" snaps="true" color="secondary" [(ngModel)]="likertPosition" (ngModelChange)="updateLikert($event)">
+        <ion-icon range-left name="sad" class="icon-large sad" (click)="setLikertMin()"></ion-icon>
+        <ion-icon range-right name="happy" class="icon-large happy" (click)="setLikertMax()"></ion-icon>
+      </ion-range>
+    </div>
+    <span id="helpfulness">Neutral</span>
+  </div>
+</ion-footer>
