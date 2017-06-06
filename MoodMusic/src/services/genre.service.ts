@@ -44,6 +44,8 @@ export class GenreService extends APIService {
       }
     }
 
+    paginatedGenres.push(page);
+
     return paginatedGenres;
   }
 

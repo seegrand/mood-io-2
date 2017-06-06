@@ -8,6 +8,8 @@ import { SongService } from '../../services/song.service';
 
 import { VisibilityService } from '../../services/utils/visibility.service';
 
+import { Mood } from '../../model/mood';
+
 /**
  * Generated class for the ChangeMyMood page.
  *
@@ -23,8 +25,10 @@ export class ChangeMyMoodPage {
 
   isNavigatingToPlayer = false;
 
-  tabBarElement: HTMLElement;
-  scrollContent: HTMLElement;
+  pageSize = 9;
+  private mood: Mood;
+  private moods: Mood[];
+  paginatedMoods: any[];
 
   constructor(
     private navCtrl: NavController,
@@ -34,11 +38,13 @@ export class ChangeMyMoodPage {
     private visibilityService: VisibilityService
   ) { }
 
-  private mood;
-  private moods;
-
   getMoods() {
-    this.moodService.getMoods().subscribe(moods => this.moods = moods.message);
+    this.moodService.getMoods().subscribe((moods) => {
+      this.moods = moods.message;
+
+      this.paginatedMoods = this.moodService.getPaginatedMoods(this.moods, this.pageSize);
+      console.log(this.paginatedMoods);
+    });
   }
 
   currentMood(mood) {
@@ -61,11 +67,14 @@ export class ChangeMyMoodPage {
     console.log('ionViewDidLoad ChangeMyMood');
 
     this.getMoods();
+	}
 
-		// Disable Tab view
+  ionViewDidEnter() {
+    // Disable Tab view
     this.visibilityService.hideTabs();
     this.visibilityService.hideMusicBar();
-	}
+    this.visibilityService.hideScrollContentMargin();
+  }
 
   ionViewWillLeave() {
     console.log('ionViewWillLeave ChangeMyMood');
