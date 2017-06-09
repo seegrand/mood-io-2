@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 
 import { SongService } from '../../services/song.service';
+
+import { Song } from '../../model/song';
+
+import { Observable } from 'rxjs/Observable';
+import { Subject } from "rxjs/Subject";
 
 /**
  * Generated class for the Search page.
@@ -12,7 +17,7 @@ import { SongService } from '../../services/song.service';
 @IonicPage()
 @Component({
   selector: 'page-search',
-  templateUrl: 'search.html',
+  templateUrl: 'search.html'
 })
 export class SearchPage implements OnInit {
 
