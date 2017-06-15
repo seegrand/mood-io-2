@@ -90,7 +90,7 @@ export class HomePage {
       playlist: song
     };
 
-    this.navCtrl.push(PlayerPage, data);
+    this.navCtrl.push(PlayerPage, data, { animation: 'fade-transition', direction: 'forward' });
   }
 
   /*
@@ -114,7 +114,7 @@ export class HomePage {
   */
 
   startPlaying() {
-  	this.navCtrl.push(PlayerPage, {}, { animate: true, direction: 'forward' });
+  	this.navCtrl.push(PlayerPage, {}, { animation: 'fade-transition', direction: 'forward' });
   }
 
 }

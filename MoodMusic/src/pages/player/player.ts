@@ -32,7 +32,7 @@ export class PlayerPage implements OnInit {
   currentTrackDuration: number;
 
   likertPosition = 2;
-  likertAnswers = ['Worsened', 'Irritating', 'Neutral', 'Slightly better', 'Improved'];
+  likertAnswers = [];
 
   playButtonIcon: HTMLElement;
   pauseButtonIcon: HTMLElement;
@@ -50,15 +50,16 @@ export class PlayerPage implements OnInit {
     private playerBackgroundService: PlayerBackgroundService,
     private likertService: LikertService,
     private visibilityService: VisibilityService,
-    private localStorageService: LocalStorageService) {}
+    private localStorageService: LocalStorageService) {
+
+      this.likertAnswers = this.localStorageService.getLikertScale();
+    }
 
   ngOnInit() {
     // Start music
     if (this.navParams.get('playlist')) {
 
       var index = this.musicService.init(this.navParams.get('playlist'));
-
-      console.log(index);
 
       if (index < 0) {
         if (this.musicService.getPlaylistLength() > this.musicService.getCurrentTrackIndex()) {
@@ -147,7 +148,7 @@ export class PlayerPage implements OnInit {
     this.currentTrackDuration = this.musicService.getTrackDuration();
 
     if (this.currentTrackPosition && this.currentTrackDuration) {
-      if (this.currentTrackDuration - this.currentTrackPosition <= 1) {
+      if (this.currentTrackDuration - this.currentTrackPosition <= 1.2) {
         this.skipForward();
       }
     }
@@ -168,13 +169,19 @@ export class PlayerPage implements OnInit {
 
     this.likertServiceUpdateDelay = setTimeout(() => {
       var userToken = this.localStorageService.getUserToken(),
-      songId = this.musicService.getCurrentTrackId();
+      songId = this.musicService.getCurrentTrackId(),
+      moodId = this.localStorageService.getCurrentMood().id,
+      likertAnswer = document.getElementById('helpfulness').innerHTML;
 
+      console.log(likertAnswer);
       console.log('Send likert scale');
 
-      if (userToken && songId) {
-        // TODO: Get moodId
-        // this.likertService.sendResponse(this.likertService.likertId, userToken, this.musicService.getCurrentTrackId(), moodId);
+      if (userToken && songId && moodId && likertAnswer) {
+        this.likertService.sendResponse(userToken, this.musicService.getCurrentTrackId(), moodId, likertAnswer).subscribe((res) => {
+          if (!res.ok) {
+            console.log(res);
+          }
+        });
       }
     }, 5000);
   }

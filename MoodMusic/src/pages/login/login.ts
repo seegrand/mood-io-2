@@ -4,8 +4,12 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { TabsPage } from '../tabs/tabs';
 
 import { AuthService } from '../../services/auth.service';
+import { LikertService } from '../../services/likert.service';
+
 import { VisibilityService } from '../../services/utils/visibility.service';
 import { LocalStorageService } from '../../services/utils/local-storage.service';
+
+import { Mood } from '../../model/mood';
 
 /**
  * Generated class for the Login page.
@@ -32,6 +36,7 @@ export class LoginPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     private authService: AuthService,
+    private likertService: LikertService,
     private visibilityService: VisibilityService,
     private localStorageService: LocalStorageService) {
 
@@ -44,12 +49,32 @@ export class LoginPage {
   login() {
     this.loading.present();
     this.authService.login(this.data.username, this.data.password).subscribe((user) => {
-      this.loading.dismiss();
       if(user.ok){
         this.localStorageService.saveUserToken(user.token);
-        this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
+
+        this.localStorageService.saveCurrentMood(new Mood(6, 'Cheerful'));
+
+        // Get Likert Scale from the API
+        if (!this.localStorageService.getLikertScale()) {
+          this.likertService.getScale(user.token).subscribe((res) => {
+            console.log(res);
+
+            if (res.ok) {
+              this.localStorageService.saveLikertScale(res.message);
+            }
+
+            this.loading.dismiss();
+            this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
+          });
+          console.log(this.localStorageService.getLikertScale());
+        } else {
+          this.loading.dismiss();
+          this.navCtrl.push(TabsPage, {}, { animate: true, direction: 'forward' });
+        }
       }
       else {
+        this.loading.dismiss();
+
         this.alert = this.alertCtrl.create({
           title: 'Error',
           subTitle: user.message,
