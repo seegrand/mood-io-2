@@ -171,7 +171,7 @@ export class PlayerPage implements OnInit {
       var userToken = this.localStorageService.getUserToken(),
       songId = this.musicService.getCurrentTrackId(),
       moodId = this.localStorageService.getCurrentMood().id,
-      likertAnswer = document.getElementById('helpfulness').innerHTML;
+      likertAnswer = this.likertAnswers[this.likertPosition];
 
       console.log(likertAnswer);
       console.log('Send likert scale');
