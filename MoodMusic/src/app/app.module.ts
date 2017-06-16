@@ -37,6 +37,8 @@ import { GenreService } from '../services/genre.service';
 import { MoodService } from '../services/mood.service';
 import { LikertService } from '../services/likert.service';
 
+import { SearchPipe } from '../pipes/search.pipe';
+
 import { LocalStorageService } from '../services/utils/local-storage.service';
 import { VisibilityService } from '../services/utils/visibility.service';
 import { MusicService } from '../services/utils/music.service';
@@ -55,6 +57,7 @@ import { MusicService } from '../services/utils/music.service';
     RecentMoodsPage,
     MoodDetailsPage,
     SearchPage,
+    SearchPipe,
     ProfilePage,
     ChangeMyMoodPage,
     PlayerPage,
