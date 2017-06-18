@@ -6,6 +6,7 @@ import { PlayerPage } from '../player/player';
 import { MoodService } from '../../services/mood.service';
 import { SongService } from '../../services/song.service';
 
+import { LocalStorageService } from '../../services/utils/local-storage.service';
 import { VisibilityService } from '../../services/utils/visibility.service';
 
 import { Mood } from '../../model/mood';
@@ -35,6 +36,7 @@ export class ChangeMyMoodPage {
     private navParams: NavParams,
     private moodService: MoodService,
     private songService: SongService,
+    private localStorageService: LocalStorageService,
     private visibilityService: VisibilityService
   ) { }
 
@@ -54,6 +56,7 @@ export class ChangeMyMoodPage {
 
   startPlaying() {
     // TODO: Register mood with the API.
+    this.localStorageService.saveCurrentMood(this.mood);
 
     this.isNavigatingToPlayer = true;
     this.navCtrl.pop();

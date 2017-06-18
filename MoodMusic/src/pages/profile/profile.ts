@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 
+import { IntroPage } from '../intro/intro';
+
 import { AuthService } from '../../services/auth.service';
 import { LocalStorageService } from '../../services/utils/local-storage.service';
+import { VisibilityService } from '../../services/utils/visibility.service';
 
 import { User } from '../../model/user';
 /**
@@ -30,7 +33,8 @@ export class ProfilePage implements OnInit {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     private authService: AuthService,
-    private localStorageService: LocalStorageService) {
+    private localStorageService: LocalStorageService,
+    private visibilityService: VisibilityService) {
 
     this.loading = this.loadingCtrl.create({
       spinner: 'crescent',
@@ -67,8 +71,11 @@ export class ProfilePage implements OnInit {
         if (res.ok) {
           this.localStorageService.clear();
 
-          const root = this._app.getRootNav();
-          root.popToRoot();
+          this.visibilityService.hideMusicBar();
+          this.visibilityService.hideTabs();
+          this.visibilityService.hideScrollContentMargin();
+
+          this.navCtrl.setRoot(IntroPage);
         } else {
           this.alert = this.alertCtrl.create({
             title: 'Error',

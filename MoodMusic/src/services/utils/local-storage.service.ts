@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+import { User } from '../../model/user';
+import { Mood } from '../../model/mood';
+
 /*
   Generated class for the Genre Service.
 
@@ -12,7 +15,10 @@ export class LocalStorageService {
   userTokenKey: string = 'userToken';
   userKey: string = 'user';
 
+  currentMoodKey: string = 'currentMood';
+
   gradientStateKey: string = 'gradientState';
+  likertScaleKey: string = 'likertScale';
 
   constructor() { }
 
@@ -29,11 +35,11 @@ export class LocalStorageService {
     window.localStorage.removeItem(this.userTokenKey);
   }
 
-  getUser() {
+  getUser(): User {
     return JSON.parse(window.localStorage.getItem(this.userKey));
   }
 
-  saveUser(user: Object) {
+  saveUser(user: User) {
     if (user) {
       window.localStorage.setItem(this.userKey, JSON.stringify(user));
     }
@@ -41,6 +47,20 @@ export class LocalStorageService {
 
   removeUser() {
     window.localStorage.removeItem(this.userKey);
+  }
+
+  getCurrentMood(): Mood {
+    return JSON.parse(window.localStorage.getItem(this.currentMoodKey));
+  }
+
+  saveCurrentMood(mood: Mood) {
+    if (mood) {
+      window.localStorage.setItem(this.currentMoodKey, JSON.stringify(mood));
+    }
+  }
+
+  removeCurrentMood() {
+    window.localStorage.removeItem(this.currentMoodKey);
   }
 
   getGradientState() {
@@ -57,9 +77,25 @@ export class LocalStorageService {
     window.localStorage.removeItem(this.gradientStateKey);
   }
 
+  getLikertScale(): Array<String> {
+    return JSON.parse(window.localStorage.getItem(this.likertScaleKey));
+  }
+
+  saveLikertScale(likertScale: Array<String>) {
+    if (likertScale) {
+      window.localStorage.setItem(this.likertScaleKey, JSON.stringify(likertScale));
+    }
+  }
+
+  removeLikertScale() {
+    window.localStorage.removeItem(this.likertScaleKey);
+  }
+
   clear() {
     this.removeUserToken();
     this.removeUser();
+    this.removeCurrentMood();
     this.removeGradientState();
+    this.removeLikertScale();
   }
 }
