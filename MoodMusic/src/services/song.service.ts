@@ -4,8 +4,6 @@ import { Observable } from 'rxjs/Rx';
 
 import { APIService } from './api.service';
 
-import { Track } from '../model/track';
-
 /*
   Generated class for the Genre Service.
 
