@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 // Modules
-import { IonicAudioModule, AudioProvider, audioProviderFactory } from 'ionic-audio';
+import { IonicAudioModule, AudioProvider, defaultAudioProviderFactory } from 'ionic-audio';
 
 import { PlayerModule } from '../pages/player/player.module';
 
@@ -72,7 +72,7 @@ import { FadeTransition } from '../utils/fade-transition';
     IonicModule.forRoot(MyApp, {
       backButtonText: ''
     }),
-    IonicAudioModule.forRoot({ provide: AudioProvider, useFactory: audioProviderFactory }),
+    IonicAudioModule.forRoot({ provide: AudioProvider, useFactory: defaultAudioProviderFactory }),
     PlayerModule
   ],
   bootstrap: [IonicApp],
