@@ -33,6 +33,16 @@ export class SongService extends APIService {
     return this.http.get(this.BASE_URL + '/songs/recent/' + this.limit, options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+
+  }
+
+  getTenRecentSongs(token) {
+
+    var options = super.createAuthenticationRequestOptions(token);
+
+    return this.http.get(this.BASE_URL + '/songs/recent/' + this.limit, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
   getSongsLocal() {

@@ -85,7 +85,7 @@ export class HomePage {
   */
 
   getRecentSongs() {
-    this.songService.getRecentSongs(this.localStorageService.getUserToken()).subscribe(songs => this.recentSongs = songs.message);
+    this.songService.getTenRecentSongs(this.localStorageService.getUserToken()).subscribe(songs => this.recentSongs = songs.message);
   }
 
   goToRecentSongs() {
