@@ -1,12 +1,14 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+
+import { PlayerPage } from '../player/player';
+import { SongDetailsPage } from '../song-details/song-details';
 
 import { SongService } from '../../services/song.service';
 
-import { Song } from '../../model/song';
+import { Track } from '../../model/track';
 
-import { Observable } from 'rxjs/Observable';
-import { Subject } from "rxjs/Subject";
+
 
 /**
  * Generated class for the Search page.
@@ -46,6 +48,20 @@ export class SearchPage implements OnInit {
     console.log('ionViewDidLoad Search');
   }
 
+  playSong(event, song: Track){
+    event.stopPropagation();
+    var data = {
+      playlist: song
+    };
+
+    this.navCtrl.push(PlayerPage, data, { animation: 'fade-transition', direction: 'forward' });
+  }
+
+  songDetails(event, song) {
+    event.stopPropagation();
+    this.navCtrl.push(SongDetailsPage, { song: song });
+  }
+  
   getSongs() {
     // this.loading.present();
 
