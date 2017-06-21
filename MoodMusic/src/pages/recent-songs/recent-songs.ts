@@ -50,7 +50,7 @@ export class RecentSongsPage {
     this.navCtrl.push(SongDetailsPage, { song: song });
   }
 
-  ionViewDidEnter() {
+  ngOnInit() {
     this.getRecentSongs();
   }
 

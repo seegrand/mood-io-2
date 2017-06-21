@@ -66,7 +66,7 @@ export class HomePage {
     console.log('ionViewDidLoad Home');
   }
 
-  ionViewDidEnter() {
+  ngOnInit() {
     this.getRecentSongs();
     this.getRecentMoods();
     console.log("Hello World!");
@@ -105,7 +105,7 @@ export class HomePage {
   */
 
   getRecentMoods() {
-    this.moodService.getRecentMoods().subscribe(moods => this.recentMoods = moods);
+    // this.moodService.getTenRecentMoods(this.localStorageService.getUserToken()).subscribe(moods => this.recentMoods = moods.message);
   }
 
   goToRecentMoods() {
