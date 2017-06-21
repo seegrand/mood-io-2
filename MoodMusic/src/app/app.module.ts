@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { Config, IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -37,9 +37,14 @@ import { GenreService } from '../services/genre.service';
 import { MoodService } from '../services/mood.service';
 import { LikertService } from '../services/likert.service';
 
+import { SearchPipe } from '../pipes/search.pipe';
+
 import { LocalStorageService } from '../services/utils/local-storage.service';
 import { VisibilityService } from '../services/utils/visibility.service';
 import { MusicService } from '../services/utils/music.service';
+
+// Utils
+import { FadeTransition } from '../utils/fade-transition';
 
 @NgModule({
   declarations: [
@@ -55,6 +60,7 @@ import { MusicService } from '../services/utils/music.service';
     RecentMoodsPage,
     MoodDetailsPage,
     SearchPage,
+    SearchPipe,
     ProfilePage,
     ChangeMyMoodPage,
     PlayerPage,
@@ -100,8 +106,15 @@ import { MusicService } from '../services/utils/music.service';
     LocalStorageService,
     VisibilityService,
     MusicService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {
+      provide: ErrorHandler,
+      useClass: IonicErrorHandler
+    }
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private config: Config) {
+    this.config.setTransition('fade-transition', FadeTransition);
+  }
+}

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { App, IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 
+import { IntroPage } from '../intro/intro';
+
 import { AuthService } from '../../services/auth.service';
 import { LocalStorageService } from '../../services/utils/local-storage.service';
+import { VisibilityService } from '../../services/utils/visibility.service';
 
 import { User } from '../../model/user';
 /**
@@ -18,9 +21,6 @@ import { User } from '../../model/user';
 })
 export class ProfilePage implements OnInit {
 
-  loading: any;
-  alert: any;
-
   user: User;
 
   constructor(
@@ -30,13 +30,8 @@ export class ProfilePage implements OnInit {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
     private authService: AuthService,
-    private localStorageService: LocalStorageService) {
-
-    this.loading = this.loadingCtrl.create({
-      spinner: 'crescent',
-      content: 'Logging out...'
-    });
-  }
+    private localStorageService: LocalStorageService,
+    private visibilityService: VisibilityService) { }
 
   ngOnInit() {
     this.user = this.localStorageService.getUser();
@@ -56,29 +51,35 @@ export class ProfilePage implements OnInit {
   }
 
   logout() {
-    this.loading.present();
+    var loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+      content: 'Logging out...'
+    });
 
-    var token = this.localStorageService.getUserToken();
+    loading.present().then(() => {
 
-    if (token) {
-      this.authService.logout(token).subscribe((res) => {
-        this.loading.dismiss();
+      var token = this.localStorageService.getUserToken();
 
-        if (res.ok) {
-          this.localStorageService.clear();
+      if (token) {
+        this.authService.logout(token).subscribe((res) => {
+          loading.dismiss();
 
-          const root = this._app.getRootNav();
-          root.popToRoot();
-        } else {
-          this.alert = this.alertCtrl.create({
-            title: 'Error',
-            subTitle: res,
-            buttons: ['Dismiss']
-          });
-          this.alert.present();
-        }
-      });
-    }
+          if (res.ok) {
+            this.localStorageService.clear();
+
+            this.navCtrl.setRoot(IntroPage);
+          } else {
+            var alert = this.alertCtrl.create({
+              title: 'Error',
+              subTitle: res,
+              buttons: ['Dismiss']
+            });
+
+            alert.present();
+          }
+        });
+      }
+    });
   }
 
   ionViewDidLoad() {

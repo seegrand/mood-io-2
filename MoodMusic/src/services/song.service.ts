@@ -4,16 +4,17 @@ import { Observable } from 'rxjs/Rx';
 
 import { APIService } from './api.service';
 
-import { Track } from '../model/track';
-
 /*
   Generated class for the Genre Service.
 
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on services and Angular 2 DI.
 */
+
 @Injectable()
 export class SongService extends APIService {
+
+  limit = 10;
 
   constructor(http: Http) {
     super(http);
@@ -23,6 +24,25 @@ export class SongService extends APIService {
     return this.http.get(this.BASE_URL + "/songs")
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  getRecentSongs(token) {
+
+    var options = super.createAuthenticationRequestOptions(token);
+
+    return this.http.get(this.BASE_URL + '/songs/recent/' + this.limit, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+
+  }
+
+  getTenRecentSongs(token) {
+
+    var options = super.createAuthenticationRequestOptions(token);
+
+    return this.http.get(this.BASE_URL + '/songs/recent/' + this.limit, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
   getSongsLocal() {

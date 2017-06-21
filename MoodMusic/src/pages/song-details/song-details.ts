@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Track } from '../../model/track';
-
 /**
  * Generated class for the SongDetails page.
  *
